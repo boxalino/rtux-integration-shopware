@@ -65,7 +65,6 @@
         "$fromServer": true,
         "parentResource": null,
         "restangularCollection": false,
-        "isSelected": true,
-        "contentResource": false
+        "isSelected": true
     }
 ]
