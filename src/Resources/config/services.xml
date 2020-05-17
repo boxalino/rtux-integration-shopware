@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:monolog="http://symfony.com/schema/dic/monolog"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd http://symfony.com/schema/dic/monolog http://symfony.com/schema/dic/monolog/monolog-1.0.xsd">
+
+    <!-- OPTIONAL: setting custom logger for the plugin use -->
+    <monolog:config>
+        <monolog:channel>boxalino-integration</monolog:channel>
+        <monolog:handler name="boxalino_integration_log"
+                         type="stream"
+                         path="%kernel.logs_dir%/boxalino-integration-%kernel.environment%.log"
+                         level="debug">
+            <monolog:channels>
+                <monolog:channel>boxalino-integration</monolog:channel>
+            </monolog:channels>
+        </monolog:handler>
+    </monolog:config>
+
+    <imports>
+        <import resource="services/api/page.xml"/>
+        <import resource="services/api/autocomplete.xml"/>
+        <import resource="services/api/search.xml"/>
+        <import resource="services/api/crossselling.xml"/>
+        <import resource="services/api/cms.xml"/>
+    </imports>
+
+    <services>
+        <!-- Full exporter data syncrhonization task (requires configuration)  -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFull">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <!-- scheduled task handler with link to the task scheduler class -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFullHandler"
+                 parent="Boxalino\RealTimeUserExperience\ScheduledTask\ExporterFullHandlerAbstract">
+<!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
+            <tag name="messenger.message_handler" />
+        </service>
+    </services>
+
+</container>

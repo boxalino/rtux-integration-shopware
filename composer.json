@@ -1,0 +1,34 @@
+{
+    "name": "boxalino/rtux-integration-shopware",
+    "type": "shopware-platform-plugin",
+    "description": "Boxalino Real Time User Experience (RTUX) Integration",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Boxalino AG",
+            "role": "Manufacturer",
+            "email": "support@boxalino.com",
+            "homepage": "http://www.boxalino.com/"
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "custom/plugins/BoxalinoRealTimeUserExperienceIntegration": ["boxalino/rtux-integration-shopware", "vendor/package"]
+        },
+        "shopware-plugin-class": "Boxalino\\RealTimeUserExperienceIntegration\\BoxalinoRealTimeUserExperienceIntegration",
+        "copyright": "Boxalino AG, 2020",
+        "label": {
+            "de-DE": "Boxalino RTUX Integration guidelines für Shopware v6",
+            "en-GB": "Boxalino RTUX Integration guidelines for Shopware v6"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "boxalino/rtux-shopware": "0.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boxalino\\RealTimeUserExperienceIntegration\\": "src/"
+        }
+    }
+}
