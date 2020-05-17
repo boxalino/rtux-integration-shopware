@@ -309,7 +309,34 @@
             },
             {
                 "name": "content-resource",
+                "values": [{
+        "id": 778,
+        "uniqueKey": "title",
+        "parametersJsonScheme": "{\n  \"title\": \"Title (H1)\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"title\": {\n      \"type\": \"object\",\n      \"title\": \"Title\",\n      \"properties\": {\n        \"de\": {\n          \"type\": \"string\",\n          \"description\": \"Title in German\"\n        },\n        \"en\": {\n          \"type\": \"string\",\n          \"description\": \"Title in English\"\n        }\n      }\n    }\n  }\n}",
+        "format": null,
+        "widgets": [],
+        "parameters": [
+            {
+                "name": "template",
                 "values": [
+                    "@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/title.html.twig"
+                ]
+            },
+            {
+                "name": "content-resource",
+                "values": [
+                    "c-r=t"
+                ]
+            }
+        ],
+        "subRenderings": [],
+        "route": "visual-elements",
+        "reqParams": null,
+        "$fromServer": true,
+        "parentResource": null,
+        "restangularCollection": false,
+        "isSelected": true
+    },
                     "c-r=f"
                 ]
             },
