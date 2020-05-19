@@ -9,15 +9,14 @@
                  class="Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context\Cms"
                  parent="boxalino.request.context.cms">
             <call method="setRequestDefinition">
-                <argument type="service" id="Boxalino\RealTimeUserExperience\Service\Api\Request\Definition\ListingRequestDefinitionInterface"/>
+                <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ListingRequestDefinitionInterface"/>
             </call>
 <!--            setWidget, setHitCount, setGroupBy and other data is inherited from the CMS element configuration -->
         </service>
 
         <!-- Shopware6 CMS loader extension with API call -->
         <service id="boxalino.api.integration.loader.cms"
-                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader"
-                 parent="boxalino.api.content.page.cms">
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.cms"/>
             </call>

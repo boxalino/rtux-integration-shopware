@@ -6,9 +6,9 @@
     <services>
         <!-- Shopware6 definition of the autocomplete context used for the setup -->
         <service id="boxalino.integration.context.autocomplete" class="Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context\Autocomplete"
-                 parent="Boxalino\RealTimeUserExperience\Service\Api\Request\Context\AutocompleteContextInterface">
+                 parent="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Context\AutocompleteContextInterface">
             <call method="setRequestDefinition">
-                <argument type="service" id="Boxalino\RealTimeUserExperience\Service\Api\Request\Definition\AutocompleteRequestDefinitionInterface"/>
+                <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\AutocompleteRequestDefinitionInterface"/>
             </call>
             <call method="setWidget"><argument>autocomplete</argument></call>
             <call method="setHitCount"><argument>10</argument></call>

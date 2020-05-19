@@ -5,23 +5,24 @@
 
     <services>
         <!-- Shopware6 content loader for autocomplete (used as a dependency in the controller) -->
-        <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
-                 parent="boxalino.api.content.page.loader">
+        <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.autocomplete"/>
             </call>
         </service>
 
         <!-- Shopware6 content loader for search (used as a dependency in controller) -->
-        <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
-                 parent="boxalino.api.content.page.loader">
+        <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.search"/>
             </call>
         </service>
 
         <!-- Shopware6 - Sorting resource - has to be added in integration layer because of the dynamic mapping for the product listing sorting -->
-        <service id="Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiSortingModel" public="true">
+        <service id="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface"
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiSortingModel"
+                 parent="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelAbstract"
+                 public="true">
             <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingSortingRegistry"/>
             <call method="add">
                 <argument type="collection">

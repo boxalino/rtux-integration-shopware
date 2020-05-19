@@ -22,7 +22,7 @@
             {
                 "name": "model",
                 "values": [
-                    "boxalino.api.content.collection"
+                    "boxalino.shopware.content.collection"
                 ]
             },
             {

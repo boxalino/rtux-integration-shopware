@@ -7,9 +7,9 @@
         <!-- Shopware6 definition of the PDP context used for the setup  (as a base for widgets and so on)-->
         <service id="boxalino.integration.context.crossselling"
                  class="Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context\CrossSelling"
-                 parent="Boxalino\RealTimeUserExperience\Service\Api\Request\Context\ItemContextInterface">
+                 parent="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Context\ItemContextInterface">
             <call method="setRequestDefinition">
-                <argument type="service" id="Boxalino\RealTimeUserExperience\Service\Api\Request\Definition\ItemRequestDefinitionInterface"/>
+                <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ItemRequestDefinitionInterface"/>
             </call>
             <call method="setWidget"><argument>accessories</argument></call>
             <call method="setHitCount"><argument>7</argument></call>
@@ -19,8 +19,7 @@
 
         <!-- Shopware6 content loader for cross-selling with the crosselling context set -->
         <service id="boxalino.integration.loader.crossselling"
-                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoader"
-                 parent="boxalino.api.content.page.crossselling">
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoader">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.crossselling"/>
             </call>

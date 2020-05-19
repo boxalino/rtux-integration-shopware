@@ -57,7 +57,8 @@ class SearchController extends ShopwareSearchController
     public function search(SalesChannelContext $context, Request $request): Response
     {
         try {
-            $page = $this->searchApiPageLoader->load($request, $context);
+            $this->searchApiPageLoader->setSalesChannelContext($context);
+            $page = $this->searchApiPageLoader->load($request);
             if($page->getRedirectUrl())
             {
                 return $this->forwardToRoute($page->getRedirectUrl());
@@ -85,7 +86,8 @@ class SearchController extends ShopwareSearchController
     public function suggest(SalesChannelContext $context, Request $request): Response
     {
         try{
-            $page = $this->autocompleteApiPageLoader->load($request, $context);
+            $this->autocompleteApiPageLoader->setSalesChannelContext($context);
+            $page = $this->autocompleteApiPageLoader->load($request);
             /**
              * the render template is a narrative element
              */
@@ -110,7 +112,8 @@ class SearchController extends ShopwareSearchController
     public function pagelet(Request $request, SalesChannelContext $context): Response
     {
         try{
-            $page = $this->searchApiPageLoader->load($request, $context);
+            $this->searchApiPageLoader->setSalesChannelContext($context);
+            $page = $this->searchApiPageLoader->load($request);
 
             /**
              * by DEFAULT, Shopware6 does not update facets&search page title on pagelet, only the content within cmsProductListingSelector
