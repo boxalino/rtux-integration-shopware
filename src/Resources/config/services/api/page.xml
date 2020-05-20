@@ -21,7 +21,6 @@
         <!-- Shopware6 - Sorting resource - has to be added in integration layer because of the dynamic mapping for the product listing sorting -->
         <service id="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface"
                  class="Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiSortingModel"
-                 parent="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelAbstract"
                  public="true">
             <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingSortingRegistry"/>
             <call method="add">
