@@ -24,12 +24,11 @@ class Autocomplete extends AutocompleteContextAbstract
 
     /**
      * @param Request $request
-     * @param SalesChannelContext $salesChannelContext
      * @return string
      */
-    public function getContextNavigationId(Request $request, SalesChannelContext $salesChannelContext): array
+    public function getContextNavigationId(Request $request): array
     {
-        return [$salesChannelContext->getSalesChannel()->getNavigationCategoryId()];
+        return [$this->getSalesChannelContext()->getSalesChannel()->getNavigationCategoryId()];
     }
 
     /**

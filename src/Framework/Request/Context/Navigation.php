@@ -27,10 +27,9 @@ class Navigation extends ListingContextAbstract
 
     /**
      * @param Request $request
-     * @param SalesChannelContext $salesChannelContext
      * @return string
      */
-    public function getContextNavigationId(Request $request, SalesChannelContext $salesChannelContext): array
+    public function getContextNavigationId(Request $request): array
     {
         $params = $request->attributes->get('_route_params');
         if ($params && isset($params['navigationId']))
@@ -38,7 +37,7 @@ class Navigation extends ListingContextAbstract
             return [$params['navigationId']];
         }
 
-        return [$salesChannelContext->getSalesChannel()->getNavigationCategoryId()];
+        return [$this->getSalesChannelContext()->getSalesChannel()->getNavigationCategoryId()];
     }
 
     /**
