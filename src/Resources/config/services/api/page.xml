@@ -5,14 +5,16 @@
 
     <services>
         <!-- Shopware6 content loader for autocomplete (used as a dependency in the controller) -->
-        <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader">
+        <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
+                 parent="boxalino.shopware.content.page.loader">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.autocomplete"/>
             </call>
         </service>
 
         <!-- Shopware6 content loader for search (used as a dependency in controller) -->
-        <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader">
+        <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
+                 parent="boxalino.shopware.content.page.loader">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.search"/>
             </call>

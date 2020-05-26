@@ -14,12 +14,13 @@
             <call method="setWidget"><argument>accessories</argument></call>
             <call method="setHitCount"><argument>7</argument></call>
             <call method="setGroupBy"><argument>id</argument></call>
-<!--            <call method="setConfiguredProductsAsContextParameters"><argument>true</argument></call>-->
+            <!--            <call method="setConfiguredProductsAsContextParameters"><argument>true</argument></call>-->
         </service>
 
         <!-- Shopware6 content loader for cross-selling with the crosselling context set -->
         <service id="boxalino.integration.loader.crossselling"
-                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoader">
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoader"
+                 parent="boxalino.shopware.content.page.crossselling">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.crossselling"/>
             </call>

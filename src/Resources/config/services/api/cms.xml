@@ -16,7 +16,7 @@
 
         <!-- Shopware6 CMS loader extension with API call -->
         <service id="boxalino.integration.loader.cms"
-                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader">
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader" parent="boxalino.shopware.content.page.cms">
             <call method="setApiContextInterface">
                 <argument type="service" id="boxalino.integration.context.cms"/>
             </call>
