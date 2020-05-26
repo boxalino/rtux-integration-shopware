@@ -198,7 +198,7 @@
             {
                 "name": "model",
                 "values": [
-                    "Boxalino\\RealTimeUserExperience\\Framework\\Content\\Listing\\ApiSortingModel"
+                    "Boxalino\\RealTimeUserExperienceApi\\Framework\\Content\\Listing\\ApiSortingModelInterface"
                 ]
             }
         ],
