@@ -1,0 +1,42 @@
+[
+    {
+        "id": 357,
+        "uniqueKey": "some_results",
+        "status": "active",
+        "accessor": "hits-",
+        "parameterValue": {
+            "value": "_count",
+            "operator": ">",
+            "condtionalValue": "0",
+            "parameters": null
+        },
+        "conditional": null,
+        "simple": null,
+        "ifResources": [],
+        "elseResources": [],
+        "afterResources": [],
+        "elseText": null,
+        "parameterValues": [],
+        "parameters": []
+    },
+    {
+        "id": 358,
+        "uniqueKey": "sub_phrases",
+        "status": "active",
+        "accessor": "sub-phrases-",
+        "parameterValue": {
+            "value": "_count",
+            "operator": ">",
+            "condtionalValue": "0",
+            "parameters": null
+        },
+        "conditional": null,
+        "simple": null,
+        "ifResources": [],
+        "elseResources": [],
+        "afterResources": [],
+        "elseText": null,
+        "parameterValues": [],
+        "parameters": []
+    }
+]
