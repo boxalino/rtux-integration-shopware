@@ -32,7 +32,9 @@ displays the no result text for the given search query
 
                     {% block layout_search_suggest_result_total_count %}
                         <div class="col-auto search-suggest-total-count">
-                            {{ page.totalHitCount }} {{ "header.searchResults"|trans|sw_sanitize }}
+                            {{ "header.searchResults"|trans({
+                                '%count%': page.totalHitCount,
+                            })|sw_sanitize }}
                         </div>
                     {% endblock %}
                 </div>
