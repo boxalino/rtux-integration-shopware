@@ -1,4 +1,8 @@
-import BoxalinoIntegrationPlugin from './boxalinointegration/boxalinointegration.plugin';
+import BoxalinoIntegrationPlugin from './boxalino-real-time-user-experience-integration/boxalino-real-time-user-experience-integration.plugin';
 
 const PluginManager = window.PluginManager;
-PluginManager.register('BoxalinoIntegrationPlugin', BoxalinoIntegrationPlugin, '[data-boxalino-integration]');
+PluginManager.register(
+    'BoxalinoRealTimeUserExperienceIntegrationPlugin',
+    BoxalinoRealTimeUserExperienceIntegrationPlugin,
+    '[data-boxalino-integration]'
+);

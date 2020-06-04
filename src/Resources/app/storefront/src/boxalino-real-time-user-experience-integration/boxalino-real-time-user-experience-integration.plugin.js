@@ -9,7 +9,7 @@ import Iterator from 'src/helper/iterator.helper';
  *
  * This sample is not maintained by Boxalino
  */
-export default class BoxalinoIntegrationPlugin extends Plugin
+export default class BoxalinoRealTimeUserExperienceIntegrationPlugin extends Plugin
 {
     /**
      * The ajax reloaded filters
@@ -20,7 +20,7 @@ export default class BoxalinoIntegrationPlugin extends Plugin
         parentFilterPanelSelector: '.cms-element-product-listing-wrapper',
         activeFilterLabelRemoveClass: 'filter-active-remove',
         activeFilterContainerSelector: '.filter-panel-container-active',
-        resetAllFilterButtonSelector: '.filter-reset-all',
+        resetAllFilterButtonSelector: '.filter-reset-all'
     };
 
     init() {

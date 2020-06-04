@@ -88,7 +88,7 @@ This will provide the user with the facet options available based on prior selec
 In order to integrate this functionality:
 1. use the narrative-ajax.json for the narrative structure: it is composed of a single block wrapping the title, facets, products
 2. add the JavaScript class 
-https://github.com/boxalino/rtux-integration-shopware/tree/master/src/Resources/app/storefront/src/boxalinointegration/boxalinointegration.plugin.js
+https://github.com/boxalino/rtux-integration-shopware/tree/master/src/Resources/app/storefront/src/boxalino-real-time-user-experience-integration/boxalino-real-time-user-experience-integration.plugin.js
 > the JS contains more information on what it represents; it is to be updated and maintained within your own repository
 3. check out the filter-panel template for more insight/differences: 
 https://github.com/boxalino/rtux-integration-shopware/tree/master/src/Resources/views/storefront/narrative/component/listing/filter-panel.html.twig
