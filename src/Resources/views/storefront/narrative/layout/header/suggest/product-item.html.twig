@@ -3,7 +3,7 @@
         <a href="{{ block.product.products_seo_url[0] }}"
            title="{{ block.product.title }}"
            class="search-suggest-product-link">
-            <div class="row align-items-center no-gutters">
+            <div class="row align-items-center no-gutters bx-narrative-item" data-bx-item-id="{{ block.product.id }}">
                 {% block layout_search_suggest_result_image %}
                     <div class="col-auto search-suggest-product-image-container">
                         <img src="{{ block.product.products_image[0] }}"

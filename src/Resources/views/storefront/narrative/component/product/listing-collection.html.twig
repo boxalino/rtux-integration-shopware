@@ -9,7 +9,8 @@ to access the collection of products (as returned by the Boxalino response) (blo
 renders the product by ignoring other parameter data sent by Boxalino, close to original template
 #}
 {% block element_product_listing_row %}
-    <div class="row cms-listing-row js-listing-wrapper">
+    <div class="row cms-listing-row js-listing-wrapper bx-narrative" data-bx-variant-uuid="{{ variantUuid }}"
+         data-bx-narrative-name="products-list" data-bx-narrative-group-by="{{ groupBy }}">
         {% block element_product_listing_col %}
             {% for product in block.model.collection %}
                 <div class="cms-listing-col {{ listingColumns }}">

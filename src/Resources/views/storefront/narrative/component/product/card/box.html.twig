@@ -8,7 +8,7 @@ minimum change (the <div>) due to the division of the original listing twig temp
 
 optional: use the loop through block.blocks to render other children elements set on the product layout block
 #}
-<div class="cms-listing-col {{ listingColumns }}">
+<div class="cms-listing-col {{ listingColumns }} bx-narrative-item" data-bx-item-id="{{ product.id }}">
     {% block component_product_box_include %}
         {#
            Includes a custom product-box template defined by the layout variable.

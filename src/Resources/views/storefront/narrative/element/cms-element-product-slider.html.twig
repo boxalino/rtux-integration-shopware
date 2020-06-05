@@ -34,8 +34,10 @@ all JSON schema properties are returned in an array, so if a single value is exp
 
                 {% block element_product_slider_inner %}
                     {% block element_product_slider_element %}
-                        <div class="product-slider-container"
-                             data-product-slider-container="true">
+                        <div class="product-slider-container bx-narrative"
+                             data-product-slider-container="true"
+                             data-bx-variant-uuid="{{ variantUuid }}"
+                             data-bx-narrative-name="products-list" data-bx-narrative-group-by="{{ groupBy }}">
                             {% for bxblock in block.blocks %}
                                 {% block element_product_slider_inner_item %}
                                     <div class="product-slider-item">
