@@ -29,15 +29,19 @@ In order to deploy it, check the *Setup* steps bellow.
 2. Activate the plugin per Shopware use
 ``./bin/console plugin:refresh``
 ``./bin/console plugin:install --activate --clearCache BoxalinoRealTimeUserExperienceIntegration``
+
+3. Due to the JS files in the plugin (for listing), a theme compilation might be required:
+``./psh.phar storefront:build``
   
-3. Import the content of the complete-guidelines (https://github.com/boxalino/rtux-integration-shopware/tree/master/doc/complete-guidelines) JSONs in Boxalino Intelligence Admin; test, save & publish.
+4. Import the content of the complete-guidelines (https://github.com/boxalino/rtux-integration-shopware/tree/master/doc/complete-guidelines) JSONs in Boxalino Intelligence Admin; test, save & publish.
     * Layout Blocks (Boxalino Intelligence Admin >> Marketing >> Layout Blocks)
     * Template Resources (Boxalino Intelligence Admin >> Advanced >> Template Resources)
     * Narratives  (Boxalino Intelligence Admin >> Marketing >> Narratives)
 
-4. Search, autocomplete, cross-sellings will work automatically. 
+5. Search, autocomplete, cross-sellings will work automatically. 
 In order to have navigation active, read the #About section in the cms-navigation documentation.
 In order to add sliders on home-page/other segments, read the #About section in the cms-slider documentation.
+
 
 ## Documentation
 
