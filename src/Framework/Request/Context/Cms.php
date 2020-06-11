@@ -20,9 +20,9 @@ class Cms extends ListingContextAbstract
     /**
      * @return int
      */
-    public function getContextVisibility() : int
+    public function getContextVisibility() : array
     {
-        return ProductVisibilityDefinition::VISIBILITY_ALL;
+        return [ProductVisibilityDefinition::VISIBILITY_ALL];
     }
 
     /**

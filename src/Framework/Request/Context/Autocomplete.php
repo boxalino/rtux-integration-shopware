@@ -34,9 +34,9 @@ class Autocomplete extends AutocompleteContextAbstract
     /**
      * @return int
      */
-    public function getContextVisibility() : int
+    public function getContextVisibility() : array
     {
-        return ProductVisibilityDefinition::VISIBILITY_SEARCH;
+        return [ProductVisibilityDefinition::VISIBILITY_SEARCH];
     }
 
     /**

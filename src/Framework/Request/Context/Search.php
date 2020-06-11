@@ -19,9 +19,9 @@ class Search extends SearchContextAbstract
     /**
      * @return int
      */
-    public function getContextVisibility() : int
+    public function getContextVisibility() : array
     {
-        return ProductVisibilityDefinition::VISIBILITY_SEARCH;
+        return [ProductVisibilityDefinition::VISIBILITY_SEARCH];
     }
 
     /**
