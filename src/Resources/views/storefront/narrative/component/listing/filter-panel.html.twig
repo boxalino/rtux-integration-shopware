@@ -109,10 +109,10 @@ renders the facets as are set in the facet model
                                     </div>
                                     {#
                                         render the selected facets on every facet update; this allows for the facets to be updated on every load
-                                        "data-boxalino-integration" has to match the selector for the custom JS
+                                        "data-rtux-listing-filter" has to match the selector for the custom JS
                                     #}
                                     {% block boxalino_filter_panel_container_active %}
-                                        <div class="filter-panel-container-active" data-boxalino-integration="true">
+                                        <div class="filter-panel-container-active" data-rtux-listing-filter="true">
                                         {% if block.model.hasSelectedFacets() %}
                                             {# the button based on the template of listing.plugin..js::getLabelTemplate() #}
                                             {% for selectedFacet in block.model.getSelectedFacets() %}

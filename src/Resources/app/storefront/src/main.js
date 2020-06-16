@@ -1,8 +1,7 @@
-import BoxalinoRealTimeUserExperienceIntegrationPlugin from './boxalino-real-time-user-experience-integration/boxalino-real-time-user-experience-integration.plugin';
+import RtuxListingFilterPlugin from './rtux-listing-filter/rtux-listing-filter.plugin';
+import RtuxAutocompletePlugin from './rtux-autocomplete/rtux-autocomplete.plugin';
 
 const PluginManager = window.PluginManager;
-PluginManager.register(
-    'BoxalinoRealTimeUserExperienceIntegrationPlugin',
-    BoxalinoRealTimeUserExperienceIntegrationPlugin,
-    '[data-boxalino-integration]'
-);
+
+PluginManager.register('RtuxListingFilterPlugin', RtuxListingFilterPlugin, '[data-rtux-listing-filter]');
+PluginManager.extend('SearchWidget', 'SearchWidget', RtuxAutocompletePlugin, '[data-search-form]');

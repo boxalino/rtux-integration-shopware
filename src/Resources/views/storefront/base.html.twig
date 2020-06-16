@@ -1,0 +1,42 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_script %}
+    {{ parent() }}
+    {% set rtuxApi = null %}
+    {% if context.getExtension("rtuxApi") is defined %}
+        {% set rtuxApi = context.getExtension("rtuxApi") %}
+    {% endif %}
+
+    {% if rtuxApi %}
+        {% block component_boxalino_api_autocomplete_js %}
+            <div class="rtux-api-autocomplete">
+                {% if rtuxApi.isTest() %}
+                    {% set isTest = 1 %}
+                {% endif %}
+
+                {% if rtuxApi.isDev() %}
+                    {% set isDev = 1 %}
+                {% endif %}
+                <script>
+                    window.rtuxAutocomplete = {
+                        "url": "{{ rtuxApi.getServerUrl() }}",
+                        "apiPreferentialAccount": "{{ rtuxApi.getAccount() }}",
+                        "apiPreferentialKey": "{{ rtuxApi.getApiServerKey() }}",
+                        "apiPreferentialProfile": "{{ rtuxApi.getCustomerContext() }}",
+                        "apiProductsCount":5,
+                        "apiSuggestionsCount":4,
+                        "apiProductsGroupBy":"products_group_id",
+                        "dev": '{{ isDev }}'=='1' ? true : false,
+                        "test": '{{ isTest }}'=='1' ? true : false,
+                        "language": "{{ page.header.activeLanguage.translationCode.code|lower|split('-')[0] }}",
+                        "suggestLink": '{{ seoUrl('frontend.search.page') }}',
+                        "currency" : '{{ page.header.activeCurrency.translated.shortName }}',
+                        "noSearchResultsMessage": '{{ "header.searchNoResult"|trans|sw_sanitize }}',
+                        "seeAllSearchResultsMessage": '{{ "header.searchAllResults"|trans|sw_sanitize }}',
+                        "seeAllSearchResultLabel" : '{{ "header.searchResults"|trans|sw_sanitize|split("%count%")[1] }}'
+                    }
+                </script>
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}

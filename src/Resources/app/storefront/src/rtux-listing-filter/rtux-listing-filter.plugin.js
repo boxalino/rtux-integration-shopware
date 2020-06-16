@@ -9,7 +9,7 @@ import Iterator from 'src/helper/iterator.helper';
  *
  * This sample is not maintained by Boxalino
  */
-export default class BoxalinoRealTimeUserExperienceIntegrationPlugin extends Plugin
+export default class RtuxListingFilterPlugin extends Plugin
 {
     /**
      * The ajax reloaded filters
