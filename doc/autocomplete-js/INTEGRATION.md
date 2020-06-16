@@ -54,6 +54,10 @@ To keep the order of the autocomplete response elements (products list, suggesti
 a property *callback* has been set on the visual elements which dictates to the wrapper what template to render
 https://github.com/boxalino/rtux-integration-shopware/blob/master/src/Resources/app/storefront/src/rtux-autocomplete/rtux-autocomplete.helper.js#L55
 
-###### 5. Build the theme
+###### 5. Register the API autocomplete plugin
+https://github.com/boxalino/rtux-integration-shopware/blob/master/src/Resources/app/storefront/src/main.js#L7
+
+
+###### 6. Build the theme
 ``./psh.phar storefront:build``
 
