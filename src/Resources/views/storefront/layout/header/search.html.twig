@@ -1,13 +1,14 @@
-{% sw_extends '@Storefront/storefront/base.html.twig' %}
+{% sw_extends '@Storefront/storefront/layout/header/search.html.twig' %}
 
-{% block base_body_script %}
+{% block layout_header_search %}
     {{ parent() }}
+
     {% set rtuxApi = null %}
     {% if context.getExtension("rtuxApi") is defined %}
         {% set rtuxApi = context.getExtension("rtuxApi") %}
     {% endif %}
 
-    {% if rtuxApi %}
+    {% if rtuxApi.getApiServerKey() %}
         {% block component_boxalino_api_autocomplete_js %}
             <div class="rtux-api-autocomplete">
                 {% if rtuxApi.isTest() %}

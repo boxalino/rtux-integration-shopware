@@ -17,7 +17,7 @@
         <!-- Shopware6 CMS loader extension with API call -->
         <service id="boxalino.integration.loader.cms"
                  class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader" parent="boxalino.shopware.content.page.cms">
-            <call method="setApiContextInterface">
+            <call method="setApiContext">
                 <argument type="service" id="boxalino.integration.context.cms"/>
             </call>
         </service>
@@ -25,6 +25,7 @@
         <!-- CMS Loader event subscriber to be added when wanting to use it -->
         <service id="Boxalino\RealTimeUserExperience\Framework\Content\Subscriber\ApiCmsLoaderSubscriber">
             <argument type="service" id="boxalino.integration.loader.cms"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
             <argument type="service" id="monolog.logger.boxalino-integration"/>
             <tag name="kernel.event_subscriber"/>
         </service>

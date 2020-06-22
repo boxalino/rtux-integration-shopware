@@ -7,7 +7,7 @@
         <!-- Shopware6 content loader for autocomplete (used as a dependency in the controller) -->
         <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
                  parent="boxalino.shopware.content.page.loader">
-            <call method="setApiContextInterface">
+            <call method="setApiContext">
                 <argument type="service" id="boxalino.integration.context.autocomplete"/>
             </call>
         </service>
@@ -15,7 +15,7 @@
         <!-- Shopware6 content loader for search (used as a dependency in controller) -->
         <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
                  parent="boxalino.shopware.content.page.loader">
-            <call method="setApiContextInterface">
+            <call method="setApiContext">
                 <argument type="service" id="boxalino.integration.context.search"/>
             </call>
         </service>
@@ -42,6 +42,7 @@
             <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController.inner"/>
             <argument type="service" id="boxalino.integration.loader.search" />
             <argument type="service" id="boxalino.integration.loader.autocomplete"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
             <argument type="service" id="monolog.logger.boxalino-integration"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

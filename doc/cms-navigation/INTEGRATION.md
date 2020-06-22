@@ -47,7 +47,7 @@ https://github.com/boxalino/rtux-shopware/blob/master/src/Framework/Content/Page
 this content loader has to be declared as a service:
 https://github.com/boxalino/rtux-integration-shopware/blob/master/src/Resources/config/services/api/cms.xml#L18
 
-the CMS definition request from step#1 must be declared via a setter injection with "setApiContextInterface"
+the CMS definition request from step#1 must be declared via a setter injection with "setApiContext"
 https://github.com/boxalino/rtux-integration-shopware/blob/master/src/Resources/config/services/api/cms.xml#L22
 
 The ApiCmsLoader will return a _page_ per Shopware6 CMS elements standard.

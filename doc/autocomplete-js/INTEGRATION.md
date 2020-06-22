@@ -17,7 +17,7 @@ If no other (custom) configurations are needed, the data set on Storefront for t
 https://github.com/boxalino/rtux-shopware/blob/master/src/Resources/views/storefront/component/analytics.html.twig#L7
 
 As seen in the extended template,
-https://github.com/boxalino/rtux-integration-shopware/blob/master/src/Resources/views/base.html.twig,
+https://github.com/boxalino/rtux-integration-shopware/blob/master/src/Resources/views/storefront/layout/header/search.html.twig,
 the following parameters have to be defined:
 1. number of returned products _apiProductsCount_
 2. number returned textual suggestion _apiSuggestionsCount_

@@ -2,9 +2,9 @@
 namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context;
 
 use Boxalino\RealTimeUserExperience\Framework\Request\SearchContextAbstract;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Search request
@@ -25,10 +25,10 @@ class Search extends SearchContextAbstract
     }
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      * @return string
      */
-    public function getContextNavigationId(Request $request): array
+    public function getContextNavigationId(RequestInterface $request): array
     {
         return [$this->getSalesChannelContext()->getSalesChannel()->getNavigationCategoryId()];
     }
@@ -51,7 +51,7 @@ class Search extends SearchContextAbstract
     public function getRangeProperties() : array
     {
         return [
-            "products_rating_average" => ['from' => 'products_rating_average', 'to' => 0],
+            "products_rating_average" => ['from' => 'products_rating_average', 'to' => "0"],
             "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
         ];
     }

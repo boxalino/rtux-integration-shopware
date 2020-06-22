@@ -3,6 +3,7 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller;
 
 use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as AutocompletePageLoader;
 use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as SearchPageLoader;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface as ShopwareRequestWrapper;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Routing\Exception\MissingRequestParameterException;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
@@ -38,13 +39,20 @@ class SearchController extends ShopwareSearchController
      */
     private $decorated;
 
+    /**
+     * @var ShopwareRequestWrapper 
+     */
+    private $requestWrapper;
+
     public function __construct(
         ShopwareSearchController $decorated,
         SearchPageLoader $searchApiPageLoader,
         AutocompletePageLoader $autocompleteApiPageLoader,
+        ShopwareRequestWrapper $requestWrapper,
         LoggerInterface $logger
     ){
         $this->decorated = $decorated;
+        $this->requestWrapper = $requestWrapper;
         $this->searchApiPageLoader = $searchApiPageLoader;
         $this->autocompleteApiPageLoader = $autocompleteApiPageLoader;
         $this->logger = $logger;
@@ -57,8 +65,11 @@ class SearchController extends ShopwareSearchController
     public function search(SalesChannelContext $context, Request $request): Response
     {
         try {
-            $this->searchApiPageLoader->setSalesChannelContext($context);
-            $page = $this->searchApiPageLoader->load($request);
+            $this->requestWrapper->setRequest($request);
+            $this->searchApiPageLoader->setSalesChannelContext($context)
+                ->setRequest($this->requestWrapper)
+                ->load();
+            $page = $this->searchApiPageLoader->getApiResponsePage();
             if($page->getRedirectUrl())
             {
                 return $this->forwardToRoute($page->getRedirectUrl());
@@ -86,8 +97,11 @@ class SearchController extends ShopwareSearchController
     public function suggest(SalesChannelContext $context, Request $request): Response
     {
         try{
-            $this->autocompleteApiPageLoader->setSalesChannelContext($context);
-            $page = $this->autocompleteApiPageLoader->load($request);
+            $this->requestWrapper->setRequest($request);
+            $this->searchApiPageLoader->setSalesChannelContext($context)
+                ->setRequest($this->requestWrapper)
+                ->load();
+            $page = $this->searchApiPageLoader->getApiResponsePage();
             /**
              * the render template is a narrative element
              */
@@ -112,8 +126,11 @@ class SearchController extends ShopwareSearchController
     public function pagelet(Request $request, SalesChannelContext $context): Response
     {
         try{
-            $this->searchApiPageLoader->setSalesChannelContext($context);
-            $page = $this->searchApiPageLoader->load($request);
+            $this->requestWrapper->setRequest($request);
+            $this->searchApiPageLoader->setSalesChannelContext($context)
+                ->setRequest($this->requestWrapper)
+                ->load();
+            $page = $this->searchApiPageLoader->getApiResponsePage();
 
             /**
              * by DEFAULT, Shopware6 does not update facets&search page title on pagelet, only the content within cmsProductListingSelector

@@ -2,9 +2,9 @@
 namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context;
 
 use Boxalino\RealTimeUserExperience\Framework\Request\AutocompleteContextAbstract;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Autocomplete request
@@ -23,10 +23,10 @@ class Autocomplete extends AutocompleteContextAbstract
 {
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      * @return string
      */
-    public function getContextNavigationId(Request $request): array
+    public function getContextNavigationId(RequestInterface $request): array
     {
         return [$this->getSalesChannelContext()->getSalesChannel()->getNavigationCategoryId()];
     }

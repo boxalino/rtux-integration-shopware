@@ -21,7 +21,7 @@
         <service id="boxalino.integration.loader.crossselling"
                  class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoader"
                  parent="boxalino.shopware.content.page.crossselling">
-            <call method="setApiContextInterface">
+            <call method="setApiContext">
                 <argument type="service" id="boxalino.integration.context.crossselling"/>
             </call>
         </service>
@@ -29,6 +29,7 @@
         <!-- Crosselling Loader event subscriber to be added when wanting to use it -->
         <service id="Boxalino\RealTimeUserExperience\Framework\Content\Subscriber\ApiCrossSellingLoaderSubscriber">
             <argument type="service" id="boxalino.integration.loader.crossselling"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

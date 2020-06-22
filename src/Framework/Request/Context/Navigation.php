@@ -3,9 +3,9 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context;
 
 use Boxalino\RealTimeUserExperience\Framework\Request\ContextAbstract;
 use Boxalino\RealTimeUserExperience\Framework\Request\ListingContextAbstract;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Navigation request
@@ -26,12 +26,12 @@ class Navigation extends ListingContextAbstract
     }
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      * @return string
      */
-    public function getContextNavigationId(Request $request): array
+    public function getContextNavigationId(RequestInterface $request): array
     {
-        $params = $request->attributes->get('_route_params');
+        $params = $request->getRequest()->attributes->get('_route_params');
         if ($params && isset($params['navigationId']))
         {
             return [$params['navigationId']];
@@ -58,7 +58,7 @@ class Navigation extends ListingContextAbstract
     public function getRangeProperties() : array
     {
         return [
-            "products_rating_average" => ['from' => 'products_rating_average', 'to' => 0],
+            "products_rating_average" => ['from' => 'products_rating_average', 'to' => "0"],
             "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
         ];
     }
