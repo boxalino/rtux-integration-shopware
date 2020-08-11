@@ -4,6 +4,7 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context;
 use Boxalino\RealTimeUserExperience\Framework\Request\ContextAbstract;
 use Boxalino\RealTimeUserExperience\Framework\Request\ListingContextAbstract;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
+use Boxalino\RealTimeUserExperienceIntegration\Framework\Request\IntegrationContextTrait;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
@@ -17,6 +18,8 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
  */
 class Navigation extends ListingContextAbstract
 {
+    use IntegrationContextTrait;
+    
     /**
      * @return int
      */
@@ -48,19 +51,6 @@ class Navigation extends ListingContextAbstract
     public function getReturnFields() : array
     {
         return ["id", "products_group_id","discountedPrice", "products_seo_url", "title", "products_image"];
-    }
-
-    /**
-     * Set the range properties following the presented structure
-     *
-     * @return array
-     */
-    public function getRangeProperties() : array
-    {
-        return [
-            "products_rating_average" => ['from' => 'products_rating_average', 'to' => "0"],
-            "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
-        ];
     }
 
 }
