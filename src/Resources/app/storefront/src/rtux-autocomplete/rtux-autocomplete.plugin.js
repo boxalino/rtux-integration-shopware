@@ -23,6 +23,7 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
      * @private
      */
     _suggest(value) {
+        this.isTest = window.rtuxAutocomplete['test'];
         this.rtuxApiHelper = window.PluginManager.getPluginInstances('RtuxApiHelper')[0];
         const indicator = new ButtonLoadingIndicator(this._submitButton);
         indicator.create();
@@ -31,6 +32,7 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
 
         var requestData = JSON.stringify(this._getApiRequestData(value));
         var requestUrl = this.rtuxApiHelper.getApiRequestUrl(window.rtuxAutocomplete['url']);
+        if(this.isTest) { console.log(requestUrl); console.log(requestData);}
         if(requestData) {
             this._client.post(requestUrl, requestData, (response)=> {
                 this._clearSuggestResults();
@@ -40,9 +42,12 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
                         throw new Error('RtuxApiAutocomplete error: the request failed');
                     }
                     var htmlResponse = this._renderHelper.getHtml(response, value);
+                    if(this.isTest) { console.log(htmlResponse);}
+
                     this.el.insertAdjacentHTML('beforeend', htmlResponse);
                     this.$emitter.publish('afterSuggest');
                 } catch(error) {
+                    if(this.isTest) { console.log(error);}
                     super._suggest(value);
                 }
             },  'application/json', false );
