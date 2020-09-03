@@ -56,12 +56,14 @@ class DynamicController extends StorefrontController
             $this->requestWrapper->setRequest($request);
 
             $this->dynamicApiPageLoader->getApiContext()->setWidget("brand");
+            $this->dynamicApiPageLoader->getApiContext()->addRequestParameter("position", "sidebar");
+            
             $this->dynamicApiPageLoader->setSalesChannelContext($context)
                 ->setRequest($this->requestWrapper)
                 ->load();
             $page = $this->dynamicApiPageLoader->getApiResponsePage();
 
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-page.html.twig', ['page' => $page]);
+            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-page-sidebar.html.twig', ['page' => $page]);
         } catch (\Throwable $exception) {
             /**
              * Fallback to home page
@@ -88,16 +90,13 @@ class DynamicController extends StorefrontController
             $this->requestWrapper->setRequest($request);
 
             $this->dynamicApiPageLoader->getApiContext()->setWidget("campaign");
+            
             $this->dynamicApiPageLoader->setSalesChannelContext($context)
                 ->setRequest($this->requestWrapper)
                 ->load();
             $page = $this->dynamicApiPageLoader->getApiResponsePage();
 
-            /**
-             * the render template is a narrative page
-             * div-less narrative template: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-page.html.twig
-             */
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index.html.twig', ['page' => $page]);
+            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-page.html.twig', ['page' => $page]);
         } catch (\Throwable $exception) {
             /**
              * Fallback to home page
