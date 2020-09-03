@@ -15,6 +15,7 @@ use Shopware\Storefront\Framework\Cache\Annotation\HttpCache;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * RTUX SearchController - decorates Shopware SearchController; makes RTUX API requests and displays the response
  * @RouteScope(scopes={"storefront"})
  */
 class SearchController extends ShopwareSearchController
@@ -40,7 +41,7 @@ class SearchController extends ShopwareSearchController
     private $decorated;
 
     /**
-     * @var ShopwareRequestWrapper 
+     * @var ShopwareRequestWrapper
      */
     private $requestWrapper;
 

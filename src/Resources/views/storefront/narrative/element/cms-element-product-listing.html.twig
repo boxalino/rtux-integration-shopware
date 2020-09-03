@@ -30,7 +30,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
         {% set dataUrl = url('frontend.cms.navigation.page', { navigationId: navigationId }) %}
     {% endif %}
 
-    {% if page.searchTerm is defined %}
+    {% if page.searchTerm is not empty %}
         {% set dataUrl = url('widgets.search.pagelet', { search: page.searchTerm }) %}
         {% set filterUrl = null %}
     {% endif %}

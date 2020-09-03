@@ -23,6 +23,7 @@
         <import resource="services/api/search.xml"/>
         <import resource="services/api/crossselling.xml"/>
         <import resource="services/api/cms.xml"/>
+        <import resource="services/api/dynamic.xml"/>
     </imports>
 
     <services>
