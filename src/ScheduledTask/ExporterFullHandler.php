@@ -1,7 +1,7 @@
 <?php
-namespace  Boxalino\RealTimeUserExperienceIntegration\ScheduledTask;
+namespace Boxalino\RealTimeUserExperienceIntegration\ScheduledTask;
 
-use Boxalino\RealTimeUserExperience\ScheduledTask\ExporterFullHandlerAbstract;
+use Boxalino\Exporter\ScheduledTask\ExporterFullHandlerAbstract;
 
 /**
  * Class ExportFullHandler

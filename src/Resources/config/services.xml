@@ -34,7 +34,7 @@
 
         <!-- scheduled task handler with link to the task scheduler class -->
         <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFullHandler"
-                 parent="Boxalino\RealTimeUserExperience\ScheduledTask\ExporterFullHandlerAbstract">
+                 parent="Boxalino\Exporter\ScheduledTask\ExporterFullHandlerAbstract">
 <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
             <tag name="messenger.message_handler" />
         </service>
