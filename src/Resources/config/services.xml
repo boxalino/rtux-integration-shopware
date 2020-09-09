@@ -24,20 +24,10 @@
         <import resource="services/api/crossselling.xml"/>
         <import resource="services/api/cms.xml"/>
         <import resource="services/api/dynamic.xml"/>
+        <import resource="services/exporter.xml"/>
     </imports>
 
     <services>
-        <!-- Full exporter data syncrhonization task (requires configuration)  -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFull">
-            <tag name="shopware.scheduled.task" />
-        </service>
-
-        <!-- scheduled task handler with link to the task scheduler class -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFullHandler"
-                 parent="Boxalino\Exporter\ScheduledTask\ExporterFullHandlerAbstract">
-<!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
-            <tag name="messenger.message_handler" />
-        </service>
     </services>
 
 </container>
