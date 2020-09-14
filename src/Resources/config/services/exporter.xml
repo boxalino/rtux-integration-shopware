@@ -3,6 +3,11 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <imports>
+        <import resource="exporter/full.xml"/>
+        <import resource="exporter/delta.xml"/>
+    </imports>
+
     <services>
 
         <service id="Boxalino\Exporter\Service\Component\CustomerComponentInterface" class="Boxalino\Exporter\Service\Component\Customer" parent="boxalino.exporter.component" />
@@ -27,29 +32,6 @@
             <argument type="service" id="boxalino.exporter.scheduler"/>
         </service>
 
-        <!-- Full exporter data syncrhonization task (requires configuration)  -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFull">
-            <tag name="shopware.scheduled.task" />
-        </service>
-
-        <!-- scheduled task handler with link to the task scheduler class -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFullHandler"
-                 parent="Boxalino\Exporter\ScheduledTask\ExporterFullHandlerAbstract">
-            <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
-            <tag name="messenger.message_handler" />
-        </service>
-
-        <!-- Delta exporter data syncrhonization task (requires configuration)  -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterDelta">
-            <tag name="shopware.scheduled.task" />
-        </service>
-
-        <!-- scheduled task handler with link to the task scheduler class -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterDeltaHandler"
-                 parent="Boxalino\Exporter\ScheduledTask\ExporterDeltaHandlerAbstract">
-            <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
-            <tag name="messenger.message_handler" />
-        </service>
 
     </services>
 </container>
