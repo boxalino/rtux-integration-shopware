@@ -38,6 +38,18 @@
             <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
             <tag name="messenger.message_handler" />
         </service>
-        
+
+        <!-- Delta exporter data syncrhonization task (requires configuration)  -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\DeltaFull">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <!-- scheduled task handler with link to the task scheduler class -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterDeltaHandler"
+                 parent="Boxalino\Exporter\ScheduledTask\ExporterDeltaHandlerAbstract">
+            <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
+            <tag name="messenger.message_handler" />
+        </service>
+
     </services>
 </container>

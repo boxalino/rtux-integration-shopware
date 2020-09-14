@@ -4,27 +4,27 @@ namespace Boxalino\RealTimeUserExperienceIntegration\ScheduledTask;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
 /**
- * Class ExportFull
- * Set the interval to trigger the full export (recommended - 1 day)
+ * Class ExportDelta
+ * Set the interval to trigger the delta export (recommended - 1h)
  *
  * @package Boxalino\RealTimeUserExperience\ScheduledTask
  */
-class ExporterFull extends ScheduledTask
+class ExporterDelta extends ScheduledTask
 {
 
     public static function getTaskName(): string
     {
-        return 'boxalino.export.full';
+        return 'boxalino.export.delta';
     }
 
     /**
-     * The full data synchronization is triggered once per day
+     * The delta data synchronization is triggered as configured, at least every 1h
      *
      * @return int
      */
     public static function getDefaultInterval(): int
     {
-        return 86400; // 1day
+        return 3600; // 1h
     }
 
 }
