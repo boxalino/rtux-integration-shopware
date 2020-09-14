@@ -40,7 +40,7 @@
         </service>
 
         <!-- Delta exporter data syncrhonization task (requires configuration)  -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\DeltaFull">
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterDelta">
             <tag name="shopware.scheduled.task" />
         </service>
 
