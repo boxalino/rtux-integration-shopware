@@ -31,7 +31,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
     {% endif %}
 
     {% if page.searchTerm is not empty %}
-        {% set dataUrl = url('widgets.search.pagelet', { search: page.searchTerm }) %}
+        {% set dataUrl = url('widgets.search.pagelet.v2', { search: page.searchTerm }) %}
         {% set filterUrl = null %}
     {% endif %}
     {% if page.searchTerm is defined %}

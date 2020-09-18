@@ -120,11 +120,11 @@ class SearchController extends ShopwareSearchController
     /**
      * @HttpCache()
      * @RouteScope(scopes={"storefront"})
-     * @Route("/widgets/search/{search}", name="widgets.search.pagelet", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
+     * @Route("/widgets/search", name="widgets.search.pagelet.v2", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
      *
      * @throws MissingRequestParameterException
      */
-    public function pagelet(Request $request, SalesChannelContext $context): Response
+    public function ajax(Request $request, SalesChannelContext $context): Response
     {
         try{
             $this->requestWrapper->setRequest($request);
