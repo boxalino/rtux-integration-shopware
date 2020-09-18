@@ -99,10 +99,10 @@ class SearchController extends ShopwareSearchController
     {
         try{
             $this->requestWrapper->setRequest($request);
-            $this->searchApiPageLoader->setSalesChannelContext($context)
+            $this->autocompleteApiPageLoader->setSalesChannelContext($context)
                 ->setRequest($this->requestWrapper)
                 ->load();
-            $page = $this->searchApiPageLoader->getApiResponsePage();
+            $page = $this->autocompleteApiPageLoader->getApiResponsePage();
             /**
              * the render template is a narrative element
              */
