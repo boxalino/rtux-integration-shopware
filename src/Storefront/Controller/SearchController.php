@@ -144,7 +144,7 @@ class SearchController extends ShopwareSearchController
              * Fallback
              */
             $this->logger->warning("BoxalinoAPI: There was an issue with the pagelet request " . $exception->getMessage());
-            return $this->decorated->pagelet($request, $context);
+            return $this->decorated->ajax($request, $context);
         }
 
     }
