@@ -19,8 +19,8 @@
              data-rtux-filter-range="true"
              data-rtux-filter-range-options='{
              "name": "{{ name }}",
-             "minKey": "min-price",
-             "maxKey": "max-price",
+             "minKey": "{{ facet.rangeFromField }}",
+             "maxKey": "{{ facet.rangeToField }}",
              "currencySymbol": "{{ currencySymbol }}",
              "snippets": {
                 "filterRangeActiveMinLabel": "{{ filterRangeActiveMinLabel }}",
