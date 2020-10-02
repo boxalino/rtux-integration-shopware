@@ -6,11 +6,11 @@
 {% endif %}
 
 {% if filterRangeActiveMinLabel is not defined %}
-    {% set filterRangeActiveMinLabel = 'From'|trans|sw_sanitize %}
+    {% set filterRangeActiveMinLabel = 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize %}
 {% endif %}
 
 {% if filterRangeActiveMaxLabel is not defined %}
-    {% set filterRangeActiveMaxLabel = 'To'|trans|sw_sanitize %}
+    {% set filterRangeActiveMaxLabel = 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize %}
 {% endif %}
 
 {% if value.hitCount > 1 %}

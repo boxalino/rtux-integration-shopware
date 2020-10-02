@@ -121,19 +121,19 @@ renders the facets as are set in the facet model
                                                     {% if (selectedValue.minSelectedValue is not null) and (selectedValue.minSelectedValue != "0") %}
                                                         {% if selectedFacet.visualisation == 'stars' %}
                                                             <span class="filter-active">
-                                                                {{ selectedFacet.label }} {{ 'At least'|trans|lower|sw_sanitize }} {{ selectedValue.minSelectedValue }}
+                                                                {{ selectedFacet.label }} {{ 'listing.filterRatingActiveLabelStart'|trans|lower|sw_sanitize }} {{ selectedValue.minSelectedValue }}
                                                                 <button class="filter-active-remove" data-id="{{ selectedFacet.field }}">&times;</button>
                                                             </span>
                                                         {% else %}
                                                             <span class="filter-active">
-                                                                {{ selectedFacet.label }} {{ 'from'|trans|sw_sanitize }} {{ selectedValue.minSelectedValue }}
+                                                                {{ selectedFacet.label }} {{ 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize }} {{ selectedValue.minSelectedValue }}
                                                                 <button class="filter-active-remove" data-id="{{ selectedFacet.rangeFromField }}">&times;</button>
                                                             </span>
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if selectedValue.maxSelectedValue is not null %}
                                                         <span class="filter-active">
-                                                            {{ selectedFacet.label }} {{ 'to'|trans|sw_sanitize }} {{ selectedValue.maxSelectedValue }}
+                                                            {{ selectedFacet.label }} {{ 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize }} {{ selectedValue.maxSelectedValue }}
                                                             <button class="filter-active-remove" data-id="{{ selectedFacet.rangeToField }}">&times;</button>
                                                         </span>
                                                     {% endif %}

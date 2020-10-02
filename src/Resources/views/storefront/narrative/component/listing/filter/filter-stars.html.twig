@@ -13,11 +13,15 @@
     {% endif %}
 
     {% if filterRatingActiveLabelStart is not defined %}
-        {% set filterRatingActiveLabelStart = 'At least'|trans|sw_sanitize %}
+        {% set filterRatingActiveLabelStart = 'listing.filterRatingActiveLabelStart'|trans|sw_sanitize %}
+    {% endif %}
+
+    {% if filterRatingActiveLabelEndSingular is not defined %}
+        {% set filterRatingActiveLabelEndSingular = 'listing.filterRatingActiveLabelEndSingular'|trans|sw_sanitize %}
     {% endif %}
 
     {% if filterRatingActiveLabelEnd is not defined %}
-        {% set filterRatingActiveLabelEnd = 'stars'|trans|sw_sanitize %}
+        {% set filterRatingActiveLabelEnd = 'listing.filterRatingActiveLabelEnd'|trans|sw_sanitize %}
     {% endif %}
 
     {% block component_filter_rating %}
@@ -28,6 +32,7 @@
             "maxPoints": "{{ maxPoints }}",
             "snippets": {
                 "filterRatingActiveLabelStart": "{{ filterRatingActiveLabelStart }}",
+                "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEndSingular }}",
                 "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEnd }}"
             }
          }'>
