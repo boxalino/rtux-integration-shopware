@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 namespace Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller;
 
 use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as DynamicPageLoader;

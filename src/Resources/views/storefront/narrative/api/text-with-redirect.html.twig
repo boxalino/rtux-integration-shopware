@@ -1,0 +1,8 @@
+{#
+template to render a Layout Block that has a field text and url in the JSON schema
+#}
+{% block page_headline %}
+    <div class="cms-element-text-with-redirect">
+        <a href="{{ block.url }}"><b>{{ block.text | sw_sanitize }}</b></a>
+    </div>
+{% endblock %}
