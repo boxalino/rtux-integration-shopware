@@ -2,10 +2,9 @@
 
 {% if maxPoints > 0 %}
     {% set filterItemId = 'filter-' ~ name ~ '-' ~ random() %}
-    {% set currentPoints =  0 %}
     {% set type='blank' %}
     {% if facet.isSelected() %}
-        {% set selectedPoints = facet.getSelectedValues[0].maxSelectedValue %}
+        {% set selectedPoints = facet.getSelectedValues[0].minSelectedValue %}
     {% endif %}
 
     {% if maxPoints is not defined %}
@@ -13,21 +12,26 @@
     {% endif %}
 
     {% if filterRatingActiveLabelStart is not defined %}
-        {% set filterRatingActiveLabelStart = 'At least'|trans|sw_sanitize %}
+        {% set filterRatingActiveLabelStart = 'listing.filterRatingActiveLabelStart'|trans|sw_sanitize %}
+    {% endif %}
+
+    {% if filterRatingActiveLabelEndSingular is not defined %}
+        {% set filterRatingActiveLabelEndSingular = 'listing.filterRatingActiveLabelEndSingular'|trans|sw_sanitize %}
     {% endif %}
 
     {% if filterRatingActiveLabelEnd is not defined %}
-        {% set filterRatingActiveLabelEnd = 'stars'|trans|sw_sanitize %}
+        {% set filterRatingActiveLabelEnd = 'listing.filterRatingActiveLabelEnd'|trans|sw_sanitize %}
     {% endif %}
 
     {% block component_filter_rating %}
         <div class="filter-rating filter-panel-item{% if not sidebar %} dropdown{% endif %}"
-             data-filter-rating="true"
-             data-filter-rating-options='{
+             data-rtux-filter-rating="true"
+             data-rtux-filter-rating-options='{
             "name": "{{ name }}",
             "maxPoints": "{{ maxPoints }}",
             "snippets": {
                 "filterRatingActiveLabelStart": "{{ filterRatingActiveLabelStart }}",
+                "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEndSingular }}",
                 "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEnd }}"
             }
          }'>
@@ -68,7 +72,7 @@
 
                                 {% block component_filter_rating_point_label %}
                                     <label data-review-form-point="{{ point }}"
-                                           class="filter-rating-star {% if currentPoints >= point %} is-active{% endif %}">
+                                           class="filter-rating-star {% if selectedPoints >= point %} is-active{% endif %}">
 
                                         {% block component_filter_rating_point_radio %}
                                             <input class="product-detail-review-form-radio"
@@ -78,11 +82,8 @@
                                         {% endblock %}
 
                                         {% block component_filter_rating_point_radio_element %}
-                                            {% if (selectedPoints is not null) and (selectedPoints > 0) %}
-                                                {% set type="selected" %}
-                                            {% endif %}
                                             {% sw_include '@Storefront/storefront/component/review/point.html.twig' with {
-                                                type: type
+                                                type: 'blank'
                                             } %}
                                         {% endblock %}
                                     </label>

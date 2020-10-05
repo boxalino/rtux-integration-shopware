@@ -6,21 +6,21 @@
 {% endif %}
 
 {% if filterRangeActiveMinLabel is not defined %}
-    {% set filterRangeActiveMinLabel = 'From'|trans|sw_sanitize %}
+    {% set filterRangeActiveMinLabel = 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize %}
 {% endif %}
 
 {% if filterRangeActiveMaxLabel is not defined %}
-    {% set filterRangeActiveMaxLabel = 'To'|trans|sw_sanitize %}
+    {% set filterRangeActiveMaxLabel = 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize %}
 {% endif %}
 
 {% if value.hitCount > 1 %}
     {% block component_filter_range %}
         <div class="filter-range filter-panel-item{% if not sidebar %} dropdown{% endif %}"
-             data-filter-range="true"
-             data-filter-range-options='{
+             data-rtux-filter-range="true"
+             data-rtux-filter-range-options='{
              "name": "{{ name }}",
-             "minKey": "min-price",
-             "maxKey": "max-price",
+             "minKey": "{{ facet.rangeFromField }}",
+             "maxKey": "{{ facet.rangeToField }}",
              "currencySymbol": "{{ currencySymbol }}",
              "snippets": {
                 "filterRangeActiveMinLabel": "{{ filterRangeActiveMinLabel }}",

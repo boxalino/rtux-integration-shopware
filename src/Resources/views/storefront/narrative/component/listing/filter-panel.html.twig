@@ -24,6 +24,7 @@ renders the facets as are set in the facet model
             {% block element_sidebar_filter_panel %}
                 <div id="filter-panel-wrapper"
                      class="filter-panel-wrapper"
+                     data-rtux-listing-filter="true"
                      data-offcanvas-filter-content="true">
                     {% block component_filter_panel %}
                         {% block component_filter_panel_header %}
@@ -118,15 +119,22 @@ renders the facets as are set in the facet model
                                             {% for selectedFacet in block.model.getSelectedFacets() %}
                                                 {% for selectedValue in selectedFacet.getSelectedValues() %}
                                                     {% if (selectedValue.minSelectedValue is not null) and (selectedValue.minSelectedValue != "0") %}
-                                                        <span class="filter-active">
-                                                            {{ selectedFacet.label }} {{ 'from'|trans|sw_sanitize }} {{ selectedValue.minSelectedValue }}
-                                                            <button class="filter-active-remove" data-id="{{ selectedValue.minSelectedValue }}">&times;</button>
-                                                        </span>
+                                                        {% if selectedFacet.visualisation == 'stars' %}
+                                                            <span class="filter-active">
+                                                                {{ selectedFacet.label }} {{ 'listing.filterRatingActiveLabelStart'|trans|lower|sw_sanitize }} {{ selectedValue.minSelectedValue }}
+                                                                <button class="filter-active-remove" data-id="{{ selectedFacet.field }}">&times;</button>
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="filter-active">
+                                                                {{ selectedFacet.label }} {{ 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize }} {{ selectedValue.minSelectedValue }}
+                                                                <button class="filter-active-remove" data-id="{{ selectedFacet.rangeFromField }}">&times;</button>
+                                                            </span>
+                                                        {% endif %}
                                                     {% endif %}
                                                     {% if selectedValue.maxSelectedValue is not null %}
                                                         <span class="filter-active">
-                                                            {{ selectedFacet.label }} {{ 'to'|trans|sw_sanitize }} {{ selectedValue.maxSelectedValue }}
-                                                            <button class="filter-active-remove" data-id="{{ selectedValue.maxSelectedValue }}">&times;</button>
+                                                            {{ selectedFacet.label }} {{ 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize }} {{ selectedValue.maxSelectedValue }}
+                                                            <button class="filter-active-remove" data-id="{{ selectedFacet.rangeToField }}">&times;</button>
                                                         </span>
                                                     {% endif %}
                                                     {% if selectedValue.value is not null %}
