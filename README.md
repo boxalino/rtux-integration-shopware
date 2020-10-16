@@ -28,16 +28,18 @@ and follow-up with other dependencies deployments guidelines.
 In order to deploy it for local integration checks, check the *Setup* steps bellow.
 
 ## Setup
-1. Add the plugin to your project via composer (it will install dependencies [rtux-api-php, rtux-shopware, exporter-shopware6](https://github.com/boxalino/rtux-integration-shopware/blob/master/composer.json))
+1. Follow the integration steps for the [data layer](https://github.com/boxalino/exporter-shopware6) and the [framework layer](https://github.com/boxalino/rtux-shopware):
+   * ``composer require boxalino/rtux-shopware``
+   * ``composer require boxalino/exporter-shopware6``
+   * ``./bin/console plugin:refresh``
+   * ``./bin/console plugin:install --activate --clearCache BoxalinoExporter BoxalinoRealTimeUserExperience``
+   
+2. Add the plugin to your project via composer (it will install dependencies [rtux-api-php, rtux-shopware, exporter-shopware6](https://github.com/boxalino/rtux-integration-shopware/blob/master/composer.json))
 ``composer require boxalino/rtux-integration-shopware``
 
-2. Activate the plugin per Shopware use
+3. Activate the plugin per Shopware use
 ``./bin/console plugin:refresh``
 ``./bin/console plugin:install --activate --clearCache BoxalinoRealTimeUserExperienceIntegration``
-
-3. Activate the dependency plugins
-``./bin/console plugin:install --activate --clearCache BoxalinoRealTimeUserExperience``
-``./bin/console plugin:install --activate --clearCache BoxalinoExporter``
 
 4. Due to the JS files in the plugin (for listing & filters), a theme compilation might be required:
 ``./psh.phar storefront:build`` or ``./bin/build-storefront.sh ``
