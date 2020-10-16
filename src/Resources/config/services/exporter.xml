@@ -32,6 +32,12 @@
             <argument type="service" id="boxalino.exporter.scheduler"/>
         </service>
 
+        <service id="Boxalino\Exporter\Service\ExporterCommand">
+            <argument type="service" id="Boxalino\Exporter\Service\ExporterDeltaInterface"/>
+            <argument type="service" id="Boxalino\Exporter\Service\ExporterFullInterface"/>
+            <tag name="console.command"/>
+        </service>
 
     </services>
+
 </container>
