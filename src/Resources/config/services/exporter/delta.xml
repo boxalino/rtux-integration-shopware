@@ -10,7 +10,7 @@
         </service>
 
         <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterDeltaHandler"
-                 parent="Boxalino\Exporter\ScheduledTask\ExporterDeltaHandlerAbstract">
+                 parent="boxalino.exporter.scheduler.handler.delta">
             <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
             <tag name="messenger.message_handler" />
         </service>

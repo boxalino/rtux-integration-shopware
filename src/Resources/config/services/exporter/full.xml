@@ -10,7 +10,7 @@
         </service>
 
         <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\ExporterFullHandler"
-                 parent="Boxalino\Exporter\ScheduledTask\ExporterFullHandlerAbstract">
+                 parent="boxalino.exporter.scheduler.handler.full">
             <!--            <call method="setAccount"><argument type="string">your_account</argument></call>-->
             <tag name="messenger.message_handler" />
         </service>
