@@ -1,0 +1,51 @@
+{#
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/element/cms-element-sidebar-filter.html.twig
+
+the wrapper is used as a combination with the sidebar filter template (ex: for facets_sidebar Layout Block)
+the default CSS classes are used in order to update facets content on every request:
+    - cms-element-product-listing-wrapper as that is the parentFilterPanelSelector for listing.plugin.js
+    - cms-element-product-listing as that is the cmsProductListingSelector
+If you wish the default Shopware6 facets feature (facets to be constant) - use different classes (or do not use this wrapper)
+#}
+{# the property is defined in the block because it is a sidebar layout; if you chose not to configure it in the layout block - replace with "true" #}
+{% set sidebar = block.section[0] == 'sidebar' %}
+
+{% set filterUrl = null %}
+{% set dataUrl = null %}
+{% set params = {} %}
+
+{% if navigationId is not null %}
+    {% set filterUrl = url('frontend.cms.navigation.filter', { navigationId: navigationId }) %}
+    {% set dataUrl = url('frontend.cms.navigation.page', { navigationId: navigationId }) %}
+{% endif %}
+
+{% if page.searchTerm is not empty %}
+    {% set dataUrl = url('widgets.search.pagelet.v2') %}
+    {% set filterUrl = null %}
+{% endif %}
+{% if page.searchTerm is defined %}
+    {% set params = {search: page.searchTerm } %}
+{% endif %}
+
+{% block element_filter_listing_wrapper %}
+    <div class="cms-element-product-listing-wrapper"
+         data-listing="true"
+         data-listing-options='{
+             "sidebar": "{{ sidebar|json_encode }}",
+             "dataUrl": "{{ dataUrl }}",
+             "filterUrl": "{{ filterUrl }}",
+             "snippets": {
+                "resetAllButtonText": "{{ 'listing.filterPanelResetAll'|trans|sw_sanitize }}"
+             }
+         }'>
+
+        {% block element_product_listing_wrapper_content %}
+            <div class="cms-element-product-listing">
+                {% for bxblock in block.blocks %}
+                    {% set narrativeContent = {'block' : bxblock, 'sidebar': sidebar} %}
+                    {% sw_include bxblock.template with narrativeContent %}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

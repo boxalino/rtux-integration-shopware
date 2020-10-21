@@ -43,7 +43,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
              data-listing-pagination="true"
              data-listing="true"
              data-listing-options='{
-                 "sidebar": "{{ sidebar }}",
+                 "sidebar": "{{ sidebar|json_encode }}",
                  "params": {{ params|json_encode }},
                  "dataUrl": "{{ dataUrl }}",
                  "filterUrl": "{{ filterUrl }}",
