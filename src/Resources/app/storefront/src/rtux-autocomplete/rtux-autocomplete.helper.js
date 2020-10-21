@@ -43,6 +43,11 @@ export default class RtuxAutocompleteHelper {
     }
 
     /**
+     * Based on a default autocomplete-js layout, the origin is a "wrapper" element with:
+     * -> suggestion list (rendered in getSuggestionListHtml(block){})
+     * -> product list (rendered in getProductListHtml(block){})
+     * -> see all link (rendered in getSeeAllHtml(block){})
+     *
      * @public
      * @param bxblock
      * @returns {string}
@@ -61,6 +66,8 @@ export default class RtuxAutocompleteHelper {
     }
 
     /**
+     * Renders every bx-hit (product) element via getProductItemHtml(block)
+     *
      * @public
      * @param bxblock
      * @returns {string}
@@ -79,6 +86,8 @@ export default class RtuxAutocompleteHelper {
     }
 
     /**
+     * Template for how a product recommendation is displayed
+     *
      * @public
      * @param bxblock
      * @returns {string}
@@ -101,6 +110,8 @@ export default class RtuxAutocompleteHelper {
     }
 
     /**
+     * Renders every bx-acQuery (textual suggestion) element via getSuggestionItemHtml(block)
+     *
      * @public
      * @param bxblock
      * @returns {string}
@@ -124,12 +135,14 @@ export default class RtuxAutocompleteHelper {
     getSuggestionItemHtml(bxblock) {
         var html ='';
         if(bxblock['accessor'] === 'accessor') {
+            let suggestion = bxblock['bx-acQuery']['highlighted'];
+            if(suggestion == null) {suggestion = bxblock['bx-acQuery']['suggestion'];}
             html +='<li class="search-suggest-product js-result">';
-            html +=' <a href="'+ window.rtuxAutocomplete['suggestLink'] + '?search=' +
+            html +=' <a href="'+ window.rtuxAutocomplete['suggestLink'] +
                 encodeURIComponent(bxblock['bx-acQuery']['suggestion']) + '"\n' +
                 '       title="' + bxblock['bx-acQuery']['suggestion'] + '"\n' +
                 '       class="search-suggestion-link">\n' +
-                '        <p>'+ bxblock['bx-acQuery']['highlighted'] +'</p>\n' +
+                '        <p>'+ suggestion +'</p>\n' +
                 '    </a>';
             html+='</li>';
         }
@@ -138,6 +151,9 @@ export default class RtuxAutocompleteHelper {
     }
 
     /**
+     * Displays the "see all" link
+     * (per Shopware6 default autocomplete structure)
+     *
      * @public
      * @returns {string}
      */
@@ -145,7 +161,7 @@ export default class RtuxAutocompleteHelper {
         var html = '';
         if(this._totalProductsFound > 0) {
             html +='<li class="js-result search-suggest-total"><div class="row align-items-center no-gutters"><div class="col">';
-            html +='<a href="'+ window.rtuxAutocomplete['suggestLink'] + '?search=' + this._value + '" ' +
+            html +='<a href="'+ window.rtuxAutocomplete['suggestLink'] + this._value + '" ' +
                 'title="'+ window.rtuxAutocomplete['seeAllSearchResultsMessage'] + '" '+
                 'class="search-suggest-total-link">'+
                 window.rtuxAutocomplete['seeAllSearchResultsMessage'] +

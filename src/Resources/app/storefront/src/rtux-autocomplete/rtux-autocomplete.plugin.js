@@ -55,7 +55,7 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
     }
 
     /**
-     * additional parameters to be set: returnFields, filters, facets, sort
+     * additional parameters to be set: filters, facets, sort
      * for more details, check the Narrative Api Technical Integration manual provided by Boxalino
      *
      * @param value
@@ -63,7 +63,10 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
      */
     _getApiRequestData(value) {
         var otherParameters = {
-            'acQueriesHitCount':window.rtuxAutocomplete['apiSuggestionsCount'],
+            'acQueriesHitCount': 4,     // number of textual sugestions
+            'acHighlight': true,        // highlight matching sections
+            'acHighlightPre':"<em>",    //textual suggestion highlight start -- for matching section
+            'acHighlightPost':"</em>",  //textual suggsstion highlight end -- for matching section
             'query':value
         };
         return this.rtuxApiHelper.getApiRequestData(
@@ -71,11 +74,11 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
             window.rtuxAutocomplete['apiPreferentialKey'],
             'autocomplete',
             window.rtuxAutocomplete['language'],
-            window.rtuxAutocomplete['apiProductsGroupBy'],
-            window.rtuxAutocomplete['apiProductsCount'],
+            'products_group_id',        //default group-by fields
+            5,                          // number of products returned
             window.rtuxAutocomplete['dev'],
             window.rtuxAutocomplete['test'],
-            window.rtuxAutocomplete['apiPreferentialProfile'],
+            null,
             otherParameters
         );
     }
