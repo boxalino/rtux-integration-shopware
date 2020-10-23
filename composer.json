@@ -24,9 +24,9 @@
     },
     "require": {
         "php": "^7.2",
-        "boxalino/exporter-shopware6": ">=1.1.2",
+        "boxalino/exporter-shopware6": "~1.1.2",
         "boxalino/rtux-shopware": ">=2.0.0",
-        "boxalino/rtux-api-php": "^1.1 || ^2.3"
+        "boxalino/rtux-api-php": "^2.3"
     },
     "autoload": {
         "psr-4": {

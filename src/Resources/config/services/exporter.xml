@@ -3,11 +3,6 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <imports>
-        <import resource="exporter/full.xml"/>
-        <import resource="exporter/delta.xml"/>
-    </imports>
-
     <services>
 
         <service id="Boxalino\Exporter\Service\Component\CustomerComponentInterface" class="Boxalino\Exporter\Service\Component\Customer" parent="boxalino.exporter.component" />

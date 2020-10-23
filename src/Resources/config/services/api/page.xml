@@ -4,21 +4,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- Shopware6 content loader for autocomplete (used as a dependency in the controller) -->
-        <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
-                 parent="boxalino.shopware.content.page.loader">
-            <call method="setApiContext">
-                <argument type="service" id="boxalino.integration.context.autocomplete"/>
-            </call>
-        </service>
-
-        <!-- Shopware6 content loader for search (used as a dependency in controller) -->
-        <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
-                 parent="boxalino.shopware.content.page.loader">
-            <call method="setApiContext">
-                <argument type="service" id="boxalino.integration.context.search"/>
-            </call>
-        </service>
 
         <!-- Shopware6 - Sorting resource - has to be added in integration layer because of the dynamic mapping for the product listing sorting -->
         <service id="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface"
@@ -36,18 +21,6 @@
             </call>
         </service>
 
-        <!-- SEARCH CONTROLLER DECORATOR frontend.search.suggest  -->
-        <service id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController"
-                 decorates="Shopware\Storefront\Controller\SearchController" public="true">
-            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController.inner"/>
-            <argument type="service" id="boxalino.integration.loader.search" />
-            <argument type="service" id="boxalino.integration.loader.autocomplete"/>
-            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
-            <argument type="service" id="monolog.logger.boxalino-integration"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
     </services>
 
 </container>
