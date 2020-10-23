@@ -1,8 +1,13 @@
+{% set suggestionText = block.suggestion.suggestion %}
+{% if block.suggestion.highlighted is not null and block.suggestion.highlighted is not empty %}
+    {% set suggestionText = block.suggestion.highlighted %}
+{% endif %}
+
 <li class="search-suggest-product js-result">
     <a href="{{ seoUrl('frontend.search.page', {'search': block.suggestion.suggestion}) }}"
        title="{{ block.suggestion.suggestion }}"
        class="search-suggestion-link">
-        <p>{{ block.suggestion.highlighted }}</p>
+        <p>{{ suggestionText }}</p>
     </a>
     {% for bxblock in block.blocks %}
         {% set narrativeContent = {'block' : bxblock } %}
