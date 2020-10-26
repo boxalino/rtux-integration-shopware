@@ -73,7 +73,7 @@ class SearchController extends ShopwareSearchController
             $page = $this->searchApiPageLoader->getApiResponsePage();
             if($page->getRedirectUrl())
             {
-                return $this->forwardToRoute($page->getRedirectUrl());
+                return $this->redirect($page->getRedirectUrl());
             }
 
             /**
