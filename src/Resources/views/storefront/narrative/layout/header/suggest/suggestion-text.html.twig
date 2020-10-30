@@ -7,7 +7,7 @@
     <a href="{{ seoUrl('frontend.search.page', {'search': block.suggestion.suggestion}) }}"
        title="{{ block.suggestion.suggestion }}"
        class="search-suggestion-link">
-        <p>{{ suggestionText }}</p>
+        <p>{{ suggestionText|raw }}</p>
     </a>
     {% for bxblock in block.blocks %}
         {% set narrativeContent = {'block' : bxblock } %}
