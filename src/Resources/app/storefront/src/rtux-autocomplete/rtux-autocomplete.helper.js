@@ -16,6 +16,8 @@ export default class RtuxAutocompleteHelper {
     getHtml(response, value) {
         this._value = value;
         var responseData = JSON.parse(response);
+        this.groupBy= responseData['advanced'][0]['_bx_group_by'];   // required by API JS tracker
+        this.uuid = responseData['advanced'][0]['_bx_variant_uuid'];  // required by API JS tracker
         var html = '';
         responseData['blocks'].forEach(function(block) {
             if(block['callback']) {
@@ -68,12 +70,16 @@ export default class RtuxAutocompleteHelper {
     /**
      * Renders every bx-hit (product) element via getProductItemHtml(block)
      *
+     * HTML mark-up requirement:
+     * The bx-narrative class and data-bx-variant-uuid, data-bx-narrative-name, data-bx-narrative-group-by
+     * must be part of the template
+     *
      * @public
      * @param bxblock
      * @returns {string}
      */
     getProductListHtml(bxblock) {
-        var html = '<div class="bx-narrative">';
+        var html = '<div class="bx-narrative" data-bx-variant-uuid="' + this.uuid +'" data-bx-narrative-name="products-list" data-bx-narrative-group-by="' + this.groupBy +'">';
         this._totalProductsFound = bxblock['bx-hits']['totalHitCount'];
         bxblock['blocks'].forEach(function(block){
             if(block['callback']) {
@@ -88,15 +94,18 @@ export default class RtuxAutocompleteHelper {
     /**
      * Template for how a product recommendation is displayed
      *
+     * HTML mark-up requirement:
+     * The bx-narrative-item and data-bx-item-id must be part of the template
+     *
      * @public
      * @param bxblock
      * @returns {string}
      */
     getProductItemHtml(bxblock) {
-        var html = '<li class="search-suggest-product js-result">';
+        var html = '<li class="search-suggest-product js-result bx-narrative-item" data-bx-item-id="' + bxblock['bx-hit']['id'] +'">';
         html += '<a href="/' + bxblock['bx-hit']['products_seo_url'][0] +'" title="' +
             bxblock['bx-hit']['products_title'] + '" class="search-suggest-product-link">';
-        html += '<div class="row align-items-center no-gutters bx-narrative-item">';
+        html += '<div class="row align-items-center no-gutters">';
         html += '<div class="col-auto search-suggest-product-image-container">'+
             '<img src="' + bxblock['bx-hit']['products_image'][0] + '" ' +
             'srcset="'+ bxblock['bx-hit']['products_image'][0] +'" class="search-suggest-product-image" ' +
