@@ -67,6 +67,10 @@ class SearchController extends ShopwareSearchController
     {
         try {
             $this->requestWrapper->setRequest($request);
+            /**
+             * set the request parameter "position":"sidebar" for a sidebar search layout
+             */
+            $this->searchApiPageLoader->getApiContext()->addRequestParameter("position", "sidebar");
             $this->searchApiPageLoader->setSalesChannelContext($context)
                 ->setRequest($this->requestWrapper)
                 ->load();
@@ -78,9 +82,11 @@ class SearchController extends ShopwareSearchController
 
             /**
              * the render template is a narrative page
-             * div-less narrative template: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-page.html.twig
+             * div-less (no search CSS classes) narrative template: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-page.html.twig
+             * search-1 column layout template: @BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index.html.twig
+             * search-sidebar layout template: @BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index-with-sidebar.html.twig
              */
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index.html.twig', ['page' => $page]);
+            return $this->renderStorefront('@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index-with-sidebar.html.twig', ['page' => $page]);
         } catch (\Throwable $exception) {
             /**
              * Fallback
@@ -128,6 +134,10 @@ class SearchController extends ShopwareSearchController
     {
         try{
             $this->requestWrapper->setRequest($request);
+            /**
+             * set the request parameter "position":"sidebar" for a sidebar search layout
+             */
+            $this->searchApiPageLoader->getApiContext()->addRequestParameter("position", "sidebar");
             $this->searchApiPageLoader->setSalesChannelContext($context)
                 ->setRequest($this->requestWrapper)
                 ->load();
@@ -136,8 +146,11 @@ class SearchController extends ShopwareSearchController
             /**
              * by DEFAULT, Shopware6 does not update facets&search page title on pagelet, only the content within cmsProductListingSelector
              * (as seen in the vendor/shopware/platform/src/Storefront/Resources/app/storefront/src/plugin/listing/listing.plugin.js, renderResponse action)
+             * use the template for your scenario:
+             * 1column layout: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content.html.twig
+             * sidebar layout: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content-sidebar.html.twig
              */
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content.html.twig', ['page' => $page]);
+            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content-sidebar.html.twig', ['page' => $page]);
         } catch (\Throwable $exception)
         {
             /**

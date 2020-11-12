@@ -33,6 +33,7 @@ If you wish the default Shopware6 facets feature (facets to be constant) - use d
          data-listing-options='{
              "sidebar": "{{ sidebar|json_encode }}",
              "dataUrl": "{{ dataUrl }}",
+             "params": {{ params|json_encode }},
              "filterUrl": "{{ filterUrl }}",
              "snippets": {
                 "resetAllButtonText": "{{ 'listing.filterPanelResetAll'|trans|sw_sanitize }}"
