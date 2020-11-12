@@ -67,7 +67,11 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
             'acHighlight': true,        // highlight matching sections
             'acHighlightPre':"<em>",    //textual suggestion highlight start -- for matching section
             'acHighlightPost':"</em>",  //textual suggsstion highlight end -- for matching section
-            'query':value
+            'query':value,
+            'filters': [
+                {"field": "products_visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
+                {"field": "products_active","values": [1],"negative": false}
+            ]
         };
         return this.rtuxApiHelper.getApiRequestData(
             window.rtuxAutocomplete['apiPreferentialAccount'],

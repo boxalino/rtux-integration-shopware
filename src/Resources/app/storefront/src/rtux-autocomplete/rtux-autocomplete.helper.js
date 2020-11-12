@@ -103,7 +103,7 @@ export default class RtuxAutocompleteHelper {
      */
     getProductItemHtml(bxblock) {
         var html = '<li class="search-suggest-product js-result bx-narrative-item" data-bx-item-id="' + bxblock['bx-hit']['id'] +'">';
-        html += '<a href="/' + bxblock['bx-hit']['products_seo_url'][0] +'" title="' +
+        html += '<a href="'+ window.location.origin  + bxblock['bx-hit']['products_seo_url'][0] +'" title="' +
             bxblock['bx-hit']['products_title'] + '" class="search-suggest-product-link">';
         html += '<div class="row align-items-center no-gutters">';
         html += '<div class="col-auto search-suggest-product-image-container">'+
