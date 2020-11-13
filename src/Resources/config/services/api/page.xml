@@ -32,8 +32,18 @@
                     <argument key="product.name">title</argument>
                     <argument key="product.id">products_group_id</argument>
                     <argument key="_score">score</argument>
+                    <argument key="topseller">bq_order_count_products_group_id_all_time</argument>
                 </argument>
             </call>
+        </service>
+
+        <service id="product_listing.sorting.topseller" class="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingSorting">
+            <argument>topseller</argument>
+            <argument>filter.sortTopseller</argument>
+            <argument type="collection">
+                <argument key="topseller">desc</argument>
+            </argument>
+            <tag name="shopware.sales_channel.product_listing.sorting" />
         </service>
 
         <!-- SEARCH CONTROLLER DECORATOR frontend.search.suggest  -->
