@@ -24,7 +24,7 @@
     },
     "require": {
         "php": "^7.2",
-        "boxalino/exporter-shopware6": ">=1.1.2",
+        "boxalino/exporter-shopware6": "~1.2.0",
         "boxalino/rtux-shopware": "^2.2",
         "boxalino/rtux-api-php": "~2.6.0"
     },

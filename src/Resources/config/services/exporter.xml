@@ -17,6 +17,7 @@
             <argument type="service" id="boxalino.exporter.component.product.property"/>
             <argument type="service" id="boxalino.exporter.component.product.option"/>
             <argument type="service" id="boxalino.exporter.component.product.media"/>
+            <argument type="service" id="boxalino.exporter.component.product.image"/>
             <argument type="service" id="boxalino.exporter.component.product.manufacturer"/>
             <argument type="service" id="boxalino.exporter.component.product.price"/>
             <argument type="service" id="boxalino.exporter.component.product.advancedPrice"/>
