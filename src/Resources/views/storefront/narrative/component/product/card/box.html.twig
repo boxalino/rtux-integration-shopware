@@ -8,7 +8,11 @@ minimum change (the <div>) due to the division of the original listing twig temp
 
 optional: use the loop through block.blocks to render other children elements set on the product layout block
 #}
-<div class="cms-listing-col {{ listingColumns }} bx-narrative-item" data-bx-item-id="{{ product.id }}">
+<div class="cms-listing-col {{ listingColumns }} {{ block.getBxAttributes().getClass() }}"
+    {% for bxAttribute in block.getBxAttributes() %}
+        {{ bxAttribute.getName() }}="{{ bxAttribute.getValue() }}"
+    {% endfor %}
+>
     {% block component_product_box_include %}
         {#
            Includes a custom product-box template defined by the layout variable.
@@ -19,6 +23,7 @@ optional: use the loop through block.blocks to render other children elements se
             {% set layout = 'standard' %}
         {% endif %}
 
+        {# Add the required HTML mark-ups to the theme templates OR include the theme templates directly here #}
         {% sw_include "@Storefront/storefront/component/product/card/box-" ~ layout ~ ".html.twig" ignore missing %}
     {% endblock %}
 </div>

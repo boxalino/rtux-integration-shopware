@@ -1,8 +1,5 @@
 {% block layout_search_suggest_results %}
-    <div class="bx-narrative"
-         data-bx-variant-uuid="{{ variantUuid }}"
-         data-bx-narrative-name="products-list"
-         data-bx-narrative-group-by="{{ groupBy }}">
+    <div {% for bxAttribute in block.getBxAttributes() %} {{ bxAttribute.getName() }}="{{ bxAttribute.getValue() }}" {% endfor %}>
         {% for bxblock in block.blocks %}
             {% if bxblock.product %}
                 {% block layout_search_suggest_result_product %}
