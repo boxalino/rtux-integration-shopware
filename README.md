@@ -27,11 +27,12 @@ This repository can be deployed for checking out Boxalino features (as a demo).
 By requiring this repository, it will also install other dependencies. Please review the [composer.json](https://github.com/boxalino/rtux-integration-shopware/blob/master/composer.json)
 and follow-up with other dependencies deployments guidelines.
 
-In order to create your own integration layer with the Boxalino`s assistance - please check the [wiki on Initial Setup (Boxalino Assisted)](https://github.com/boxalino/rtux-integration-shopware/wiki/Initial-Setup-(Boxalino-assisted)).
+**In order to create your own integration layer with the Boxalino`s assistance - please check the [wiki on Initial Setup (Boxalino Assisted)](https://github.com/boxalino/rtux-integration-shopware/wiki/Initial-Setup-(Boxalino-assisted)).**
 
-In order to create your own integration layer - please start in the [wiki](https://github.com/boxalino/rtux-integration-shopware/wiki#before-you-start).
+**In order to create your own integration layer - please start in the [wiki](https://github.com/boxalino/rtux-integration-shopware/wiki#before-you-start).**
 
-In order to deploy it for local demo (without Boxalino assistance or a need to maintain the code in a client setup), check the *Setup* steps bellow.
+
+**In order to deploy it for local demo (without Boxalino assistance or a need to maintain the code in a client setup), check the *Setup* steps bellow.**
 
 ## Setup
 1. Follow the integration steps for the [data layer](https://github.com/boxalino/exporter-shopware6) and the [framework layer](https://github.com/boxalino/rtux-shopware):
