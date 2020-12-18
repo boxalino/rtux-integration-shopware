@@ -11,7 +11,7 @@ Included functionalities (with samples of templates):
 3. Search result page with facets (refinement filters), pagination and sorting
 4. PDP product recommendations (via subscriber event)
 5. Category Product-listing results (a.k.a. Navigation) with facets (refinement filters), pagination and sorting
-6. CMS element (e.g.: blog post) for any Layout Integration (with Boxalino Narrative block)
+6. CMS element (e.g.: products or blog post) for any Layout Integration (with Boxalino Narrative block)
 7. Dynamic router (ex: for brand pages or landing pages)
 
 **If you are new to using Boxalino in a Shopware environment, please have first a look at our introduction documentation [here](https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/349601793/Shopware6)
