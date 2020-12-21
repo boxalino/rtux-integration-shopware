@@ -35,7 +35,7 @@ This repository can also be deployed for checking out Boxalino features (as a de
 By requiring this repository, it will also install other dependencies. Please review the [composer.json](https://github.com/boxalino/rtux-integration-shopware/blob/master/composer.json)
 and follow-up with other dependencies deployments guidelines.
 
-**In order to create your own integration layer with the Boxalino`s assistance - please check the [wiki on Initial Setup (Boxalino Assisted)](https://github.com/boxalino/rtux-integration-shopware/wiki/Initial-Setup-(Boxalino-assisted)).**
+**In order to create your own integration layer All At Once - please check the [wiki on Initial Setup (All-At-Once)](https://github.com/boxalino/rtux-integration-shopware/wiki/Initial-Setup-(All-At-Once)).**
 
 **In order to create your own integration layer - please start in the [wiki](https://github.com/boxalino/rtux-integration-shopware/wiki#before-you-start).**
 
@@ -78,16 +78,20 @@ The Headless channel must have the plugin disabled.
     * Layout Blocks (Boxalino Intelligence Admin >> Marketing >> Layout Blocks)
     * Template Resources (Boxalino Intelligence Admin >> Advanced >> Template Resources)
     * Narratives  (Boxalino Intelligence Admin >> Marketing >> Narratives)
+    * Facets (Boxalino Intelligence Admin >> Merchandising >> Facets )
 
 9. Search, autocomplete, cross-sellings will work automatically. 
 In order to have navigation active, read the #About section in the cms-navigation documentation.
 In order to add sliders on home-page/other segments, read the #About section in the cms-slider documentation.
+More information on the CMS element is available in the Confluence Page https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/354877485/CMS+Element+for+Shopping+Experiences
 
 
 ## Documentation
 
 [Shopware 6 Integration Introduction](https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/349601793/Shopware6)
 More documentation is available on each dependency repository wiki page.
+
+[Shopware 6 CMS Element Configurations & Practices](https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/354877485/CMS+Element+for+Shopping+Experiences) available as well in the Confluence page.
 
 ## Contact us!
 
