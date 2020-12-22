@@ -6,6 +6,7 @@
     <imports>
         <import resource="exporter/full.xml"/>
         <import resource="exporter/delta.xml"/>
+        <import resource="exporter/instant-update.xml"/>
     </imports>
 
     <services>
