@@ -7,7 +7,8 @@
     <services>
         <!-- A: event handler interface declaration (required) -->
         <service id="Boxalino\DataIntegration\Service\InstantUpdateHandlerInterface" class="Boxalino\DataIntegration\Service\InstantUpdateHandler">
-            <argument type="service" id="boxalino.di.client.instant"/>
+            <argument type="service" id="boxalino.di.configurator"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\GcpClientInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\IntegrationHandlerInterface"/>
         </service>
 
