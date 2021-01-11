@@ -82,10 +82,6 @@
                 <argument>name</argument>
                 <argument>title</argument>
             </call>
-            <call method="addPropertyNameDocAttributeMapping">
-                <argument>description</argument>
-                <argument>description</argument>
-            </call>
         </service>
 
         <!-- G: Visibility Doc Attribute Handler -->
@@ -152,15 +148,7 @@
                 <argument>numeric_attributes</argument>
             </call>
             <call method="addPropertyNameDocAttributeMapping">
-                <argument>shipping_free</argument>
-                <argument>numeric_attributes</argument>
-            </call>
-            <call method="addPropertyNameDocAttributeMapping">
                 <argument>is_closeout</argument>
-                <argument>numeric_attributes</argument>
-            </call>
-            <call method="addPropertyNameDocAttributeMapping">
-                <argument>mark_as_topseller</argument>
                 <argument>numeric_attributes</argument>
             </call>
             <call method="addPropertyNameDocAttributeMapping">
