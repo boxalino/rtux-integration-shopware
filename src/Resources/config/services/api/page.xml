@@ -25,25 +25,52 @@
                  class="Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiSortingModel"
                  parent="boxalino.api.content.listing.sorting"
                  public="true">
-            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingSortingRegistry"/>
-            <call method="add">
+            <call method="addSortingOptionCollection">
                 <argument type="collection">
-                    <argument key="product.listingPrices">discountedPrice</argument>
-                    <argument key="product.name">title</argument>
-                    <argument key="product.id">products_group_id</argument>
-                    <argument key="_score">score</argument>
-                    <argument key="topseller">bq_order_count_products_group_id_all_time</argument>
+                    <argument type="collection" key="score">
+                        <argument key="field">score</argument>
+                        <argument key="direction">asc</argument>
+                        <argument key="label">Recommended</argument>
+                        <argument key="api-field">score</argument>
+                        <argument key="reverse">false</argument>
+                    </argument>
+                    <argument type="collection" key="topseller">
+                        <argument key="field">topseller</argument>
+                        <argument key="direction">desc</argument>
+                        <argument key="label">Topseller</argument>
+                        <argument key="api-field">sales</argument>
+                        <argument key="reverse">true</argument>
+                    </argument>
+                    <argument type="collection" key="price-asc">
+                        <argument key="field">price</argument>
+                        <argument key="direction">asc</argument>
+                        <argument key="label">Price: low to high</argument>
+                        <argument key="api-field">discountedPrice</argument>
+                        <argument key="reverse">false</argument>
+                    </argument>
+                    <argument type="collection" key="price-desc">
+                        <argument key="field">price</argument>
+                        <argument key="direction">desc</argument>
+                        <argument key="label">Price: high to low</argument>
+                        <argument key="api-field">discountedPrice</argument>
+                        <argument key="reverse">true</argument>
+                    </argument>
+                    <argument type="collection" key="name-asc">
+                        <argument key="field">name</argument>
+                        <argument key="direction">asc</argument>
+                        <argument key="label">Name A-Z</argument>
+                        <argument key="api-field">title</argument>
+                        <argument key="reverse">false</argument>
+                    </argument>
+                    <argument type="collection" key="name-desc">
+                        <argument key="field">name</argument>
+                        <argument key="direction">desc</argument>
+                        <argument key="label">Name Z-A</argument>
+                        <argument key="api-field">title</argument>
+                        <argument key="reverse">true</argument>
+                    </argument>
                 </argument>
             </call>
-        </service>
-
-        <service id="product_listing.sorting.topseller" class="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingSorting">
-            <argument>topseller</argument>
-            <argument>filter.sortTopseller</argument>
-            <argument type="collection">
-                <argument key="topseller">desc</argument>
-            </argument>
-            <tag name="shopware.sales_channel.product_listing.sorting" />
         </service>
 
         <!-- SEARCH CONTROLLER DECORATOR frontend.search.suggest  -->
