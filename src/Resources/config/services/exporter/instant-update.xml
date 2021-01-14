@@ -33,9 +33,6 @@
                 <argument type="service" id="boxalino.di.instant.attribute.price"/>
             </call>
             <call method="addHandler">
-                <argument type="service" id="boxalino.di.instant.attribute.pricing"/>
-            </call>
-            <call method="addHandler">
                 <argument type="service" id="boxalino.di.instant.attribute.stock"/>
             </call>
             <call method="addHandler">
@@ -97,14 +94,6 @@
             <argument type="service" id="Doctrine\DBAL\Connection"/>
             <call method="addPropertyNameDocAttributeMapping">
                 <argument>price</argument>
-            </call>
-        </service>
-
-        <!-- I: Product Line / Product Groups Pricing Attribute Handler -->
-        <service id="boxalino.di.instant.attribute.pricing" class="Boxalino\DataIntegration\Service\InstantUpdate\Document\Product\Attribute\Pricing">
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <call method="addPropertyNameDocAttributeMapping">
-                <argument>pricing</argument>
             </call>
         </service>
 
