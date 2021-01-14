@@ -143,17 +143,17 @@
             <call method="addPropertyNameDocAttributeMapping">
                 <argument>status</argument>
             </call>
+            <!-- is_closeout is used as logic for the "show out of stock" property -->
+            <call method="addPropertyNameDocAttributeMapping">
+                <argument>show_out_of_stock</argument>
+            </call>
             <call method="addPropertyNameDocAttributeMapping">
                 <argument>rating_average</argument>
                 <argument>numeric_attributes</argument>
             </call>
             <call method="addPropertyNameDocAttributeMapping">
-                <argument>is_closeout</argument>
-                <argument>numeric_attributes</argument>
-            </call>
-            <call method="addPropertyNameDocAttributeMapping">
-                <argument>release_date</argument>
-                <argument>datetime_attributes</argument>
+                <argument>mark_as_topseller</argument>
+                <argument>string_attributes</argument>
             </call>
             <call method="addSchemaDefinition">
                 <argument>status</argument>
