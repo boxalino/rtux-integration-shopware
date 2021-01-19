@@ -22,7 +22,7 @@ export default class RtuxListingFilterPlugin extends Plugin
         activeFilterLabelRemoveClass: 'filter-active-remove',
         activeFilterContainerSelector: '.filter-panel-container-active',
         resetAllFilterButtonSelector: '.filter-reset-all',
-        filterPlugins: ['FilterRating', 'FilterRange', 'FilterMultiSelect', 'FilterBoolean'],
+        filterPlugins: ['RtuxFilterRating', 'FilterRange', 'RtuxFilterMultiSelect', 'FilterBoolean'],
         pluginSelectorPrefix: 'rtux'
     };
 
@@ -48,6 +48,10 @@ export default class RtuxListingFilterPlugin extends Plugin
     _initFilterPlugins() {
         for (const plugin of this.options.filterPlugins) {
             const selector = `[data-${this.options.pluginSelectorPrefix}-${StringHelper.toDashCase(plugin)}]`;
+            if(StringHelper.toDashCase(plugin).startsWith(this.options.pluginSelectorPrefix))
+            {
+                selector = `[data-${StringHelper.toDashCase(plugin)}]`;
+            }
             const elements = this.el.querySelectorAll(selector);
             const optionsDataField = `${this.options.pluginSelectorPrefix}${plugin}Options`;
             for (const element of elements) {
