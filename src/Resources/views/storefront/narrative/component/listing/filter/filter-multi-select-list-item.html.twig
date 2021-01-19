@@ -7,13 +7,13 @@
                    class="custom-control-input filter-multi-select-checkbox"
                    data-label="{{ name }}"
                    value="{{ id }}"
-                   id="{{ id }}"
-                   {% if element.selected %} checked {% endif %}
+                   id="{{ facet.field }}_{{ id }}"
+                    {% if element.selected %} checked {% endif %}
             >
         {% endblock %}
 
         {% block component_filter_multi_select_list_item_label_element %}
-            <label class="filter-multi-select-item-label custom-control-label" for="{{ id }}">
+            <label class="filter-multi-select-item-label custom-control-label" for="{{ facet.field }}_{{ id }}">
                 {% block component_multi_select_list_item_label %}
                     {{ name }} {% if facet.showCounter %}({{ element.hitCount }}) {% endif %}
                 {% endblock %}

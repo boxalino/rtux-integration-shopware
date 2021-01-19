@@ -147,7 +147,7 @@ renders the facets as are set in the facet model
                                                             {% else %}
                                                         <span class="filter-active">
                                                             {{ selectedValue.value }}
-                                                            <button class="filter-active-remove" data-id="{{ selectedValue.value }}">&times;</button>
+                                                            <button class="filter-active-remove" data-id="{{ selectedFacet.field }}_{{ selectedValue.value }}">&times;</button>
                                                         </span>
                                                             {% endif %}
                                                     {% endif %}
