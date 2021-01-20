@@ -16,6 +16,18 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
  */
 class CrossSelling extends ItemContextAbstract
 {
+
+    /**
+     * Adds the configured cross-sell products as context parameters
+     * Activate if it is a project requirement
+     *
+     * @return bool
+     */
+    public function useConfiguredProductsAsContextParameters() : bool
+    {
+        return true;
+    }
+
     /**
      * @return int
      */
