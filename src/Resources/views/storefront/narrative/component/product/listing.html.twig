@@ -35,7 +35,7 @@ optional: use the JSON SCHEMA of the product layout block to set other params (l
                         'block' : bxblock,
                         'layout': bxblock.layout[0],
                         'displayMode': bxblock.displayMode[0],
-                        'product':block.model.getItem(bxblock.product.id),
+                        'product':block.model.getItem(bxblock.product.products_group_id[0]),
                         'listingColumns' : listingColumns
                     } %}
                     {% sw_include bxblock.template with narrativeContent %}
