@@ -7,7 +7,8 @@
         <!-- Shopware6 definition of the CMS use -->
         <service id="boxalino.integration.context.cms"
                  class="Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context\Cms"
-                 parent="boxalino.shopware.request.context.cms">
+                 parent="boxalino.shopware.request.context.cms"
+                 shared="false">
             <call method="setRequestDefinition">
                 <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ListingRequestDefinitionInterface"/>
             </call>
@@ -16,7 +17,8 @@
 
         <!-- Shopware6 CMS loader extension with API call -->
         <service id="boxalino.integration.loader.cms"
-                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader" parent="boxalino.shopware.content.page.cms">
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCmsLoader" parent="boxalino.shopware.content.page.cms"
+                 shared="false">
             <call method="setApiContext">
                 <argument type="service" id="boxalino.integration.context.cms"/>
             </call>
