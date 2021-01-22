@@ -19,5 +19,13 @@
              <call method="setSubPhrasesProductsCount"><argument>6</argument></call>
         </service>
 
+        <!-- Shopware6 content loader for search (used as a dependency in controller) -->
+        <service id="boxalino.integration.loader.search" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
+                 parent="boxalino.shopware.content.page.loader">
+            <call method="setApiContext">
+                <argument type="service" id="boxalino.integration.context.search"/>
+            </call>
+        </service>
+
     </services>
 </container>

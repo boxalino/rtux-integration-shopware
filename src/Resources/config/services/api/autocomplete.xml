@@ -18,5 +18,13 @@
 <!--            <call method="setHighlightPostfix"><argument><![CDATA[</em>]]> </argument></call>-->
         </service>
 
+        <!-- Shopware6 content loader for autocomplete (used as a dependency in the controller) -->
+        <service id="boxalino.integration.loader.autocomplete" class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader"
+                 parent="boxalino.shopware.content.page.loader">
+            <call method="setApiContext">
+                <argument type="service" id="boxalino.integration.context.autocomplete"/>
+            </call>
+        </service>
+
     </services>
 </container>

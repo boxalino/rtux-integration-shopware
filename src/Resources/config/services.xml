@@ -18,7 +18,7 @@
     </monolog:config>
 
     <imports>
-        <import resource="services/api/page.xml"/>
+        <import resource="services/api/decorator.xml"/>
         <import resource="services/api/autocomplete.xml"/>
         <import resource="services/api/search.xml"/>
         <import resource="services/api/crossselling.xml"/>
@@ -28,6 +28,59 @@
     </imports>
 
     <services>
+        <!-- Shopware6 - Sorting resource - has to be added in integration layer because of the dynamic mapping for the product listing sorting -->
+        <service id="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface"
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiSortingModel"
+                 parent="boxalino.api.content.listing.sorting"
+                 public="true">
+            <call method="addSortingOptionCollection">
+                <argument type="collection">
+                    <argument type="collection" key="score">
+                        <argument key="field">score</argument>
+                        <argument key="direction">asc</argument>
+                        <argument key="label">Recommended</argument>
+                        <argument key="api-field">score</argument>
+                        <argument key="reverse">false</argument>
+                    </argument>
+                    <argument type="collection" key="topseller">
+                        <argument key="field">topseller</argument>
+                        <argument key="direction">desc</argument>
+                        <argument key="label">Topseller</argument>
+                        <argument key="api-field">sales</argument>
+                        <argument key="reverse">true</argument>
+                    </argument>
+                    <argument type="collection" key="price-asc">
+                        <argument key="field">price</argument>
+                        <argument key="direction">asc</argument>
+                        <argument key="label">Price: low to high</argument>
+                        <argument key="api-field">discountedPrice</argument>
+                        <argument key="reverse">false</argument>
+                    </argument>
+                    <argument type="collection" key="price-desc">
+                        <argument key="field">price</argument>
+                        <argument key="direction">desc</argument>
+                        <argument key="label">Price: high to low</argument>
+                        <argument key="api-field">discountedPrice</argument>
+                        <argument key="reverse">true</argument>
+                    </argument>
+                    <argument type="collection" key="name-asc">
+                        <argument key="field">name</argument>
+                        <argument key="direction">asc</argument>
+                        <argument key="label">Name A-Z</argument>
+                        <argument key="api-field">title</argument>
+                        <argument key="reverse">false</argument>
+                    </argument>
+                    <argument type="collection" key="name-desc">
+                        <argument key="field">name</argument>
+                        <argument key="direction">desc</argument>
+                        <argument key="label">Name Z-A</argument>
+                        <argument key="api-field">title</argument>
+                        <argument key="reverse">true</argument>
+                    </argument>
+                </argument>
+            </call>
+        </service>
+
     </services>
 
 </container>

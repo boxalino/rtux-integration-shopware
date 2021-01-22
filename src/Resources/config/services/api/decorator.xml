@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- SEARCH CONTROLLER DECORATOR frontend.search.suggest  -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController"
+                 decorates="Shopware\Storefront\Controller\SearchController" public="true">
+            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController.inner"/>
+            <!-- service declared in search.xml -->
+            <argument type="service" id="boxalino.integration.loader.search" />
+            <!-- service declared in autocomplete.xml -->
+            <argument type="service" id="boxalino.integration.loader.autocomplete"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
+            <argument type="service" id="monolog.logger.boxalino-integration"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+    </services>
+
+</container>
