@@ -38,6 +38,10 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
         {% set params = {search: page.searchTerm } %}
     {% endif %}
 
+    {% if element %}
+        {% set params = {slots: element.id} %}
+    {% endif %}
+    
     {% block element_product_listing_wrapper %}
         <div class="cms-element-product-listing-wrapper"
              data-listing-pagination="true"
