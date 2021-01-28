@@ -24,6 +24,7 @@
         <import resource="services/api/crossselling.xml"/>
         <import resource="services/api/cms.xml"/>
         <import resource="services/api/dynamic.xml"/>
+        <import resource="services/api/newsletter.xml"/>
         <import resource="services/exporter.xml"/>
     </imports>
 
