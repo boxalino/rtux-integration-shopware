@@ -4,13 +4,17 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <imports>
-        <import resource="di/configuration.xml"/>
-        <import resource="di/scheduled-task.xml"/>
         <import resource="di/language.xml"/>
         <import resource="di/attribute.xml"/>
         <import resource="di/attribute_value.xml"/>
         <import resource="di/product.xml"/>
         <import resource="di/order.xml"/>
+
+        <import resource="di/configuration.xml"/>
+        <import resource="di/product-console.xml"/>
+        <import resource="di/product-instant.xml"/>
+        <import resource="di/product-task.xml"/>
+        <import resource="di/order-console.xml"/>
     </imports>
 
     <services>

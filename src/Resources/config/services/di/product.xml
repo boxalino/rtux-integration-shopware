@@ -4,15 +4,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- A.3: INSTANT product data sync via SUBSCRIBER -->
-        <service id="Boxalino\DataIntegration\Subscriber\Product\InstantDataIntegration">
-            <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
-            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
-            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-
         <!-- X: doc_product generator for what product attributes are exported on data integration with the use of the handlers -->
         <!-- relevant updates can be applied to: price, pricing, stock, entity-->
         <!-- for custom tables and structures - simply append the list of handlers for the doc_product generation -->

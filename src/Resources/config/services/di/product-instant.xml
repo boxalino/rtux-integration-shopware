@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- A.3: INSTANT product data sync via SUBSCRIBER -->
+        <service id="Boxalino\DataIntegration\Subscriber\Product\InstantDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+    </services>
+</container>
