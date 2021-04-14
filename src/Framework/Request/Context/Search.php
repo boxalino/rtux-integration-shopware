@@ -18,7 +18,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 class Search extends SearchContextAbstract
 {
     use IntegrationContextTrait;
-    
+
     /**
      * @return int
      */
@@ -37,7 +37,7 @@ class Search extends SearchContextAbstract
     }
 
     /**
-     * Other fields can be: products_seo_url, products_image, discountedPrice, etc
+     * Other fields can be: link, image, discountedPrice, etc
      * @return array
      */
     public function getReturnFields() : array

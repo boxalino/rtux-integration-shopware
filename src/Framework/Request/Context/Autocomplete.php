@@ -44,7 +44,7 @@ class Autocomplete extends AutocompleteContextAbstract
      */
     public function getReturnFields() : array
     {
-        return ["id", "discountedPrice", "products_seo_url", "title", "products_image"];
+        return ["id", "discountedPrice", "link", "title", "image"];
     }
 
 }

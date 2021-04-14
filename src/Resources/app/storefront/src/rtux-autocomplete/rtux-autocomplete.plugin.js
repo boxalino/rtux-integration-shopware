@@ -69,8 +69,8 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
             'acHighlightPost':"</em>",  //textual suggsstion highlight end -- for matching section
             'query':value,
             'filters': [
-                {"field": "products_visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
-                {"field": "products_active","values": [1],"negative": false}
+                {"field": "visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
+                {"field": "status","values": [1],"negative": false}
             ]
         };
         return this.rtuxApiHelper.getApiRequestData(

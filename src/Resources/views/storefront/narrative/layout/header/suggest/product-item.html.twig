@@ -1,13 +1,13 @@
 <li class="search-suggest-product js-result">
     {% block layout_search_suggest_result_link %}
-        <a href="{{ block.product.products_seo_url[0] }}"
+        <a href="{{ block.product.link[0] }}"
            title="{{ block.product.title }}"
            class="search-suggest-product-link">
             <div class="row align-items-center no-gutters bx-narrative-item" data-bx-item-id="{{ block.product.id }}">
                 {% block layout_search_suggest_result_image %}
                     <div class="col-auto search-suggest-product-image-container">
-                        <img src="{{ block.product.products_image[0] }}"
-                             srcset="{{ block.product.products_image[0] }}"
+                        <img src="{{ block.product.image[0] }}"
+                             srcset="{{ block.product.image[0] }}"
                              class="search-suggest-product-image"
                              alt="{{ block.product.title }}"
                         />

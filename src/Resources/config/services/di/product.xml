@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- A.3: INSTANT product data sync via SUBSCRIBER -->
+        <service id="Boxalino\DataIntegration\Subscriber\Product\InstantDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- X: doc_product generator for what product attributes are exported on data integration with the use of the handlers -->
+        <!-- relevant updates can be applied to: price, pricing, stock, entity-->
+        <!-- for custom tables and structures - simply append the list of handlers for the doc_product generation -->
+        <!-- declared as a dependency for services B.1 B.2 B.3 from product.xml -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Document\Product\DocHandler">
+            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.entity"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.brand"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.images"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.link"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.property"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.option"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.category"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.price"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.pricing"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.stock"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.translation"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.visibility"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.tags"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.delivery"/>
+            </call>
+            <call method="allowInstantMode">
+                <argument type="string">true</argument>
+            </call>
+        </service>
+
+    </services>
+</container>

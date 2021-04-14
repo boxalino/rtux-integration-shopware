@@ -23,7 +23,7 @@ The repository is being updated with new guidelines & scenario.
 
 ## Integration
 Boxalino provides several repositories you will need. This one plays the role of the initial environment you will extend with your team.
-You also need the [data layer](https://github.com/boxalino/exporter-shopware6) and the [framework layer](https://github.com/boxalino/rtux-shopware).
+You also need the [data integration layer](https://github.com/boxalino/data-integration-shopware6) and the [framework layer](https://github.com/boxalino/rtux-shopware).
 The data layer repository manages the export of your data to Boxalino.
 The framework layout is the generic and standard Shopware6 code on which your integration plugin will depend and which is maintained by Boxalino.
 
@@ -45,11 +45,11 @@ and follow-up with other dependencies deployments guidelines.
 ## Setup
 **ONLY FOLLOW THESE STEPS IF YOU ARE DEPLOYING A LOCAL DEMO, OTHERWISE, GO TO THE [wiki](https://github.com/boxalino/rtux-integration-shopware/wiki#before-you-start).**
 
-1. Follow the integration steps for the [data layer](https://github.com/boxalino/exporter-shopware6) and the [framework layer](https://github.com/boxalino/rtux-shopware):
+1. Follow the integration steps for the [data integration layer](https://github.com/boxalino/data-integration-shopware6) and the [framework layer](https://github.com/boxalino/rtux-shopware):
    * ``composer require boxalino/rtux-shopware``
-   * ``composer require boxalino/exporter-shopware6``
+   * ``composer require boxalino/data-integration-shopware6``
    * ``./bin/console plugin:refresh``
-   * ``./bin/console plugin:install --activate --clearCache BoxalinoExporter BoxalinoRealTimeUserExperience``
+   * ``./bin/console plugin:install --activate --clearCache BoxalinoDataIntegration BoxalinoRealTimeUserExperience``
    
 2. Add the plugin to your project via composer (it will install dependencies [rtux-api-php, rtux-shopware, exporter-shopware6](https://github.com/boxalino/rtux-integration-shopware/blob/master/composer.json))
 ``composer require boxalino/rtux-integration-shopware``
@@ -66,7 +66,7 @@ and follow-up with other dependencies deployments guidelines.
 
 6. Log in administration panel (<your-site>/admin) and set the configurations for the framework layer and expporter.
 ``admin#/sw/plugin/settings/BoxalinoRealTimeUserExperience``
-``admin#/sw/plugin/settings/BoxalinoExporter``
+``admin#/sw/plugin/settings/BoxalinoDataIntegration``
 
 7. In order to kick off your account, a full export is required. 
 More information available https://github.com/boxalino/exporter-shopware6

@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Delta Integration Scheduled Task -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\Task\DiDeltaTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\DeltaDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface"/>
+
+            <tag name="messenger.message_handler" />
+        </service>
+
+        <!-- Full Integration Scheduled Task -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\Task\DiFullTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\FullDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface"/>
+
+            <tag name="messenger.message_handler" />
+        </service>
+
+    </services>
+</container>

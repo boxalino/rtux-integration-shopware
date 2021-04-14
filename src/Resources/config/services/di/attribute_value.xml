@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- A: doc_attribute_values generator -->
+        <!-- for custom properties/content values export - simply add new handlers or replace the ones available -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Document\Attribute\Value\DocHandler">
+            <argument type="service" id="monolog.logger.boxalino-di"/>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.values.category"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.values.property"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.values.brand"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.values.tags"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.values.delivery"/>
+            </call>
+            <!-- the doc_attribute_values is exported in INSTANT mode as well (ex: categories!) -->
+            <call method="allowInstantMode">
+                <argument type="string">true</argument>
+            </call>
+        </service>
+
+    </services>
+</container>

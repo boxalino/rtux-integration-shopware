@@ -1,20 +1,20 @@
 <?php
-namespace Boxalino\RealTimeUserExperienceIntegration\ScheduledTask;
+namespace Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\Task;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
 /**
- * Class ExportFull
+ * Class FullDataIntegration
  * Set the interval to trigger the full export (recommended - 1 day)
  *
  * @package Boxalino\RealTimeUserExperience\ScheduledTask
  */
-class ExporterFull extends ScheduledTask
+class DiFullTask extends ScheduledTask
 {
 
     public static function getTaskName(): string
     {
-        return 'boxalino.export.full';
+        return 'boxalino.di.full.product';
     }
 
     /**

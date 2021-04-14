@@ -1,20 +1,20 @@
 <?php
-namespace Boxalino\RealTimeUserExperienceIntegration\ScheduledTask;
+namespace Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\Task;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
 /**
- * Class ExportDelta
+ * Class DeltaDataIntegration
  * Set the interval to trigger the delta export (recommended - 1h)
  *
  * @package Boxalino\RealTimeUserExperience\ScheduledTask
  */
-class ExporterDelta extends ScheduledTask
+class DiDeltaTask extends ScheduledTask
 {
 
     public static function getTaskName(): string
     {
-        return 'boxalino.export.delta';
+        return 'boxalino.di.delta.product';
     }
 
     /**

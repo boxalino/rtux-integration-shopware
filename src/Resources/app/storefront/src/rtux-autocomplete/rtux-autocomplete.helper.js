@@ -103,12 +103,12 @@ export default class RtuxAutocompleteHelper {
      */
     getProductItemHtml(bxblock) {
         var html = '<li class="search-suggest-product js-result bx-narrative-item" data-bx-item-id="' + bxblock['bx-hit']['id'] +'">';
-        html += '<a href="'+ window.location.origin  + bxblock['bx-hit']['products_seo_url'][0] +'" title="' +
-            bxblock['bx-hit']['products_title'] + '" class="search-suggest-product-link">';
+        html += '<a href="'+ window.location.origin  + bxblock['bx-hit']['link'][0] +'" title="' +
+            bxblock['bx-hit']['title'] + '" class="search-suggest-product-link">';
         html += '<div class="row align-items-center no-gutters">';
         html += '<div class="col-auto search-suggest-product-image-container">'+
-            '<img src="' + bxblock['bx-hit']['products_image'][0] + '" ' +
-            'srcset="'+ bxblock['bx-hit']['products_image'][0] +'" class="search-suggest-product-image" ' +
+            '<img src="' + bxblock['bx-hit']['image'][0] + '" ' +
+            'srcset="'+ bxblock['bx-hit']['image'][0] +'" class="search-suggest-product-image" ' +
             'alt="'+ bxblock['bx-hit']['title'] +'"/></div>';
         html += '<div class="col search-suggest-product-name">'+ bxblock['bx-hit']['title'] +'</div>';
         html += '<div class="col-auto search-suggest-product-price"><br><small class="search-suggest-product-reference-price">' +

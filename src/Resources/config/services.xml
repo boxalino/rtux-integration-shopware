@@ -25,7 +25,7 @@
         <import resource="services/api/cms.xml"/>
         <import resource="services/api/dynamic.xml"/>
         <import resource="services/api/newsletter.xml"/>
-        <import resource="services/exporter.xml"/>
+        <import resource="services/di.xml"/>
     </imports>
 
     <services>

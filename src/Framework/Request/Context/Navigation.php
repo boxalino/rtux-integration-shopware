@@ -19,7 +19,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 class Navigation extends ListingContextAbstract
 {
     use IntegrationContextTrait;
-    
+
     /**
      * @return int
      */
@@ -50,7 +50,7 @@ class Navigation extends ListingContextAbstract
      */
     public function getReturnFields() : array
     {
-        return ["id", "products_group_id","discountedPrice", "products_seo_url", "title", "products_image"];
+        return ["id", "products_group_id","discountedPrice", "link", "title", "image"];
     }
 
 }
