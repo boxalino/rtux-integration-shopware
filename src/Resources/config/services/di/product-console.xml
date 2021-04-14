@@ -57,20 +57,6 @@
             </call>
         </service>
 
-        <!-- B.3: DI handler - generates each file tyle (handler) required for INSTANT data integration -->
-        <service id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"
-                 class="Boxalino\DataIntegration\Service\Integration\Product\InstantIntegrationHandler">
-            <call method="addHandler">
-                <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocLanguagesHandlerInterface"/>
-            </call>
-            <call method="addHandler">
-                <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface"/>
-            </call>
-            <call method="addHandler">
-                <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface"/>
-            </call>
-        </service>
-
     </services>
 
 </container>

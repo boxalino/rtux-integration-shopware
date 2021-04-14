@@ -19,17 +19,12 @@
             <call method="addProperties">
                 <argument>brand,delivery_time,tag,image,link,description,meta_title,meta_description,keywords,visibility,status,visibility,stock</argument>
             </call>
-            <call method="addIndexed">
-                <argument>sku,ean</argument>
-            </call>
             <call method="addLocalized">
                 <argument>brand,image,link,title,description,keywords,meta_description,meta_title,delivery_time</argument>
             </call>
-            <call method="addMultivalue">
-                <argument>tag,category_id</argument>
-            </call>
+<!--            <call method="addMultivalue"></call>-->
             <call method="addFilterBy">
-                <argument>brand,tag,visibility,status,mark_as_topseller,shipping_free,tax_rate,delivery_time,restock_time,rating_average,category_id</argument>
+                <argument>brand,tag,visibility,status,mark_as_topseller,shipping_free,tax_rate,delivery_time,restock_time,rating_average,category_id,rating_average</argument>
             </call>
             <call method="addSearchSuggestion">
                 <argument>brand</argument>
