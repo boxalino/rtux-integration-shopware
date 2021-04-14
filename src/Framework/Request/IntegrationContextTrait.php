@@ -1,6 +1,8 @@
 <?php
 namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request;
 
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\AccessorFacetModelInterface;
+
 /**
  * Trait IntegrationContextTrait
  * Common context functions
@@ -28,6 +30,14 @@ trait IntegrationContextTrait
     public function getFilterValuesDelimiter(): string
     {
         return "|";
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilterPrefix() : string
+    {
+        return AccessorFacetModelInterface::BOXALINO_STORE_FACET_PREFIX;
     }
 
 }
