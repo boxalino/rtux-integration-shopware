@@ -21,6 +21,9 @@
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.order.product"/>
             </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.order.promotion"/>
+            </call>
         </service>
 
     </services>
