@@ -9,12 +9,14 @@
         <import resource="di/attribute_value.xml"/>
         <import resource="di/product.xml"/>
         <import resource="di/order.xml"/>
+        <import resource="di/user.xml"/>
 
         <import resource="di/configuration.xml"/>
         <import resource="di/product-console.xml"/>
         <import resource="di/product-instant.xml"/>
         <import resource="di/product-task.xml"/>
         <import resource="di/order-console.xml"/>
+        <import resource="di/user-console.xml"/>
     </imports>
 
     <services>

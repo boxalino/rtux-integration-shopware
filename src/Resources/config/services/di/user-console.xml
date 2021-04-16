@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:monolog="http://symfony.com/schema/dic/monolog"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd http://symfony.com/schema/dic/monolog http://symfony.com/schema/dic/monolog/monolog-1.0.xsd">
+
+    <services>
+        <!-- A.1: Full console command -->
+        <service id="Boxalino\DataIntegration\Console\User\FullDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-user"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface"/>
+            <tag name="console.command"/>
+        </service>
+
+        <!-- A.2: Delta console command -->
+        <service id="Boxalino\DataIntegration\Console\User\DeltaDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-user"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface"/>
+            <tag name="console.command"/>
+        </service>
+
+        <!-- B.1: DI handler - generates each file tyle (handler) required for FULL data integration -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Integration\User\FullIntegrationHandler">
+            <call method="addHandler">
+                <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface"/>
+            </call>
+        </service>
+
+        <!-- B.2: DI handler - generates each file tyle (handler) required for DELTA data integration -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Integration\User\DeltaIntegrationHandler">
+            <call method="addHandler">
+                <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface"/>
+            </call>
+        </service>
+
+    </services>
+
+</container>

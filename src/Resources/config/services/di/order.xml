@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- X: doc_order generator for what product attributes are exported on data integration with the use of the handlers -->
+        <!-- X: doc_order generator for what order attributes are exported on data integration with the use of the handlers -->
         <!-- the service ID has been defined as a dependency for the order.xml B.1 & B.2 services -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface"
                  class="Boxalino\DataIntegration\Service\Document\Order\DocHandler">

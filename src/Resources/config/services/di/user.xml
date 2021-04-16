@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- X: doc_user generator for what customer attributes are exported on data integration with the use of the handlers -->
+        <!-- the service ID has been defined as a dependency for the user.xml B.1 & B.2 services -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Document\User\DocHandler">
+            <argument type="service" id="monolog.logger.boxalino-di-user"/>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.user.entity"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.user.contact.shipping"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.user.contact.billing"/>
+            </call>
+        </service>
+
+    </services>
+</container>
