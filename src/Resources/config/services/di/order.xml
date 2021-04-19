@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- X: doc_order generator for what order attributes are exported on data integration with the use of the handlers -->
+        <!-- the service ID has been defined as a dependency for the order.xml B.1 & B.2 services -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Document\Order\DocHandler">
+            <argument type="service" id="monolog.logger.boxalino-di-order"/>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.order.entity"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.order.contact.shipping"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.order.contact.billing"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.order.product"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.order.promotion"/>
+            </call>
+        </service>
+
+    </services>
+</container>

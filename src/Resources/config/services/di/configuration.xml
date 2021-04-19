@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- A: declare the configuration interface; rewrite this in order to extend the data configurations object -->
+        <service id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface" class="Boxalino\DataIntegration\Service\Util\Configuration">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="cache.object"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+    </services>
+
+</container>

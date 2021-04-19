@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- A: doc_attribute generator : creates the doc_attribute and exports account properties -->
+        <!-- Reserved keywords: id, title, body, categories, tags, categories_text, scorerTerms, addedTime, changedTime -->
+        <!-- standardPrice, discountedPrice, stockCounter, viewCounter, purchaseCounter, random_*, sortable_title -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Document\Attribute\DocHandler">
+            <argument type="service" id="monolog.logger.boxalino-di"/>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.attribute.property"/>
+            </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.attribute.entity"/>
+            </call>
+            <call method="addProperties">
+                <argument>brand,delivery_time,tag,image,link,description,meta_title,meta_description,keywords,visibility,status,visibility,stock</argument>
+            </call>
+            <call method="addLocalized">
+                <argument>brand,image,link,title,description,keywords,meta_description,meta_title,delivery_time</argument>
+            </call>
+<!--            <call method="addMultivalue"></call>-->
+            <call method="addFilterBy">
+                <argument>brand,tag,visibility,status,mark_as_topseller,shipping_free,tax_rate,delivery_time,restock_time,rating_average,category_id,rating_average</argument>
+            </call>
+            <call method="addSearchSuggestion">
+                <argument>brand</argument>
+            </call>
+            <call method="addNumeric">
+                <argument>rating_average,tax_rate</argument>
+            </call>
+            <call method="addDatetime">
+                <argument>creation,release_date,last_update</argument>
+            </call>
+            <call method="addOrderBy">
+                <argument>last_update,release_date</argument>
+            </call>
+            <call method="addHierarchical">
+                <argument>categories</argument>
+            </call>
+            <call method="addGroupBy">
+                <argument>main_variant_id,internal_id,sku</argument>
+            </call>
+            <call method="addSearchBy">
+                <argument>brand,description,keywords,tag</argument>
+            </call>
+        </service>
+
+    </services>
+</container>
