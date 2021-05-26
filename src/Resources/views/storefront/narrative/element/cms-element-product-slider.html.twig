@@ -53,7 +53,7 @@ all JSON schema properties are returned in an array, so if a single value is exp
                                                 'block' : bxblock,
                                                 'layout': block.layout[0],
                                                 'displayMode': block.displayMode[0],
-                                                'product': block.model.getItem(bxblock.product.id),
+                                                'product': block.model.getItem(bxblock.product.products_group_id[0]),
                                                 'listingColumns' : listingColumns
                                             } %}
                                             {% sw_include bxblock.template with narrativeContent %}

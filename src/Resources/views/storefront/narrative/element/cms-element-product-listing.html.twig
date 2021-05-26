@@ -21,6 +21,11 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
     {% endif %}
     {% set sidebar = block.section[0] == 'sidebar' %}
 
+    {% if section and section.type == 'sidebar' %}
+        {% set listingColumns = 'col-sm-6 col-lg-6 col-xl-4' %}
+        {% set sidebar = true %}
+    {% endif %}
+
     {% set filterUrl = null %}
     {% set dataUrl = null %}
     {% set params = {} %}
@@ -41,7 +46,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
     {% if element %}
         {% set params = {slots: element.id} %}
     {% endif %}
-    
+
     {% block element_product_listing_wrapper %}
         <div class="cms-element-product-listing-wrapper"
              data-listing-pagination="true"
