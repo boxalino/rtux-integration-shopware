@@ -16,7 +16,7 @@
             "custom/plugins/BoxalinoRealTimeUserExperienceIntegration": ["boxalino/rtux-integration-shopware", "vendor/package"]
         },
         "shopware-plugin-class": "Boxalino\\RealTimeUserExperienceIntegration\\BoxalinoRealTimeUserExperienceIntegration",
-        "copyright": "Boxalino AG, 2020",
+        "copyright": "Boxalino AG, 2021",
         "label": {
             "de-DE": "Boxalino RTUX Integration guidelines für Shopware v6",
             "en-GB": "Boxalino RTUX Integration guidelines for Shopware v6"
@@ -26,7 +26,7 @@
         "php": "^7.2",
         "boxalino/rtux-shopware": "~3.0.0",
         "boxalino/rtux-api-php": "~3.0.0",
-        "boxalino/data-integration-shopware6": "~3.0.0"
+        "boxalino/data-integration-shopware6": "~3.1.0"
     },
     "autoload": {
         "psr-4": {

@@ -34,5 +34,20 @@
             <tag name="messenger.message_handler" />
         </service>
 
+        <!-- Instant Integration Scheduled Task -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\Task\DiInstantTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\InstantDataIntegration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
+
+            <tag name="messenger.message_handler" />
+        </service>
+
     </services>
 </container>

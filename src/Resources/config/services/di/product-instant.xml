@@ -4,18 +4,19 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- A.3: INSTANT product data sync via SUBSCRIBER -->
-        <service id="Boxalino\DataIntegration\Subscriber\Product\InstantDataIntegration">
+        <!-- A.3: INSTANT console command -->
+        <service id="Boxalino\DataIntegration\Console\Product\InstantDataIntegration">
             <argument>%kernel.environment%</argument>
             <argument type="service" id="monolog.logger.boxalino-di-product"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
-            <tag name="kernel.event_subscriber"/>
+            <tag name="console.command"/>
         </service>
 
         <!-- B.3: DI handler - generates each file tyle (handler) required for INSTANT data integration -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"
-                 class="Boxalino\DataIntegration\Service\Integration\Product\InstantIntegrationHandler">
+                 class="Boxalino\DataIntegration\Service\Integration\Product\InstantIntegrationHandler"
+                 parent="boxalino.di.handler.abstract">
             <call method="addHandler">
                 <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocLanguagesHandlerInterface"/>
             </call>
