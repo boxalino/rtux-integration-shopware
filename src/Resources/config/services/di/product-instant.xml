@@ -26,6 +26,10 @@
             <call method="addHandler">
                 <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface"/>
             </call>
+            <!-- set a connection timeout as to not expect for service response after the sync request-->
+            <call method="setTimeout">
+                <argument type="string">2</argument>
+            </call>
         </service>
 
     </services>
