@@ -40,6 +40,9 @@
                 <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface"/>
             </call>
             <!-- by default, the timeout is 0 - unlimited; restrict it if you are not following integration sync status -->
+            <call method="setTimeout">
+                <argument type="string">3600</argument>
+            </call>
         </service>
 
         <!-- B.2: DI handler - generates each file tyle (handler) required for DELTA integration -->

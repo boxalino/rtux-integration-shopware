@@ -53,6 +53,13 @@
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.product.delivery"/>
             </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.visibility.grouping"/>
+            </call>
+            <!-- only add the media export (all product images) if it is a project requirement -->
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.media"/>
+            </call>
             <call method="allowInstantMode">
                 <argument type="string">true</argument>
             </call>
