@@ -1,0 +1,32 @@
+{#
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/badges.html.twig
+#}
+{% block component_product_badges %}
+    <div class="product-badges">
+        {% block component_product_badges_discount %}
+            {% set listPrice = product.get("standardPrice") > product.get("discountedPrice") %}
+
+            {% if listPrice %}
+                <div class="badge badge-danger badge-discount">
+                    <span>&#37;</span>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_product_badges_topseller %}
+            {% if product.get("mark_as_topseller")[0]=="1" %}
+                <div>
+                    <span class="badge badge-warning badge-topseller">{{ "listing.boxLabelTopseller"|trans|sw_sanitize }}</span>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_product_badges_new %}
+            {% if product.get("is_new")[0]=="1" %}
+                <div>
+                    <span class="badge badge-success badge-new">{{ "listing.boxLabelNew"|trans|sw_sanitize }}</span>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

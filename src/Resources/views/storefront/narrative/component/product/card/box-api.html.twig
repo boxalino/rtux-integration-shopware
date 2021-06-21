@@ -30,13 +30,17 @@ optional: use the loop through block.blocks to render other children elements se
                 {% set displayMode = block.displayMode[0] %}
                 {% set name = block.product.get("title") %}
                 {% set id = block.product.get("id") %}
-                {% set cover = block.product.get("image") %}
+                {% set cover = block.product.get("image")[0] %}
 
                 <div class="card product-box box-{{ layout }}">
                     {% block component_product_box_content %}
                         <div class="card-body">
+                            {% block component_product_box_badges %}
+                                {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/badges.html.twig' %}
+                            {% endblock %}
+
                             {% block component_product_box_rich_snippets %}
-                                <meta itemprop="mpn" content="{{ blockproduct.get("product_number")[0] }}"/>
+                                {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/meta.html.twig' %}
                             {% endblock %}
 
                             {% block component_product_box_image %}
@@ -52,7 +56,7 @@ optional: use the loop through block.blocks to render other children elements se
                                     <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
                                        title="{{ name }}"
                                        class="product-image-link is-{{ displayMode }}">
-                                        {% if cover.url %}
+                                        {# thumbnail displayed as seen in @Storefront/storefront/utilities/thumbnail.html.twig #}
                                             {% set attributes = {
                                                 'class': 'product-image is-'~displayMode,
                                                 'alt': name,
@@ -63,23 +67,9 @@ optional: use the loop through block.blocks to render other children elements se
                                                 {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
                                             {% endif %}
 
-                                            {% sw_thumbnails 'product-image-thumbnails' with {
-                                                media: cover,
-                                                sizes: {
-                                                    'xs': '501px',
-                                                    'sm': '315px',
-                                                    'md': '427px',
-                                                    'lg': '333px',
-                                                    'xl': '284px'
-                                                }
-                                            } %}
-                                        {% else %}
-                                            <div class="product-image-placeholder">
-                                                {% sw_icon 'placeholder' style {
-                                                    'size': 'fluid'
-                                                } %}
-                                            </div>
-                                        {% endif %}
+                                            <img src="{{ cover }}" sizes="{{ {'xs': '501px','sm': '315px','md': '427px','lg': '333px','xl': '284px'} |json_encode }}"
+                                                {% for key, value in attributes %}{% if value != '' %} {{ key }}="{{ value }}"{% endif %}{% endfor %}
+                                            />
                                     </a>
                                 </div>
                             {% endblock %}
@@ -90,9 +80,9 @@ optional: use the loop through block.blocks to render other children elements se
                                     {% block component_product_box_rating %}
                                         {% if shopware.config.core.listing.showReview %}
                                             <div class="product-rating">
-                                                {% if block.product.get("rating_average") %}
+                                                {% if block.product.get("rating_average")[0] %}
                                                     {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
-                                                        points: product.ratingAverage,
+                                                        points: product.get("rating_average")[0],
                                                         style: 'text-primary'
                                                     } %}
                                                 {% endif %}
@@ -108,37 +98,18 @@ optional: use the loop through block.blocks to render other children elements se
                                         </a>
                                     {% endblock %}
 
-                                    {% block component_product_box_variant_characteristics %}
-                                        <div class="product-variant-characteristics">
-                                            <div class="product-variant-characteristics-text">
-                                                {% if not product.isGrouped %}
-                                                    {% for variation in product.variation %}
-                                                        {{ variation.group }}:
-                                                        <span class="product-variant-characteristics-option">
-                                                    {{ variation.option }}
-                                                </span>
-
-                                                        {% if product.variation|last != variation %}
-                                                            {{ " | " }}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    {% endblock %}
-
                                     {% block component_product_box_description %}
                                         <div class="product-description">
-                                            {{ product.translated.description|striptags|raw }}
+                                            {{ product.get("body")[0]|striptags|raw }}
                                         </div>
                                     {% endblock %}
 
                                     {% block component_product_box_price %}
-                                        {% sw_include '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+                                        {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/price-unit.html.twig' %}
                                     {% endblock %}
 
                                     {% block component_product_box_action %}
-                                        {% sw_include '@Storefront/storefront/component/product/card/action.html.twig' %}
+                                        {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/action.html.twig' %}
                                     {% endblock %}
                                 </div>
                             {% endblock %}

@@ -1,0 +1,28 @@
+{#
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/price-unit.html.twig
+#}
+{% block component_product_box_price_info %}
+    {% set isGrouped = product.get("variant_count")[0] > 1 and product.get("configurator_group_config")|length < 1 %}
+    {% set hasListingDiscount = product.get("standardPrice") > product.get("discountedPrice") %}
+    {% set hasGroupConfigurator = product.get("configurator_group_config")|length > 0 %}
+    {% set isIndividualDisplay = product.get("id")==product.get("products_group_id")[0] or product.get("main_variant_id")[0] is not null %}
+
+    <div class="product-price-info">
+        {% block component_product_box_price_unit %}
+        {% endblock %}
+
+        {% block component_product_box_price %}
+            <p class="product-price{% if hasListingDiscount %} with-list-price{% endif %}">
+                {% if (isGrouped or hasGroupConfigurator) and not isIndividualDisplay %}
+                    {{ "listing.listingTextFrom"|trans|sw_sanitize }}
+                {% endif %}
+                {{ currencySymbol }} {{ product.get("discountedPrice") }}{{ "general.star"|trans|sw_sanitize }}
+                {% if hasListingDiscount %}
+                    <span class="list-price">
+                         {{ currencySymbol }} {{ product.get("standardPrice") }}{{ "general.star"|trans|sw_sanitize }} {{"listing.afterListPrice"|trans|trim}}
+                    </span>
+                {% endif %}
+            </p>
+        {% endblock %}
+    </div>
+{% endblock %}

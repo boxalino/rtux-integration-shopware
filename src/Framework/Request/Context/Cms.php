@@ -28,11 +28,16 @@ class Cms extends CmsContextAbstract
     /**
      * Set the return fields desired for navigation
      *
+     * NOTICE: IN ORDER TO USE THE API RESPONSE FIELDS AS DATA SOURCE - ALL REQUIRED FIELDS MUST BE INCLUDED
      * @return array
      */
     public function getReturnFields() : array
     {
-        return ["id", "products_group_id","discountedPrice", "link", "title", "image"];
+        return [
+            "id", "products_group_id", "discountedPrice", "link", "title", "image", "brand",
+            "standardPrice", "main_variant_id", "is_closeout", "sku", "ean", "mark_as_topseller",
+            "is_new", "rating_average", "body", "variant_count", "configurator_group_config"
+        ];
     }
 
 }

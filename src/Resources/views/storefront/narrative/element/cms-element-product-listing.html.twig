@@ -47,6 +47,10 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
         {% set params = {slots: element.id} %}
     {% endif %}
 
+    {% if currencySymbol is not defined %}
+        {% set currencySymbol = page.header.activeCurrency.translated.shortName %}
+    {% endif %}
+
     {% block element_product_listing_wrapper %}
         <div class="cms-element-product-listing-wrapper"
              data-listing-pagination="true"
@@ -56,6 +60,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
                  "params": {{ params|json_encode }},
                  "dataUrl": "{{ dataUrl }}",
                  "filterUrl": "{{ filterUrl }}",
+                 "currency": "{{ currencySymbol }}",
                  "snippets": {
                     "resetAllButtonText": "{{ 'listing.filterPanelResetAll'|trans|sw_sanitize }}"
                  }
@@ -64,7 +69,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
             {% block element_product_listing_wrapper_content %}
                 <div class="cms-element-product-listing">
                     {% for bxblock in block.blocks %}
-                        {% set narrativeContent = {'block' : bxblock, 'sidebar': sidebar, 'listingColumns': listingColumns } %}
+                        {% set narrativeContent = {'block' : bxblock, 'sidebar': sidebar, 'listingColumns': listingColumns, 'currencySymbol': currencySymbol } %}
                         {% sw_include bxblock.template with narrativeContent %}
                     {% endfor %}
                 </div>

@@ -30,18 +30,12 @@ optional: use the JSON SCHEMA of the product layout block to set other params (l
                     product
                     listingColumns
                 #}
-                {% if bxblock.product.id %}
-                    {% set narrativeContent = {
-                        'block' : bxblock,
-                        'product':bxblock.product,
-                        'listingColumns' : listingColumns
-                    } %}
-                    {% sw_include bxblock.template with narrativeContent %}
-                {% else %}
-                    {# in case the content in the listing is not only product but some other type (custom) #}
-                    {% set narrativeContent = {'block' : bxblock } %}
-                    {% sw_include bxblock.template with narrativeContent %}
-                {% endif %}
+                {% set narrativeContent = {
+                    'block' : bxblock,
+                    'product':bxblock.product,
+                    'listingColumns' : listingColumns
+                } %}
+                {% sw_include bxblock.template with narrativeContent %}
             {% endfor %}
         {% endblock %}
     </div>

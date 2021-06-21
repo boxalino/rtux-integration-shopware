@@ -1,0 +1,24 @@
+{#
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/meta.html.twig
+#}
+{% block component_product_box_rich_snippets_inner %}
+    {# the manufacturer is the BRAND property #}
+    {% block component_product_box_rich_snippets_brand %}
+        <meta itemprop="brand"
+              content="{{ product.get("brand")[0] }}"/>
+    {% endblock %}
+
+    {% block component_product_box_rich_snippets_gtin13 %}
+        {% set ean = product.get("ean")[0] %}
+        {% if ean %}
+            <meta itemprop="gtin13"
+                  content="{{ product.get("ean")[0] }}"/>
+        {% endif %}
+    {% endblock %}
+
+    {# the productNumber is the SKU property #}
+    {% block component_product_box_rich_snippets_mpn %}
+        <meta itemprop="mpn"
+              content="{{ product.get("sku")[0] }}"/>
+    {% endblock %}
+{% endblock %}

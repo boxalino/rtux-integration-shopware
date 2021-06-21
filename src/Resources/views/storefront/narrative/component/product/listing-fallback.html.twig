@@ -1,5 +1,5 @@
 {#
-@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/listing.html.twig
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/listing-fallback.html.twig
 
 the product-listing-row segment of the original Shopware6 theme file
 (@Storefront/storefront/component/product/listing.html.twig)
@@ -30,19 +30,26 @@ optional: use the JSON SCHEMA of the product layout block to set other params (l
             product
             listingColumns
             #}
-            {% if bxblock.product.id %}
-                {% set narrativeContent = {
-                    'block' : bxblock,
-                    'layout': bxblock.layout[0],
-                    'displayMode': bxblock.displayMode[0],
-                    'product':block.model.getItem(bxblock.product.products_group_id[0]),
-                    'listingColumns' : listingColumns
-                } %}
+            {% set narrativeContent ={
+                'block' : bxblock,
+                'layout': bxblock.layout[0],
+                'displayMode': bxblock.displayMode[0],
+                'listingColumns' : listingColumns
+            } %}
+            {% set productByGroupId = block.model.getItem(bxblock.product.products_group_id[0]) %}
+            {% if product %}
+                {% set narrativeContent = narrativeContent|merge({ 'product': productByGroupId }) %}
                 {% sw_include bxblock.template with narrativeContent %}
             {% else %}
-                {# in case the content in the listing is not only product but some other type (custom) #}
-                {% set narrativeContent = {'block' : bxblock } %}
-                {% sw_include bxblock.template with narrativeContent %}
+                {% set productById = block.model.getItemById(bxblock.product.id) %}
+                {% if productById %}
+                    {% set narrativeContent = narrativeContent|merge({ 'product': productById }) %}
+                    {% sw_include bxblock.template with narrativeContent %}
+                {% else %}
+                    {# in case the content in the listing is not only product but some other type (custom) #}
+                    {% set narrativeContent = {'block' : bxblock } %}
+                    {% sw_include bxblock.template with narrativeContent %}
+                {% endif %}
             {% endif %}
         {% endfor %}
     {% endblock %}
