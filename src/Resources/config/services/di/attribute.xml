@@ -36,7 +36,7 @@
                 <argument>creation,release_date,last_update</argument>
             </call>
             <call method="addOrderBy">
-                <argument>last_update,release_date</argument>
+                <argument>last_update,release_date,creation</argument>
             </call>
             <call method="addHierarchical">
                 <argument>categories</argument>

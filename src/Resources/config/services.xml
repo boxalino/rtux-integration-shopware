@@ -78,6 +78,13 @@
                         <argument key="api-field">title</argument>
                         <argument key="reverse">true</argument>
                     </argument>
+                    <argument type="collection" key="new">
+                        <argument key="field">created_at</argument> <!-- the Shopware6 field -->
+                        <argument key="direction">desc</argument>
+                        <argument key="label">New</argument>
+                        <argument key="api-field">creation</argument> <!-- the Boxalino field -->
+                        <argument key="reverse">true</argument> <!-- true for DESC, false for ASC -->
+                    </argument>
                 </argument>
             </call>
         </service>
