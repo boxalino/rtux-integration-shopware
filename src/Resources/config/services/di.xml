@@ -7,7 +7,8 @@
         <import resource="di/language.xml"/>
         <import resource="di/attribute.xml"/>
         <import resource="di/attribute_value.xml"/>
-        <import resource="di/product.xml"/>
+<!--        <import resource="di/product.xml"/>-->
+        <import resource="di/product-with-other-attribute-handler.xml"/>
         <import resource="di/order.xml"/>
         <import resource="di/user.xml"/>
 
