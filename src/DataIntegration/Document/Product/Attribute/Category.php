@@ -78,8 +78,8 @@ class Category extends ModeIntegrator
     protected function _getQueryFields() : array
     {
         return [
-            "LOWER(HEX(id)) AS {$this->getDiIdField()}",
-            'REPLACE(REPLACE(REPLACE(category_tree, "[",""), "]",""), "\"","") AS ' . DocSchemaInterface::FIELD_INTERNAL_ID
+            "LOWER(HEX(product.id)) AS {$this->getDiIdField()}",
+            'REPLACE(REPLACE(REPLACE(product.category_tree, "[",""), "]",""), "\"","") AS ' . DocSchemaInterface::FIELD_INTERNAL_ID
         ];
     }
 
