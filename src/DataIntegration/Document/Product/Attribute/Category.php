@@ -66,6 +66,7 @@ class Category extends ModeIntegrator
     public function _getQuery(?string $propertyName = null) : QueryBuilder
     {
         return $this->_getProductQuery($this->_getQueryFields())
+            ->andWhere("product.id IS NOT NULL")
             ->setParameter('channelId', Uuid::fromHexToBytes($this->getSystemConfiguration()->getSalesChannelId()), ParameterType::BINARY)
             ->setParameter('live', Uuid::fromHexToBytes(Defaults::LIVE_VERSION), ParameterType::BINARY)
             ->setParameter('channelRootCategoryId', $this->getSystemConfiguration()->getNavigationCategoryId(), ParameterType::STRING);
@@ -77,7 +78,7 @@ class Category extends ModeIntegrator
     protected function _getQueryFields() : array
     {
         return [
-            "LOWER(HEX(product_id)) AS {$this->getDiIdField()}",
+            "LOWER(HEX(id)) AS {$this->getDiIdField()}",
             'REPLACE(REPLACE(REPLACE(category_tree, "[",""), "]",""), "\"","") AS ' . DocSchemaInterface::FIELD_INTERNAL_ID
         ];
     }
