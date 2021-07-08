@@ -14,13 +14,13 @@
 
         <import resource="di/configuration.xml"/>
         <import resource="di/product-console.xml"/>
-        <import resource="di/product-subscriber.xml"/>
+<!--        <import resource="di/product-subscriber.xml"/>-->
         <import resource="di/product-instant.xml"/>
         <import resource="di/product-task.xml"/>
         <import resource="di/order-console.xml"/>
-        <import resource="di/order-subscriber.xml"/>
+<!--        <import resource="di/order-subscriber.xml"/>-->
         <import resource="di/user-console.xml"/>
-        <import resource="di/user-subscriber.xml"/>
+<!--        <import resource="di/user-subscriber.xml"/>-->
     </imports>
 
     <services>

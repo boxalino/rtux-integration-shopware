@@ -8,7 +8,7 @@
         <!-- 1. product SUBSCRIBER to set which products are updated -->
         <!-- as an integrator, it is your task to review the listener/subscriber fits your project processes & requirements -->
         <service id="Boxalino\DataIntegration\Subscriber\ProductIndexerEventSubscriber">
-            <argument type="service" id="boxalino_di_flagged_id.repository"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiFlaggedIdHandlerInterface"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
