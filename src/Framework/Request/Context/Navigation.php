@@ -2,21 +2,22 @@
 namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context;
 
 use Boxalino\RealTimeUserExperience\Framework\Request\ContextAbstract;
-use Boxalino\RealTimeUserExperience\Framework\Request\ListingContextAbstract;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Framework\Request\IntegrationContextTrait;
+use Psr\Log\LoggerInterface;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
-use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 /**
  * Navigation request
  *
- * A listing context can render a default Category/Search view layout:
+ * A listing context can render a default Category view layout:
  * facets, products, sorting, pagination and other narrative elements
+ *
+ * UPDATE: ADDS THE FILTERABLE PROPERTY GROUPS ON API REQUEST AS WELL
  *
  * @package Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context
  */
-class Navigation extends ListingContextAbstract
+class Navigation extends CmsContextAbstract
 {
     use IntegrationContextTrait;
 
@@ -50,7 +51,7 @@ class Navigation extends ListingContextAbstract
      */
     public function getReturnFields() : array
     {
-        return ["id", "products_group_id","discountedPrice", "link", "title", "image"];
+        return ["id", "products_group_id", "discountedPrice", "link", "title", "image"];
     }
 
 }

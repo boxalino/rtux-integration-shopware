@@ -146,7 +146,7 @@ export default class RtuxAutocompleteHelper {
         if(bxblock['accessor'] === 'accessor') {
             let suggestion = bxblock['bx-acQuery']['highlighted'];
             if(suggestion == null) {suggestion = bxblock['bx-acQuery']['suggestion'];}
-            html +='<li class="search-suggest-product js-result">';
+            html +='<li class="search-suggest-product js-result bx-narrative-item" data-bx-item-type="acTerm" data-bx-item-id="'+ bxblock['bx-acQuery']['suggestion'] +'">';
             html +=' <a href="'+ window.rtuxAutocomplete['suggestLink'] +
                 encodeURIComponent(bxblock['bx-acQuery']['suggestion']) + '"\n' +
                 '       title="' + bxblock['bx-acQuery']['suggestion'] + '"\n' +

@@ -70,7 +70,8 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
             'query':value,
             'filters': [
                 {"field": "visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
-                {"field": "status","values": [1],"negative": false}
+                {"field": "status","values": [1],"negative": false},
+                {"field": "category_id", "values" : [window.masterNavigationId], "negative": false}
             ]
         };
         return this.rtuxApiHelper.getApiRequestData(
