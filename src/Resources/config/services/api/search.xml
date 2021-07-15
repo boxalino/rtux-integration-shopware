@@ -17,6 +17,7 @@
             <!-- <call method="setHitCount"><argument>20</argument></call>-->
              <call method="setSubPhrasesCount"><argument>3</argument></call>
              <call method="setSubPhrasesProductsCount"><argument>6</argument></call>
+            <call method="addStoreFilterablePropertiesToApiRequest"><argument>true</argument></call>
         </service>
 
         <!-- Shopware6 content loader for search (used as a dependency in controller) -->
