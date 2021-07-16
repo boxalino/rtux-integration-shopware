@@ -56,6 +56,9 @@
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.product.visibility.grouping"/>
             </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.review"/>
+            </call>
             <!-- only add the media export (all product images) if it is a project requirement -->
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.product.media"/>

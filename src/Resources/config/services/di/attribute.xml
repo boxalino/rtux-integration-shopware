@@ -24,13 +24,13 @@
             </call>
 <!--            <call method="addMultivalue"></call>-->
             <call method="addFilterBy">
-                <argument>brand,tag,visibility,status,mark_as_topseller,shipping_free,tax_rate,delivery_time,restock_time,rating_average,category_id,rating_average</argument>
+                <argument>brand,tag,visibility,status,mark_as_topseller,shipping_free,tax_rate,delivery_time,restock_time,rating_average,category_id,rating_average,di_review_total</argument>
             </call>
             <call method="addSearchSuggestion">
                 <argument>brand</argument>
             </call>
             <call method="addNumeric">
-                <argument>rating_average,tax_rate</argument>
+                <argument>rating_average,tax_rate,di_review_total</argument>
             </call>
             <call method="addDatetime">
                 <argument>creation,release_date,last_update</argument>
