@@ -102,8 +102,14 @@ export default class RtuxAutocompleteHelper {
      * @returns {string}
      */
     getProductItemHtml(bxblock) {
+        var price = bxblock['bx-hit']['discountedPrice'].toLocaleString("de_CH", {
+            style: "currency",
+            currency: window.rtuxAutocomplete['currency'],
+            maximumFractionDigits: 2
+        });
+        
         var html = '<li class="search-suggest-product js-result bx-narrative-item" data-bx-item-id="' + bxblock['bx-hit']['id'] +'">';
-        html += '<a href="'+ window.location.origin  + bxblock['bx-hit']['link'][0] +'" title="' +
+        html += '<a href="'+ window.location.origin  + "/" + bxblock['bx-hit']['link'][0] +'" title="' +
             bxblock['bx-hit']['title'] + '" class="search-suggest-product-link">';
         html += '<div class="row align-items-center no-gutters">';
         html += '<div class="col-auto search-suggest-product-image-container">'+
@@ -112,8 +118,7 @@ export default class RtuxAutocompleteHelper {
             'alt="'+ bxblock['bx-hit']['title'] +'"/></div>';
         html += '<div class="col search-suggest-product-name">'+ bxblock['bx-hit']['title'] +'</div>';
         html += '<div class="col-auto search-suggest-product-price"><br><small class="search-suggest-product-reference-price">' +
-            bxblock['bx-hit']['discountedPrice'] + '&nbsp;' + window.rtuxAutocomplete['currency'] +
-            '</small></div></div></a></li>';
+            price + '</small></div></div></a></li>';
 
         return html;
     }

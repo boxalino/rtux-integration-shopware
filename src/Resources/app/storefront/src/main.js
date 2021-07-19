@@ -7,5 +7,5 @@ const PluginManager = window.PluginManager;
 
 PluginManager.register('RtuxListingFilterPlugin', RtuxListingFilterPlugin, '[data-rtux-listing-filter]');
 PluginManager.extend('SearchWidget', 'SearchWidget', RtuxAutocompletePlugin, '[data-search-form]');
-PluginManager.register('RtuxFilterRating', RtuxFilterRatingPlugin, '[data-rtux-filter-rating]')
-PluginManager.register('RtuxFilterMultiSelect', RtuxFilterMultiSelectPlugin, '[data-rtux-filter-multi-select]')
+PluginManager.register('RtuxFilterRating', RtuxFilterRatingPlugin, '[data-rtux-filter-rating]');
+PluginManager.register('RtuxFilterMultiSelect', RtuxFilterMultiSelectPlugin, '[data-rtux-filter-multi-select]');

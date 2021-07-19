@@ -48,7 +48,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
     {% endif %}
 
     {% if currencySymbol is not defined %}
-        {% set currencySymbol = page.header.activeCurrency.translated.shortName %}
+        {% set currencySymbol = page.getCurrency() is defined ? page.getCurrency() : page.header.activeCurrency.translated.shortName %}
     {% endif %}
 
     {% block element_product_listing_wrapper %}
@@ -56,7 +56,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
              data-listing-pagination="true"
              data-listing="true"
              data-listing-options='{
-                 "sidebar": "{{ sidebar|json_encode }}",
+                 "sidebar": "false",
                  "params": {{ params|json_encode }},
                  "dataUrl": "{{ dataUrl }}",
                  "filterUrl": "{{ filterUrl }}",
@@ -67,7 +67,7 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
              }'>
 
             {% block element_product_listing_wrapper_content %}
-                <div class="cms-element-product-listing">
+                <div class="cms-element-product-listing rtux-element-content-listing">
                     {% for bxblock in block.blocks %}
                         {% set narrativeContent = {'block' : bxblock, 'sidebar': sidebar, 'listingColumns': listingColumns, 'currencySymbol': currencySymbol } %}
                         {% sw_include bxblock.template with narrativeContent %}
