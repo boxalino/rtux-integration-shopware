@@ -59,6 +59,9 @@
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.product.review"/>
             </call>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.product.release_date"/>
+            </call>
             <!-- only add the media export (all product images) if it is a project requirement -->
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.product.media"/>

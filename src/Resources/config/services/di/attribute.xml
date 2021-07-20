@@ -17,7 +17,7 @@
                 <argument type="service" id="boxalino.di.attribute.entity"/>
             </call>
             <call method="addProperties">
-                <argument>brand,delivery_time,tag,image,link,description,meta_title,meta_description,keywords,visibility,status,visibility,stock</argument>
+                <argument>brand,delivery_time,tag,image,link,description,meta_title,meta_description,keywords,visibility,status,visibility,stock,di_group_release_date</argument>
             </call>
             <call method="addLocalized">
                 <argument>brand,image,link,title,description,keywords,meta_description,meta_title,delivery_time</argument>
@@ -33,10 +33,10 @@
                 <argument>rating_average,tax_rate,di_review_total</argument>
             </call>
             <call method="addDatetime">
-                <argument>creation,release_date,last_update</argument>
+                <argument>creation,release_date,last_update,di_group_release_date</argument>
             </call>
             <call method="addOrderBy">
-                <argument>last_update,release_date,creation</argument>
+                <argument>last_update,release_date,creation,di_group_release_date</argument>
             </call>
             <call method="addHierarchical">
                 <argument>categories</argument>
