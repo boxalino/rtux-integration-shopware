@@ -72,18 +72,6 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
      * @private
      */
     _getApiRequestData(value) {
-        var otherParameters = {
-            'acQueriesHitCount': 12,     // number of textual suggestions
-            'acHighlight': true,        // highlight matching sections
-            'acHighlightPre':"<em>",    //textual suggestion highlight start -- for matching section
-            'acHighlightPost':"</em>",  //textual suggestion highlight end -- for matching section
-            'query':value,
-            'filters': [
-                {"field": "visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
-                {"field": "status","values": [1],"negative": false},
-                {"field": "category_id", "values" : [window.masterNavigationId], "negative": false}
-            ]
-        };
         return this.rtuxApiHelper.getApiRequestData(
             window.rtuxAutocomplete['apiPreferentialAccount'],
             window.rtuxAutocomplete['apiPreferentialKey'],
@@ -94,8 +82,55 @@ export default class RtuxAutocompletePlugin extends SearchWidgetPlugin {
             window.rtuxAutocomplete['dev'],
             window.rtuxAutocomplete['test'],
             null,
-            otherParameters
+            this._getParametersForAcRequest(value)
         );
+    }
+
+    /**
+     * Configurable parameters for AC request :
+     * (int) acQueriesHitCount - number of textual suggestions
+     * (bool) acHighlight - highlight matching sections
+     * (string) acHighlightPre - textual suggestion highlight start -- for matching section
+     * (string) acHighlightPost - textual suggestion highlight end -- for matching section
+     * (string) query - the searched string
+     * (array) filters - default filters for the AC request
+     * 
+     * @param value
+     * @returns {{acHighlightPre: string, acHighlight: boolean, acHighlightPost: string, query, acQueriesHitCount: number, filters: *[]}}
+     * @private
+     */
+    _getParametersForAcRequest(value) {
+        return {
+            'acQueriesHitCount': 12,     
+            'acHighlight': true,        
+            'acHighlightPre':"<em>",    
+            'acHighlightPost':"</em>",
+            'query':value,
+            'filters': this._getFiltersForAcRequest()
+        };
+    }
+
+    /**
+     * Default filters for the AC request: status, visibility and store channel id category
+     * Can be configured in IA - search TPO/widget as defaults
+     * 
+     * @returns []
+     * @private
+     */
+    _getFiltersForAcRequest() {
+        if(window.masterNavigationId)
+        {
+            return [
+                {"field": "visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
+                {"field": "status","values": [1],"negative": false},
+                {"field": "category_id", "values" : [window.masterNavigationId], "negative": false}
+            ];
+        }
+
+        return [
+            {"field": "visibility","from": 20,"to": 1000,"fromInclusive": true, "toInclusive": true},
+            {"field": "status","values": [1],"negative": false}
+        ]
     }
 
     /** FOLLOWING CODE HAS BEEN DUPLICATED FROM @SwagEnterpriseSearch SespSearchWidgetPlugin **/
