@@ -4,7 +4,7 @@
 the product-listing-row segment of the original Shopware6 theme file
 (@Storefront/storefront/component/product/listing.html.twig)
 
-block.model.getItem(id) : uses the block model (ex: Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiEntityCollectionModel)
+block.getModel().getItem(id) : uses the block model (ex: Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiEntityCollectionModel)
 to set a product entity from the collection of products (as returned by the Boxalino response)
 the child block (of type product) is being rendered with minimum changes
 
@@ -36,12 +36,12 @@ optional: use the JSON SCHEMA of the product layout block to set other params (l
                 'displayMode': bxblock.displayMode[0],
                 'listingColumns' : listingColumns
             } %}
-            {% set productByGroupId = block.model.getItem(bxblock.product.products_group_id[0]) %}
+            {% set productByGroupId = block.getModel().getItem(bxblock.bxHit.products_group_id[0]) %}
             {% if product %}
                 {% set narrativeContent = narrativeContent|merge({ 'product': productByGroupId }) %}
                 {% sw_include bxblock.template with narrativeContent %}
             {% else %}
-                {% set productById = block.model.getItemById(bxblock.product.id) %}
+                {% set productById = block.getModel().getItemById(bxblock.bxHit.id) %}
                 {% if productById %}
                     {% set narrativeContent = narrativeContent|merge({ 'product': productById }) %}
                     {% sw_include bxblock.template with narrativeContent %}

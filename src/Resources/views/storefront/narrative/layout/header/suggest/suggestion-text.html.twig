@@ -1,11 +1,11 @@
-{% set suggestionText = block.suggestion.suggestion %}
-{% if block.suggestion.highlighted is not null and block.suggestion.highlighted is not empty %}
-    {% set suggestionText = block.suggestion.highlighted %}
+{% set suggestionText = block.bxAcQuery.suggestion %}
+{% if block.bxAcQuery.highlighted is not null and block.bxAcQuery.highlighted is not empty %}
+    {% set suggestionText = block.bxAcQuery.highlighted %}
 {% endif %}
 
 <li class="search-suggest-product js-result">
-    <a href="{{ seoUrl('frontend.search.page', {'search': block.suggestion.suggestion}) }}"
-       title="{{ block.suggestion.suggestion }}"
+    <a href="{{ seoUrl('frontend.search.page', {'search': block.bxAcQuery.suggestion}) }}"
+       title="{{ block.bxAcQuery.suggestion }}"
        class="search-suggestion-link">
         <p>{{ suggestionText|raw }}</p>
     </a>

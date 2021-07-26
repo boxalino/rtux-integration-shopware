@@ -1,28 +1,28 @@
 <li class="search-suggest-product js-result">
     {% block layout_search_suggest_result_link %}
-        <a href="/{{ block.product.link[0] }}"
-           title="{{ block.product.title }}"
+        <a href="/{{ block.bxHit.link[0] }}"
+           title="{{ block.bxHit.title }}"
            class="search-suggest-product-link">
-            <div class="row align-items-center no-gutters bx-narrative-item" data-bx-item-id="{{ block.product.id }}">
+            <div class="row align-items-center no-gutters bx-narrative-item" data-bx-item-id="{{ block.bxHit.id }}">
                 {% block layout_search_suggest_result_image %}
                     <div class="col-auto search-suggest-product-image-container">
-                        <img src="{{ block.product.image[0] }}"
-                             srcset="{{ block.product.image[0] }}"
+                        <img src="{{ block.bxHit.image[0] }}"
+                             srcset="{{ block.bxHit.image[0] }}"
                              class="search-suggest-product-image"
-                             alt="{{ block.product.title }}"
+                             alt="{{ block.bxHit.title }}"
                         />
                     </div>
                 {% endblock %}
 
                 {% block layout_search_suggest_result_name %}
                     <div class="col search-suggest-product-name">
-                        {{ block.product.title }}
+                        {{ block.bxHit.title }}
                     </div>
                 {% endblock %}
 
                 {% block layout_search_suggest_result_price %}
                     <div class="col-auto search-suggest-product-price">
-                        <br><small class="search-suggest-product-reference-price">{{ block.product.discountedPrice|currency }} {{ "general.star"|trans|sw_sanitize }}</small>
+                        <br><small class="search-suggest-product-reference-price">{{ block.bxHit.discountedPrice|currency }} {{ "general.star"|trans|sw_sanitize }}</small>
                     </div>
                 {% endblock %}
             </div>

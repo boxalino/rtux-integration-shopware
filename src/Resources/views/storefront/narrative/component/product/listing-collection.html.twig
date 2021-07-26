@@ -5,7 +5,7 @@ the product-listing-row segment of the original Shopware6 theme file
 (@Storefront/storefront/component/product/listing.html.twig)
 
 uses the block model (ex: Boxalino\RealTimeUserExperience\Framework\Content\Listing\ApiEntityCollectionModel)
-to access the collection of products (as returned by the Boxalino response) (block.model.collection)
+to access the collection of products (as returned by the Boxalino response) (block.getModel().collection)
 renders the product by ignoring other parameter data sent by Boxalino, close to original template
 #}
 {% block element_product_listing_row %}
@@ -15,7 +15,7 @@ renders the product by ignoring other parameter data sent by Boxalino, close to 
     {% endfor %}
     >
     {% block element_product_listing_col %}
-        {% for product in block.model.collection %}
+        {% for product in block.getModel().collection %}
             <div class="cms-listing-col {{ listingColumns }}">
                 {% block element_product_listing_box %}
                     {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/box.html.twig' with {

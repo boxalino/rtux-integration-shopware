@@ -6,12 +6,12 @@ similar to Shopware6 @Storefront/storefront/component/sorting.html.twig
 renders the sorting as available per accessor model
 (Boxalino/RealTimeUserExperience/Framework/Conent/Listing/ApiSortingModel)
 #}
-{% set current = block.model.getCurrent() %}
+{% set current = block.getModel().getCurrent() %}
 {% set config = { sorting: current } %}
 {% block element_product_listing_sorting %}
     <div class="sorting" data-listing-sorting="true" data-listing-sorting-options='{{ config|json_encode }}'>
         <select class="sorting custom-select" aria-label="{{ 'general.sortingLabel'|trans|striptags }}">
-            {% for key, sorting in block.model.getSortings() %}
+            {% for key, sorting in block.getModel().getSortings() %}
                 <option value="{{ key }}"{% if key == current %} selected{% endif %}>{{ sorting.label|sw_sanitize }}</option>
             {% endfor %}
         </select>

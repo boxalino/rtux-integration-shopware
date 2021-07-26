@@ -6,8 +6,8 @@ displays the pagination by using the bx-pagination accessor as configured in acc
 #}
 
 {% block component_pagination_nav %}
-    {% set currentPage = block.pagination.currentPage %}
-    {% set totalPages = block.pagination.LastPage %}
+    {% set currentPage = block.bxPagination.currentPage %}
+    {% set totalPages = block.bxPagination.lastPage %}
 
     <nav aria-label="pagination" class="pagination-nav">
         {% block component_pagination %}

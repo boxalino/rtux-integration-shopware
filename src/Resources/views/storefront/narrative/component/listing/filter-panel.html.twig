@@ -114,9 +114,9 @@ renders the facets as are set in the facet model
                                     #}
                                     {% block boxalino_filter_panel_container_active %}
                                         <div class="filter-panel-container-active" data-rtux-listing-filter="true">
-                                        {% if block.model.hasSelectedFacets() %}
+                                        {% if block.getModel().hasSelectedFacets() %}
                                             {# the button based on the template of listing.plugin..js::getLabelTemplate() #}
-                                            {% for selectedFacet in block.model.getSelectedFacets() %}
+                                            {% for selectedFacet in block.getModel().getSelectedFacets() %}
                                                 {% for selectedValue in selectedFacet.getSelectedValues() %}
                                                     {% if selectedFacet.visualisation is same as ('switch') %}
                                                         <span class="filter-active">

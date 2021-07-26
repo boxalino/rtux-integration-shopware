@@ -54,12 +54,12 @@ all JSON schema properties are returned in an array, so if a single value is exp
                                             'displayMode': block.displayMode[0],
                                             'listingColumns' : listingColumns
                                         } %}
-                                        {% set productByGroupId = block.model.getItem(bxblock.product.products_group_id[0]) %}
+                                        {% set productByGroupId = block.getModel().getItem(bxblock.bxHit.products_group_id[0]) %}
                                         {% if product %}
                                             {% set narrativeContent = narrativeContent|merge({ 'product': productByGroupId }) %}
                                             {% sw_include bxblock.template with narrativeContent %}
                                         {% else %}
-                                            {% set productById = block.model.getItemById(bxblock.product.id) %}
+                                            {% set productById = block.getModel().getItemById(bxblock.bxHit.id) %}
                                             {% if productById %}
                                                 {% set narrativeContent = narrativeContent|merge({ 'product': productById }) %}
                                                 {% sw_include bxblock.template with narrativeContent %}

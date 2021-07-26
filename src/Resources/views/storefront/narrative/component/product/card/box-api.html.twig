@@ -28,9 +28,9 @@ optional: use the loop through block.blocks to render other children elements se
             {% if product %}
                 {% set layout = block.layout[0] %}
                 {% set displayMode = block.displayMode[0] %}
-                {% set name = block.product.get("title") %}
-                {% set id = block.product.get("id") %}
-                {% set cover = block.product.get("image")[0] %}
+                {% set name = block.bxHit.get("title") %}
+                {% set id = block.bxHit.get("id") %}
+                {% set cover = block.bxHit.get("image")[0] %}
 
                 <div class="card product-box box-{{ layout }}">
                     {% block component_product_box_content %}
@@ -80,7 +80,7 @@ optional: use the loop through block.blocks to render other children elements se
                                     {% block component_product_box_rating %}
                                         {% if shopware.config.core.listing.showReview %}
                                             <div class="product-rating">
-                                                {% if block.product.get("rating_average")[0] %}
+                                                {% if block.bxHit.get("rating_average")[0] %}
                                                     {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
                                                         points: product.get("rating_average")[0],
                                                         style: 'text-primary'
