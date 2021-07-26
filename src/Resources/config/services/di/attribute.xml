@@ -45,7 +45,11 @@
                 <argument>main_variant_id,internal_id,sku</argument>
             </call>
             <call method="addSearchBy">
-                <argument>brand,description,keywords,tag</argument>
+                <argument>brand,description,keywords,tag,sku,ean</argument>
+            </call>
+            <!-- custom properties must be defined as indexed in order to be used as filter/sorters/etc -->
+            <call method="addIndexed">
+                <argument>di_group_release_date,di_review_total</argument>
             </call>
         </service>
 
