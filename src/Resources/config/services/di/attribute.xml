@@ -9,7 +9,7 @@
         <!-- standardPrice, discountedPrice, stockCounter, viewCounter, purchaseCounter, random_*, sortable_title -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface"
                  class="Boxalino\DataIntegration\Service\Document\Attribute\DocHandler">
-            <argument type="service" id="monolog.logger.boxalino-di"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Logger"/>
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.attribute.property"/>
             </call>

@@ -13,7 +13,7 @@
             <!-- service declared in autocomplete.xml -->
             <argument type="service" id="boxalino.integration.loader.autocomplete"/>
             <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
-            <argument type="service" id="monolog.logger.boxalino-integration"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

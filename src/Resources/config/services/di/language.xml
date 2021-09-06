@@ -8,7 +8,7 @@
         <!-- doc_languages generator : creates the doc_language and exports SalesChannel's languages -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocLanguagesHandlerInterface"
                  class="Boxalino\DataIntegration\Service\Document\Language\DocHandler">
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
             <!-- the doc_language is exported in INSTANT mode as well -->
             <call method="allowInstantMode">
                 <argument type="string">true</argument>

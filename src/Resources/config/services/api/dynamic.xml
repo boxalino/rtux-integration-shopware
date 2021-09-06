@@ -42,7 +42,7 @@
         <service id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\DynamicController" public="true">
             <argument type="service" id="boxalino.integration.loader.dynamic" />
             <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
-            <argument type="service" id="monolog.logger.boxalino-integration"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

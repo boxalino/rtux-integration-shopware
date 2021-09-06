@@ -8,7 +8,7 @@
         <!-- A.1: Full console command -->
         <service id="Boxalino\DataIntegration\Console\Order\FullDataIntegration">
             <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-order"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Order\Logger"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface"/>
             <tag name="console.command"/>
@@ -17,7 +17,7 @@
         <!-- A.2: Delta console command -->
         <service id="Boxalino\DataIntegration\Console\Order\DeltaDataIntegration">
             <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-order"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Order\Logger"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface"/>
             <tag name="console.command"/>

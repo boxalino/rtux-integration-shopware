@@ -11,7 +11,7 @@
 
         <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\DeltaDataIntegration">
             <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="scheduled_task.repository" />
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface"/>
@@ -26,7 +26,7 @@
 
         <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\FullDataIntegration">
             <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="scheduled_task.repository" />
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface"/>
@@ -41,7 +41,7 @@
 
         <service id="Boxalino\RealTimeUserExperienceIntegration\ScheduledTask\Product\InstantDataIntegration">
             <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="scheduled_task.repository" />
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>

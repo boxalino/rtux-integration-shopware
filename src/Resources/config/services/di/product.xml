@@ -10,7 +10,7 @@
         <!-- declared as a dependency for services B.1 B.2 B.3 from product.xml -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface"
                  class="Boxalino\DataIntegration\Service\Document\Product\DocHandler">
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.product.entity"/>
             </call>

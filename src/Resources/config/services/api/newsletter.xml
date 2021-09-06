@@ -8,7 +8,7 @@
         <service id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\NewsletterController" public="true">
             <argument type="service" id="sales_channel.product.repository"/>
             <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>
-            <argument type="service" id="monolog.logger.boxalino-integration"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

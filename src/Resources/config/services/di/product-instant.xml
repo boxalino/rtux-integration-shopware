@@ -7,7 +7,7 @@
         <!-- A.3: INSTANT console command -->
         <service id="Boxalino\DataIntegration\Console\Product\InstantDataIntegration">
             <argument>%kernel.environment%</argument>
-            <argument type="service" id="monolog.logger.boxalino-di-product"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
             <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
             <tag name="console.command"/>

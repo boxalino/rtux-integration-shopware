@@ -8,7 +8,7 @@
         <!-- for custom properties/content values export - simply add new handlers or replace the ones available -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface"
                  class="Boxalino\DataIntegration\Service\Document\Attribute\Value\DocHandler">
-            <argument type="service" id="monolog.logger.boxalino-di"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Logger"/>
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.values.category"/>
             </call>

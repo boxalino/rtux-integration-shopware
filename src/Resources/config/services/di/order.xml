@@ -8,7 +8,7 @@
         <!-- the service ID has been defined as a dependency for the order.xml B.1 & B.2 services -->
         <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface"
                  class="Boxalino\DataIntegration\Service\Document\Order\DocHandler">
-            <argument type="service" id="monolog.logger.boxalino-di-order"/>
+            <argument type="service" id="Boxalino\DataIntegration\Service\Order\Logger"/>
             <call method="addPropertyHandler">
                 <argument type="service" id="boxalino.di.order.entity"/>
             </call>

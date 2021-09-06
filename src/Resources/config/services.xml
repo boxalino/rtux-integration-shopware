@@ -89,6 +89,12 @@
             </call>
         </service>
 
+        <!-- Logger defined per Shopware6 pattern - clears out dynamically -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">boxalino-integration</argument>
+        </service>
+
     </services>
 
 </container>
