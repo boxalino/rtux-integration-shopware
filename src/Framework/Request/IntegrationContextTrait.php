@@ -35,9 +35,10 @@ trait IntegrationContextTrait
     /**
      * @return string
      */
-    public function getFilterPrefix() : string
+    public function getFacetPrefix() : string
     {
         return AccessorFacetModelInterface::BOXALINO_STORE_FACET_PREFIX;
     }
+
 
 }
