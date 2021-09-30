@@ -26,7 +26,7 @@
         "php": "^7.2",
         "boxalino/rtux-shopware": "~3.3.0",
         "boxalino/rtux-api-php": "~3.3.1",
-        "boxalino/data-integration-shopware6": "~3.2.3"
+        "boxalino/data-integration-shopware6": "~3.3.0"
     },
     "autoload": {
         "psr-4": {
