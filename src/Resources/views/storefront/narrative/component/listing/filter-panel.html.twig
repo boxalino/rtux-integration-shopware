@@ -44,8 +44,8 @@ renders the facets as are set in the facet model
                                             {% if facet.values.count > 0 %}
                                                 {% block component_filter_panel_item_properties %}
                                                     {#
-                                                        the visualisation property is defined in Boxalino Intelligence Admin, Facet menu; it is individually set per facet
-                                                        as a designer, you can append here as many types of visualisation and provide templating
+                                                    the visualisation property is defined in Boxalino Intelligence Admin, Facet menu; it is individually set per facet
+                                                    as a designer, you can append here as many types of visualisation and provide templating
                                                     #}
                                                     {% if facet.visualisation == 'range' %}
                                                         {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-range.html.twig' with {
@@ -56,11 +56,12 @@ renders the facets as are set in the facet model
                                                         } %}
                                                     {% endif %}
 
-                                                    {% if facet.visualisation == 'stars' %}
-                                                        {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-stars.html.twig' with {
+                                                    {% if facet.visualisation == 'stars' and facet.values[0].maxValue > 0 %}
+                                                        {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-rating-select.html.twig' with {
                                                             facet: facet,
                                                             sidebar: sidebar,
                                                             name: facet.getRequestField(),
+                                                            pluginSelector: 'rtux-filter-rating-select',
                                                             displayName: facet.label
                                                         } %}
                                                     {% endif %}
@@ -101,58 +102,58 @@ renders the facets as are set in the facet model
 
                                 {% block component_filter_panel_active_container %}
                                     {#
-                                        this is the default Shopware6 active filters containter;
-                                        the div class structure is required for the default Shopware6 JS listing.plugin.js
-                                        it is being hidden for consistency purposes, it is always empty
+                                    this is the default Shopware6 active filters containter;
+                                    the div class structure is required for the default Shopware6 JS listing.plugin.js
+                                    it is being hidden for consistency purposes, it is always empty
                                     #}
                                     <div class="filter-panel-active-container" style="display: none">
                                         {% block component_filter_panel_active_container_inner %}{% endblock %}
                                     </div>
                                     {#
-                                        render the selected facets on every facet update; this allows for the facets to be updated on every load
-                                        "data-rtux-listing-filter" has to match the selector for the custom JS
+                                    render the selected facets on every facet update; this allows for the facets to be updated on every load
+                                    "data-rtux-listing-filter" has to match the selector for the custom JS
                                     #}
                                     {% block boxalino_filter_panel_container_active %}
                                         <div class="filter-panel-container-active" data-rtux-listing-filter="true">
-                                        {% if block.getModel().hasSelectedFacets() %}
-                                            {# the button based on the template of listing.plugin..js::getLabelTemplate() #}
-                                            {% for selectedFacet in block.getModel().getSelectedFacets() %}
-                                                {% for selectedValue in selectedFacet.getSelectedValues() %}
-                                                    {% if selectedFacet.visualisation is same as ('switch') %}
-                                                        <span class="filter-active">
+                                            {% if block.getModel().hasSelectedFacets() %}
+                                                {# the button based on the template of listing.plugin..js::getLabelTemplate() #}
+                                                {% for selectedFacet in block.getModel().getSelectedFacets() %}
+                                                    {% for selectedValue in selectedFacet.getSelectedValues() %}
+                                                        {% if selectedFacet.visualisation is same as ('switch') %}
+                                                            <span class="filter-active">
                                                             {{ selectedFacet.label }}
                                                             <button class="filter-active-remove" data-id="{{ selectedFacet.field }}">&times;</button>
                                                         </span>
-                                                    {% elseif selectedFacet.visualisation is same as ('stars') %}
-                                                        <span class="filter-active">
-                                                            {{ selectedFacet.label }} {{ 'listing.filterRatingActiveLabelStart'|trans|lower|sw_sanitize }} {{ selectedValue.minSelectedValue }}
+                                                        {% elseif selectedFacet.visualisation is same as ('stars') %}
+                                                            <span class="filter-active">
+                                                            {{ 'listing.filterRatingActiveLabelStart'|trans|sw_sanitize }} {{ selectedValue.minSelectedValue }} {{  'listing.filterRatingActiveLabelEnd'|trans|sw_sanitize }}
                                                             <button class="filter-active-remove" data-id="{{ selectedFacet.field }}">&times;</button>
                                                         </span>
-                                                    {% elseif selectedFacet.visualisation is same as ('range') %}
-                                                        {% if (selectedValue.minSelectedValue is not null) and (selectedValue.minSelectedValue != "0") %}
-                                                            <span class="filter-active">
+                                                        {% elseif selectedFacet.visualisation is same as ('range') %}
+                                                            {% if (selectedValue.minSelectedValue is not null) and (selectedValue.minSelectedValue != "0") %}
+                                                                <span class="filter-active">
                                                                 {{ 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize }} {{ (0.0 + selectedValue.minSelectedValue)|currency }}
                                                                 <button class="filter-active-remove" data-id="{{ selectedFacet.rangeFromField }}">&times;</button>
                                                             </span>
-                                                        {% endif %}
-                                                        {% if selectedValue.maxSelectedValue is not null %}
-                                                            <span class="filter-active">
+                                                            {% endif %}
+                                                            {% if selectedValue.maxSelectedValue is not null %}
+                                                                <span class="filter-active">
                                                                 {{ 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize }} {{ (0.0 + selectedValue.maxSelectedValue)|currency }}
                                                                 <button class="filter-active-remove" data-id="{{ selectedFacet.rangeToField }}">&times;</button>
                                                             </span>
-                                                        {% endif %}
-                                                    {% else %}
-                                                        <span class="filter-active">
+                                                            {% endif %}
+                                                        {% else %}
+                                                            <span class="filter-active">
                                                             {{ selectedValue.value }}
                                                             <button class="filter-active-remove" data-id="{{ selectedValue.value }}">&times;</button>
                                                         </span>
-                                                    {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 {% endfor %}
-                                            {% endfor %}
-                                            {# the button based on the template of listing.plugin.js::getResetAllButtonTemplate() #}
-                                            <button class="filter-reset-all btn btn-sm btn-outline-danger">{{ 'listing.filterPanelResetAll'|trans|sw_sanitize }}</button>
-                                        {% endif %}
-                                    </div>
+                                                {# the button based on the template of listing.plugin.js::getResetAllButtonTemplate() #}
+                                                <button class="filter-reset-all btn btn-sm btn-outline-danger">{{ 'listing.filterPanelResetAll'|trans|sw_sanitize }}</button>
+                                            {% endif %}
+                                        </div>
                                     {% endblock %}
                                 {% endblock %}
                             </div>

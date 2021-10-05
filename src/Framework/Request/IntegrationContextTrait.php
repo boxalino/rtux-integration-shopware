@@ -19,7 +19,7 @@ trait IntegrationContextTrait
     public function getRangeProperties() : array
     {
         return [
-            "rating_average" => ['from' => 'rating_average', 'to' => "0"],
+            "rating_average" => ['from' => 'products_rating_average', 'to' => "0"],
             "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
         ];
     }

@@ -1,14 +1,9 @@
 {% set maxPoints = facet.values[0].maxValue %}
-
 {% if maxPoints > 0 %}
     {% set filterItemId = 'filter-' ~ name ~ '-' ~ random() %}
     {% set type='blank' %}
     {% if facet.isSelected() %}
         {% set selectedPoints = facet.getSelectedValues[0].minSelectedValue %}
-    {% endif %}
-
-    {% if maxPoints is not defined %}
-        {% set maxPoints = 5 %}
     {% endif %}
 
     {% if filterRatingActiveLabelStart is not defined %}
@@ -24,15 +19,16 @@
     {% endif %}
 
     {% block component_filter_rating %}
-        <div class="filter-rating filter-panel-item{% if not sidebar %} dropdown{% endif %}"
+        <div class="filter-rating filter-rating-select filter-panel-item{% if not sidebar %} dropdown{% endif %}"
              data-rtux-filter-rating="true"
              data-rtux-filter-rating-options='{
             "name": "{{ name }}",
             "maxPoints": "{{ maxPoints }}",
             "snippets": {
                 "filterRatingActiveLabelStart": "{{ filterRatingActiveLabelStart }}",
-                "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEndSingular }}",
-                "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEnd }}"
+                "filterRatingActiveLabelEndSingular": "{{ filterRatingActiveLabelEndSingular }}",
+                "filterRatingActiveLabelEnd": "{{ filterRatingActiveLabelEnd }}",
+                "disabledFilterText": "{{ 'listing.disabledFilterTooltip'|trans|sw_sanitize}}"
             }
          }'>
 
