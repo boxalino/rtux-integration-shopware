@@ -22,7 +22,7 @@ export default class RtuxListingFilterPlugin extends Plugin
         activeFilterLabelRemoveClass: 'filter-active-remove',
         activeFilterContainerSelector: '.filter-panel-container-active',
         resetAllFilterButtonSelector: '.filter-reset-all',
-        filterPlugins: ['RtuxFilterRating', 'FilterRange', 'RtuxFilterMultiSelect', 'FilterBoolean'],
+        filterPlugins: ['FilterRange', 'RtuxFilterRatingSelect', 'RtuxFilterMultiSelect', 'FilterBoolean'],
         pluginSelectorPrefix: 'rtux'
     };
 
