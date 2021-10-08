@@ -28,7 +28,20 @@
         <service id="Boxalino\RealTimeUserExperience\Framework\Content\Subscriber\ApiCmsLoaderSubscriber">
             <argument type="service" id="boxalino.integration.loader.cms"/>
             <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
+            <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- CacheStateSubscriber to avoid caching CMS pages loaded for narratives -->
+        <service id="Boxalino\RealTimeUserExperience\Core\Framework\Adapter\Cache\NavigationCacheStateSubscriber">
+            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Util\ConfigurationInterface"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- CacheInvalidator to invalidate caching CMS pages loaded for narratives -->
+        <service id="Boxalino\RealTimeUserExperience\Core\Framework\Adapter\Cache\CmsCacheInvalidationSubscriber">
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator"/>
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>
