@@ -33,16 +33,17 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <!-- CacheStateSubscriber to avoid caching CMS pages loaded for narratives -->
-        <service id="Boxalino\RealTimeUserExperience\Core\Framework\Adapter\Cache\NavigationCacheStateSubscriber">
+        <!-- CacheStateSubscriber to avoid caching CMS pages loaded for ALL NAVIGATION PAGES -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\Core\Framework\Adapter\Cache\ApiNavigationCacheStateSubscriber">
             <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Util\ConfigurationInterface"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <!-- CacheInvalidator to invalidate caching CMS pages loaded for narratives -->
+        <!-- CacheInvalidator to invalidate caching CMS pages loaded with narratives -->
         <service id="Boxalino\RealTimeUserExperience\Core\Framework\Adapter\Cache\CmsCacheInvalidationSubscriber">
             <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
     </services>
 </container>
