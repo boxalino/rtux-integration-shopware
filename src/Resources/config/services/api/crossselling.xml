@@ -15,6 +15,7 @@
             <call method="setHitCount"><argument>7</argument></call>
             <call method="setGroupBy"><argument>products_group_id</argument></call>
             <call method="setConfiguredProductsAsContextParameters"><argument>true</argument></call>
+            <call method="setIsAjax"><argument>true</argument></call>
         </service>
 
         <!-- Shopware6 content loader for cross-selling with the crosselling context set -->
@@ -26,11 +27,30 @@
             </call>
         </service>
 
-        <!-- Crosselling Loader event subscriber to be added when wanting to use it -->
+        <!-- Crosselling Loader event subscriber -->
         <service id="Boxalino\RealTimeUserExperience\Framework\Content\Subscriber\ApiCrossSellingLoaderSubscriber">
             <argument type="service" id="boxalino.integration.loader.crossselling"/>
             <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
             <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Shopware6 content loader for cross-selling with the crosselling context set -->
+        <service id="boxalino.integration.loader.crossselling.ajax"
+                 class="Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoaderAjax"
+                 parent="boxalino.shopware.content.page.crossselling.ajax">
+            <call method="setApiContext">
+                <argument type="service" id="boxalino.integration.context.crossselling"/>
+            </call>
+        </service>
+
+        <!-- CROSSELLING CONTROLLER boxalino-api.pdp.crosselling  -->
+        <service id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\PdpController" public="true">
+            <argument type="service" id="boxalino.integration.loader.crossselling.ajax" />
+            <argument type="service" id="Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface"/>
+            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
 
     </services>
