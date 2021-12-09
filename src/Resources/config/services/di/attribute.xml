@@ -17,7 +17,7 @@
                 <argument type="service" id="boxalino.di.attribute.entity"/>
             </call>
             <call method="addProperties">
-                <argument>brand,delivery_time,tag,image,link,description,meta_title,meta_description,keywords,visibility,status,visibility,stock,di_group_release_date</argument>
+                <argument>brand,delivery_time,tag,image,link,description,meta_title,meta_description,keywords,visibility,status,visibility,stock,di_group_release_date,purchase_price_net,purchase_price_gross,main_category</argument>
             </call>
             <call method="addLocalized">
                 <argument>brand,image,link,title,description,keywords,meta_description,meta_title,delivery_time</argument>
@@ -30,7 +30,7 @@
                 <argument>brand</argument>
             </call>
             <call method="addNumeric">
-                <argument>rating_average,tax_rate,di_review_total</argument>
+                <argument>rating_average,tax_rate,di_review_total,purchase_price_net,purchase_price_gross</argument>
             </call>
             <call method="addDatetime">
                 <argument>creation,release_date,last_update,di_group_release_date</argument>
@@ -39,7 +39,7 @@
                 <argument>last_update,release_date,creation,di_group_release_date</argument>
             </call>
             <call method="addHierarchical">
-                <argument>categories</argument>
+                <argument>categories,main_category</argument>
             </call>
             <call method="addGroupBy">
                 <argument>main_variant_id,internal_id,sku</argument>
@@ -49,7 +49,7 @@
             </call>
             <!-- custom properties must be defined as indexed in order to be used as filter/sorters/etc -->
             <call method="addIndexed">
-                <argument>di_group_release_date,di_review_total</argument>
+                <argument>di_group_release_date,di_review_total,purchase_price_net,purchase_price_gross</argument>
             </call>
         </service>
 
