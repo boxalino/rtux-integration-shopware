@@ -37,7 +37,7 @@ optional: use the JSON SCHEMA of the product layout block to set other params (l
                 'listingColumns' : listingColumns
             } %}
             {% set productByGroupId = block.getModel().getItem(bxblock.bxHit.products_group_id[0]) %}
-            {% if product %}
+            {% if productByGroupId %}
                 {% set narrativeContent = narrativeContent|merge({ 'product': productByGroupId }) %}
                 {% sw_include bxblock.template with narrativeContent %}
             {% else %}
