@@ -86,7 +86,10 @@ class SearchController extends ShopwareSearchController
              * search-1 column layout template: @BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index.html.twig
              * search-sidebar layout template: @BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index-with-sidebar.html.twig
              */
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index-with-sidebar.html.twig', ['page' => $page]);
+            $response = $this->renderStorefront('@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/search/index-with-sidebar.html.twig', ['page' => $page]);
+            $response->headers->set('x-robots-tag', 'noindex');
+
+            return $response;
         } catch (\Throwable $exception) {
             /**
              * Fallback
@@ -112,7 +115,10 @@ class SearchController extends ShopwareSearchController
             /**
              * the render template is a narrative element
              */
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content.html.twig', ['page' => $page]);
+            $response = $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content.html.twig', ['page' => $page]);
+            $response->headers->set('x-robots-tag', 'noindex');
+
+            return $response;
         } catch (\Throwable $exception)
         {
             /**
@@ -150,7 +156,10 @@ class SearchController extends ShopwareSearchController
              * 1column layout: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content.html.twig
              * sidebar layout: @BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content-sidebar.html.twig
              */
-            return $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content-sidebar.html.twig', ['page' => $page]);
+            $response = $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content-sidebar.html.twig', ['page' => $page]);
+            $response->headers->set('x-robots-tag', 'noindex');
+
+            return $response;
         } catch (\Throwable $exception)
         {
             /**
