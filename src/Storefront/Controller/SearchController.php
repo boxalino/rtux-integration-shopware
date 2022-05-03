@@ -60,7 +60,6 @@ class SearchController extends ShopwareSearchController
     }
 
     /**
-     * @HttpCache()
      * @Route("/search", name="frontend.search.page", methods={"GET"})
      */
     public function search(SalesChannelContext $context, Request $request): Response
@@ -101,7 +100,6 @@ class SearchController extends ShopwareSearchController
     }
 
     /**
-     * @HttpCache()
      * @Route("/suggest", name="frontend.search.suggest", methods={"GET"}, defaults={"XmlHttpRequest"=true})
      */
     public function suggest(SalesChannelContext $context, Request $request): Response
@@ -130,7 +128,6 @@ class SearchController extends ShopwareSearchController
     }
 
     /**
-     * @HttpCache()
      * @RouteScope(scopes={"storefront"})
      * @Route("/widgets/search", name="widgets.search.pagelet.v2", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
      *

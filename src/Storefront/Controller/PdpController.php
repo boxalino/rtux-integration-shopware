@@ -46,7 +46,6 @@ class PdpController extends StorefrontController
     }
 
     /**
-     * @HttpCache()
      * @RouteScope(scopes={"storefront"})
      * @Route("/boxalino-api/pdp/crosssell", name="frontend.boxalino-api.crosssell", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
      */
