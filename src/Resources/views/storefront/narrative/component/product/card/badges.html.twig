@@ -4,9 +4,9 @@
 {% block component_product_badges %}
     <div class="product-badges">
         {% block component_product_badges_discount %}
-            {% set listPrice = product.get("standardPrice") > product.get("discountedPrice") %}
+            {% set onDiscount = product.get("selected_list_price")[0] > product.get("selected_sales_price")[0] %}
 
-            {% if listPrice %}
+            {% if onDiscount %}
                 <div class="badge badge-danger badge-discount">
                     <span>&#37;</span>
                 </div>

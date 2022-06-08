@@ -3,7 +3,7 @@
 #}
 {% block component_product_box_price_info %}
     {% set isGrouped = product.get("variant_count")[0] > 1 and product.get("configurator_group_config")|length < 1 %}
-    {% set hasListingDiscount = product.get("standardPrice") > product.get("discountedPrice") %}
+    {% set hasListingDiscount = product.get("selected_list_price")[0] > product.get("selected_sales_price")[0] %}
     {% set hasGroupConfigurator = product.get("configurator_group_config")|length > 0 %}
     {% set isIndividualDisplay = product.get("id")==product.get("products_group_id")[0] or product.get("main_variant_id")[0] is not null %}
 
@@ -16,10 +16,10 @@
                 {% if (isGrouped or hasGroupConfigurator) and not isIndividualDisplay %}
                     {{ "listing.listingTextFrom"|trans|sw_sanitize }}
                 {% endif %}
-                {{ currencySymbol }} {{ product.get("discountedPrice") }}{{ "general.star"|trans|sw_sanitize }}
+                {{ currencySymbol }} {{ product.get("selected_sales_price")[0] }}{{ "general.star"|trans|sw_sanitize }}
                 {% if hasListingDiscount %}
                     <span class="list-price">
-                         {{ currencySymbol }} {{ product.get("standardPrice") }}{{ "general.star"|trans|sw_sanitize }} {{"listing.afterListPrice"|trans|trim}}
+                         {{ currencySymbol }} {{ product.get("selected_list_price")[0] }}{{ "general.star"|trans|sw_sanitize }} {{"listing.afterListPrice"|trans|trim}}
                     </span>
                 {% endif %}
             </p>

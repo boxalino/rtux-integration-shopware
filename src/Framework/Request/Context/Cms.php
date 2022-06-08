@@ -36,7 +36,8 @@ class Cms extends CmsContextAbstract
         return [
             "id", "products_group_id", "discountedPrice", "link", "title", "image", "brand",
             "standardPrice", "main_variant_id", "is_closeout", "sku", "ean", "mark_as_topseller",
-            "is_new", "rating_average", "body", "variant_count", "configurator_group_config"
+            "is_new", "rating_average", "body", "variant_count", "configurator_group_config",
+            "selected_title", "selected_sales_price", "selected_list_price", "selected_link", "selected_image"
         ];
     }
 

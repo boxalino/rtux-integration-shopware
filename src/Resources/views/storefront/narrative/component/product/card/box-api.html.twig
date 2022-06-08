@@ -28,9 +28,10 @@ optional: use the loop through block.blocks to render other children elements se
             {% if product %}
                 {% set layout = block.layout[0] %}
                 {% set displayMode = block.displayMode[0] %}
-                {% set name = block.bxHit.get("title") %}
+                {% set name = block.bxHit.get("selected_title")[0] %}
                 {% set id = block.bxHit.get("id") %}
-                {% set cover = block.bxHit.get("image")[0] %}
+                {% set link = seoUrl('frontend.home.page') ~ block.bxHit.get("selected_link")[0] %}
+                {% set cover = block.bxHit.get("selected_image")[0] %}
 
                 <div class="card product-box box-{{ layout }}">
                     {% block component_product_box_content %}
@@ -53,7 +54,7 @@ optional: use the loop through block.blocks to render other children elements se
                                         {% set displayMode = 'cover' %}
                                     {% endif %}
 
-                                    <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                                    <a href="{{ link }}"
                                        title="{{ name }}"
                                        class="product-image-link is-{{ displayMode }}">
                                         {# thumbnail displayed as seen in @Storefront/storefront/utilities/thumbnail.html.twig #}
@@ -91,7 +92,7 @@ optional: use the loop through block.blocks to render other children elements se
                                     {% endblock %}
 
                                     {% block component_product_box_name %}
-                                        <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                                        <a href="{{ link }}"
                                            class="product-name"
                                            title="{{ name }}">
                                             {{ name }}

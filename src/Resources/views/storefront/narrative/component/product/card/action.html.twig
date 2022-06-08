@@ -3,17 +3,19 @@
 #}
 {% block component_product_box_action_inner %}
     {% set id = product.get("id") %}
+    {% set link = seoUrl('frontend.home.page') ~ block.bxHit.get("selected_link")[0] %}
+    {% set name = block.bxHit.get("selected_title")[0] %}
 
     {% if shopware.config.core.listing.allowBuyInListing %}
         <div class="product-action">
             {#
-                Review the original SW6 template @Storefront/storefront/component/product/card/action.html.twig for adding products to cart
-                There is an inherit restriction to have @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity
-                For this purpose, we do not offer any template for adding to cart
+            Review the original SW6 template @Storefront/storefront/component/product/card/action.html.twig for adding products to cart
+            There is an inherit restriction to have @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity
+            For this purpose, we do not offer any template for adding to cart
             #}
 
             {% block component_product_box_action_detail %}
-                <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                <a href="{{ link }}"
                    class="btn btn-block btn-light"
                    title="{{ "listing.boxProductDetails"|trans|striptags }}">
                     {{ "listing.boxProductDetails"|trans|sw_sanitize }}
@@ -25,10 +27,11 @@
     {% block component_product_box_action_meta %}
         <input type="hidden"
                name="product-name"
-               value="{{ product.get("title") }}">
+               value="{{ name }}">
 
         <input type="hidden"
                name="product-id"
                value="{{ id }}">
     {% endblock %}
 {% endblock %}
+
