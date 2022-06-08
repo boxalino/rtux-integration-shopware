@@ -32,7 +32,7 @@ optional: use the JSON SCHEMA of the product layout block to set other params (l
                 #}
                 {% set narrativeContent = {
                     'block' : bxblock,
-                    'product':bxblock.product,
+                    'product':bxblock.bxHit,
                     'listingColumns' : listingColumns
                 } %}
                 {% sw_include bxblock.template with narrativeContent %}

@@ -18,7 +18,7 @@ class Cms extends CmsContextAbstract
     use IntegrationContextTrait;
 
     /**
-     * @return int
+     * @return array
      */
     public function getContextVisibility() : array
     {

@@ -4,22 +4,32 @@
     {% set pluginSelector = 'rtux-filter-multi-select' %}
 {% endif %}
 
+{% if dataPluginSelectorOptions is not defined %}
+    {% set dataPluginSelectorOptions = {
+        name: name,
+        snippets: {
+            disabledFilterText: 'listing.disabledFilterTooltip'|trans|sw_sanitize
+        }
+    } %}
+{% endif %}
+
 {% block component_filter_multi_select %}
     <div class="filter-multi-select filter-multi-select-{{ name }} filter-panel-item{% if not sidebar %} dropdown{% endif %}"
          data-{{ pluginSelector }}="true"
-         data-{{ pluginSelector }}-options='{ "name": "{{ name }}" }'>
+         data-{{ pluginSelector }}-options='{{ dataPluginSelectorOptions|json_encode }}'>
 
         {% block component_filter_multi_select_toggle %}
             <button class="filter-panel-item-toggle btn{% if sidebar %} btn-block{% endif %}"
                     aria-expanded="false"
-                {% if sidebar %}
-                    data-toggle="collapse"
-                    data-target="#{{ filterItemId }}"
-                {% else %}
-                    data-toggle="dropdown"
-                    data-offset="0,8"
-                    aria-haspopup="true"
-                {% endif %}
+                    {% if sidebar %}
+                        data-toggle="collapse"
+                        data-target="#{{ filterItemId }}"
+                    {% else %}
+                        data-toggle="dropdown"
+                        data-boundary="viewport"
+                        data-offset="0,8"
+                        aria-haspopup="true"
+                    {% endif %}
             >
 
                 {% block component_filter_multi_select_display_name %}
@@ -48,7 +58,11 @@
                             {% block component_filter_multi_select_list_item %}
                                 <li class="filter-multi-select-list-item">
                                     {% block component_filter_multi_select_list_item_inner %}
-                                        {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-multi-select-list-item.html.twig' %}
+                                        {% if facet.field == 'category_id' %}
+                                            {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-multi-select-list-category.html.twig' %}
+                                        {% else %}
+                                            {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-multi-select-list-item.html.twig' %}
+                                        {% endif %}
                                     {% endblock %}
                                 </li>
                             {% endblock %}

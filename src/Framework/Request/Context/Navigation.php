@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Boxalino\RealTimeUserExperienceIntegration\Framework\Request\Context;
 
-use Boxalino\RealTimeUserExperience\Framework\Request\ContextAbstract;
+use Boxalino\RealTimeUserExperience\Framework\Request\CmsContextAbstract;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Framework\Request\IntegrationContextTrait;
 use Psr\Log\LoggerInterface;
@@ -22,7 +22,7 @@ class Navigation extends CmsContextAbstract
     use IntegrationContextTrait;
 
     /**
-     * @return int
+     * @return array
      */
     public function getContextVisibility() : array
     {

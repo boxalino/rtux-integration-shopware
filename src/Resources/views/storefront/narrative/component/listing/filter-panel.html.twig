@@ -66,7 +66,7 @@ renders the facets as are set in the facet model
                                                         } %}
                                                     {% endif %}
 
-                                                    {% if facet.visualisation == 'multiselect' or facet.visualisation is empty %}
+                                                    {% if facet.visualisation == 'multiselect' or facet.visualisation is empty or facet.field== 'category_id' %}
                                                         {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-multiselect.html.twig' with {
                                                             facet: facet,
                                                             sidebar: sidebar,
@@ -124,6 +124,11 @@ renders the facets as are set in the facet model
                                                             {{ selectedFacet.label }}
                                                             <button class="filter-active-remove" data-id="{{ selectedFacet.field }}">&times;</button>
                                                         </span>
+                                                        {% elseif selectedFacet.field == 'category_id' %}
+                                                            <span class="filter-active">
+                                                            {{ selectedValue.label }}
+                                                            <button class="filter-active-remove" data-id="{{ selectedFacet.field }}_{{ selectedValue.value }}">&times;</button>
+                                                        </span>
                                                         {% elseif selectedFacet.visualisation is same as ('stars') %}
                                                             <span class="filter-active">
                                                             {{ 'listing.filterRatingActiveLabelStart'|trans|sw_sanitize }} {{ selectedValue.minSelectedValue }} {{  'listing.filterRatingActiveLabelEnd'|trans|sw_sanitize }}
@@ -145,7 +150,7 @@ renders the facets as are set in the facet model
                                                         {% else %}
                                                             <span class="filter-active">
                                                             {{ selectedValue.value }}
-                                                            <button class="filter-active-remove" data-id="{{ selectedValue.value }}">&times;</button>
+                                                            <button class="filter-active-remove" data-id="{{ selectedFacet.field }}_{{ selectedValue.value }}">&times;</button>
                                                         </span>
                                                         {% endif %}
                                                     {% endfor %}
