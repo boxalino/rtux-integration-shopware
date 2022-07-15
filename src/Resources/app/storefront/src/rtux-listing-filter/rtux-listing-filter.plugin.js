@@ -2,6 +2,7 @@ import Plugin from 'src/plugin-system/plugin.class';
 import DomAccess from 'src/helper/dom-access.helper';
 import Iterator from 'src/helper/iterator.helper';
 import StringHelper from 'src/helper/string.helper';
+import OffCanvas from 'src/plugin/offcanvas/offcanvas.plugin';
 
 /**
  * Integration sample for making use of the default Shopware6 listing.plugin.js
@@ -20,10 +21,11 @@ export default class RtuxListingFilterPlugin extends Plugin
     static options = {
         parentFilterPanelSelector: '.cms-element-product-listing-wrapper',
         activeFilterLabelRemoveClass: 'filter-active-remove',
-        activeFilterContainerSelector: '.filter-panel-container-active',
+        activeFilterContainerSelector: '.filter-panel-rtux-active-container',
         resetAllFilterButtonSelector: '.filter-reset-all',
         filterPlugins: ['FilterRange', 'RtuxFilterRatingSelect', 'RtuxFilterMultiSelect', 'FilterBoolean'],
-        pluginSelectorPrefix: 'rtux'
+        pluginSelectorPrefix: 'rtux',
+        offCanvasSelector: '.rtux-offcanvas-filter'
     };
 
     init() {
@@ -43,6 +45,15 @@ export default class RtuxListingFilterPlugin extends Plugin
             this.options.activeFilterContainerSelector
         );
         this._buildLabels();
+        this._prepareOffCanvas();
+    }
+
+    /**
+     * @public
+     */
+    refreshRegistry() {
+        this.init();
+        window.PluginManager.initializePlugins();
     }
 
     _initFilterPlugins() {
@@ -123,5 +134,39 @@ export default class RtuxListingFilterPlugin extends Plugin
         this.listing.refreshRegistry();
         this.init();
     }
+
+    /**
+     * @private
+     */
+    _prepareOffCanvas() {
+        // when the canvas is open, replace the content within the canvas
+        if(this.hasOffCanvas()) {
+            const filterContent = document.querySelector('[data-rtux-offcanvas-filter-content="true"]');
+            const filterPanel = DomAccess.querySelector(filterContent, '.filter-panel', false);
+            if(filterPanel)
+            {
+                OffCanvas.setContent(filterContent.innerHTML);
+                filterPanel.remove();
+            }
+        }
+    }
+
+    /**
+     * @returns bool
+     */
+    hasOffCanvas() {
+        if(document.querySelector(this.options.offCanvasSelector)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @returns HTMLElement
+     */
+    getOffCanvas() {
+        return document.querySelector(this.options.offCanvasSelector);
+    }
+
 
 }

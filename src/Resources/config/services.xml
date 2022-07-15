@@ -95,6 +95,12 @@
             <argument type="string">boxalino-integration</argument>
         </service>
 
+        <!-- GDPR cookie observer -->
+        <service id="Boxalino\RealTimeUserExperience\Framework\Cookie\RtuxCookieProvider"
+                 decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
+            <argument type="service" id="Boxalino\RealTimeUserExperience\Framework\Cookie\RtuxCookieProvider.inner" />
+        </service>
+
     </services>
 
 </container>

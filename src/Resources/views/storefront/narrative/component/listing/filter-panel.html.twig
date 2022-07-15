@@ -6,11 +6,12 @@ renders the facets as are set in the facet model
 #}
 {% block element_sidebar_filter %}
     {% if block.facets.count > 0 %}
+        {# as seen in src/Storefront/Resources/views/storefront/element/cms-element-sidebar-filter.html.twig #}
         <div class="cms-element-sidebar-filter">
             {% block element_product_listing_filter_button %}
                 <button class="btn header-actions-btn filter-panel-wrapper-toggle"
                         type="button"
-                        data-offcanvas-filter="true"
+                        data-rtux-offcanvas-filter="true"
                         aria-haspopup="true"
                         aria-expanded="false"
                         aria-label="{{ "general.menuLink"|trans }}">
@@ -25,7 +26,8 @@ renders the facets as are set in the facet model
                 <div id="filter-panel-wrapper"
                      class="filter-panel-wrapper"
                      data-rtux-listing-filter="true"
-                     data-offcanvas-filter-content="true">
+                     data-rtux-offcanvas-filter-content="true"
+                >
                     {% block component_filter_panel %}
                         {% block component_filter_panel_header %}
                             <div class="filter-panel-offcanvas-header">
@@ -114,7 +116,7 @@ renders the facets as are set in the facet model
                                     "data-rtux-listing-filter" has to match the selector for the custom JS
                                     #}
                                     {% block boxalino_filter_panel_container_active %}
-                                        <div class="filter-panel-container-active" data-rtux-listing-filter="true">
+                                        <div class="filter-panel-rtux-active-container" data-rtux-listing-filter="true">
                                             {% if block.getModel().hasSelectedFacets() %}
                                                 {# the button based on the template of listing.plugin..js::getLabelTemplate() #}
                                                 {% for selectedFacet in block.getModel().getSelectedFacets() %}

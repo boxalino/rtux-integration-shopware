@@ -18,22 +18,25 @@
 
 {% set expanded = facet.selected or facet.display is same as ('expanded') %}
 
+{% set rangeFilterOptions = {
+    name: name,
+    minKey: facet.rangeFromField,
+    maxKey: facet.rangeToField,
+    currencySymbol: currencySymbol,
+    disableEmptyFilter: disableEmptyFilter,
+    snippets: {
+        filterRangeActiveMinLabel: filterRangeActiveMinLabel,
+        filterRangeActiveMaxLabel: filterRangeActiveMaxLabel,
+        filterRangeErrorMessage: filterRangeErrorMessage
+    }
+} %}
+
 {% if value.hitCount > 1 %}
     {% block component_filter_range %}
         <div class="filter-range filter-panel-item{% if not sidebar %} dropdown{% endif %}"
              data-rtux-filter-range="true"
-             data-rtux-filter-range-options='{
-             "name": "{{ name }}",
-             "minKey": "{{ facet.rangeFromField }}",
-             "maxKey": "{{ facet.rangeToField }}",
-             "currencySymbol": "{{ currencySymbol }}",
-             "snippets": {
-                "filterRangeActiveMinLabel": "{{ filterRangeActiveMinLabel }}",
-                "filterRangeActiveMaxLabel": "{{ filterRangeActiveMaxLabel }}",
-                "filterRangeErrorMessage": "{{ filterRangeErrorMessage }}"
-             }
-         }'>
-
+             data-rtux-filter-range-options='{{ rangeFilterOptions|json_encode }}'
+        >
             {% block component_filter_range_toggle %}
                 <button class="filter-panel-item-toggle btn{% if sidebar %} btn-block{% endif %}"
                         aria-expanded="{{ expanded|json_encode }}"
