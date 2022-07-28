@@ -6,7 +6,7 @@
     <services>
 
         <!-- A: declare the configuration interface; rewrite this in order to extend the data configurations object -->
-        <service id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface" class="Boxalino\DataIntegration\Service\Util\Configuration">
+        <service id="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface" class="Boxalino\DataIntegration\Service\Util\Configuration">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="cache.object"/>
             <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>

@@ -6,19 +6,17 @@
     <services>
 
         <!-- A.1: FULL console command -->
-        <service id="Boxalino\DataIntegration\Console\Product\FullDataIntegration">
-            <argument>%kernel.environment%</argument>
+        <service id="Boxalino\DataIntegrationDoc\Framework\Console\Product\FullDataIntegration">
             <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
-            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface"/>
             <tag name="console.command"/>
         </service>
 
         <!-- A.2: DELTA console command -->
-        <service id="Boxalino\DataIntegration\Console\Product\DeltaDataIntegration">
-            <argument>%kernel.environment%</argument>
+        <service id="Boxalino\DataIntegrationDoc\Framework\Console\Product\DeltaDataIntegration">
             <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
-            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface"/>
             <tag name="console.command"/>
         </service>
@@ -41,7 +39,7 @@
             </call>
             <!-- by default, the timeout is 0 - unlimited; restrict it if you are not following integration sync status -->
             <call method="setTimeout">
-                <argument type="string">3600</argument>
+                <argument type="string">360</argument>
             </call>
         </service>
 
@@ -63,7 +61,7 @@
             </call>
             <!-- set a connection timeout as to not expect for service response after the sync request -->
             <call method="setTimeout">
-                <argument type="string">300</argument>
+                <argument type="string">60</argument>
             </call>
         </service>
 

@@ -5,10 +5,9 @@
 
     <services>
         <!-- A.3: INSTANT console command -->
-        <service id="Boxalino\DataIntegration\Console\Product\InstantDataIntegration">
-            <argument>%kernel.environment%</argument>
+        <service id="Boxalino\DataIntegrationDoc\Framework\Console\Product\InstantDataIntegration">
             <argument type="service" id="Boxalino\DataIntegration\Service\Product\Logger"/>
-            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface"/>
             <tag name="console.command"/>
         </service>

@@ -6,19 +6,17 @@
 
     <services>
         <!-- A.1: Full console command -->
-        <service id="Boxalino\DataIntegration\Console\User\FullDataIntegration">
-            <argument>%kernel.environment%</argument>
+        <service id="Boxalino\DataIntegrationDoc\Framework\Console\User\FullDataIntegration">
             <argument type="service" id="Boxalino\DataIntegration\Service\User\Logger"/>
-            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface"/>
             <tag name="console.command"/>
         </service>
 
         <!-- A.2: Delta console command -->
-        <service id="Boxalino\DataIntegration\Console\User\DeltaDataIntegration">
-            <argument>%kernel.environment%</argument>
+        <service id="Boxalino\DataIntegrationDoc\Framework\Console\User\DeltaDataIntegration">
             <argument type="service" id="Boxalino\DataIntegration\Service\User\Logger"/>
-            <argument type="service" id="Boxalino\DataIntegration\Service\Util\DiConfigurationInterface"/>
+            <argument type="service" id="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface"/>
             <argument type="service" id="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface"/>
             <tag name="console.command"/>
         </service>
