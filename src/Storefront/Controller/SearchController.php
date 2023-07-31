@@ -10,13 +10,12 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Shopware\Storefront\Controller\SearchController as ShopwareSearchController;
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Storefront\Framework\Cache\Annotation\HttpCache;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * RTUX SearchController - decorates Shopware SearchController; makes RTUX API requests and displays the response
- * @RouteScope(scopes={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class SearchController extends ShopwareSearchController
 {
@@ -128,8 +127,7 @@ class SearchController extends ShopwareSearchController
     }
 
     /**
-     * @RouteScope(scopes={"storefront"})
-     * @Route("/widgets/search", name="widgets.search.pagelet.v2", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
+     * @Route("/widgets/search", name="widgets.search.pagelet.v2", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true, "_routeScope"={"storefront"}})
      *
      * @throws MissingRequestParameterException
      */

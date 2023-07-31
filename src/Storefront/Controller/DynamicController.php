@@ -4,7 +4,6 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller;
 use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as DynamicPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface as ShopwareRequestWrapper;
 use Psr\Log\LoggerInterface;
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * RTUX DynamicController - makes RTUX API requests and displays the narrative response (ex: campaigns, brand pages, etc)
- * @RouteScope(scopes={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class DynamicController extends StorefrontController
 {

@@ -4,7 +4,6 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller;
 use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiCrossSellingLoaderAjax as PdpPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface as ShopwareRequestWrapper;
 use Psr\Log\LoggerInterface;
-use Shopware\Core\Framework\Routing\Annotation\RouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +15,7 @@ use Shopware\Storefront\Framework\Cache\Annotation\HttpCache;
  * RTUX PdpController - ajax request on product detail page (PDP) in order to load & display cross-selling elements
  * https://github.com/boxalino/rtux-integration-shopware/wiki/PDP-Context-(AJAX)
  *
- * @RouteScope(scopes={"storefront"})
+ * @Route(defaults={"_routeScope"={"storefront"}})
  */
 class PdpController extends StorefrontController
 {
@@ -46,8 +45,7 @@ class PdpController extends StorefrontController
     }
 
     /**
-     * @RouteScope(scopes={"storefront"})
-     * @Route("/boxalino-api/pdp/crosssell", name="frontend.boxalino-api.crosssell", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true})
+     * @Route("/boxalino-api/pdp/crosssell", name="frontend.boxalino-api.crosssell", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true, "_routeScope"={"storefront"}})
      */
     public function ajax(Request $request, SalesChannelContext $context): Response
     {
