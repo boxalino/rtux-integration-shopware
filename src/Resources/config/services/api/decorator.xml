@@ -6,8 +6,10 @@
     <services>
         <!-- SEARCH CONTROLLER DECORATOR frontend.search.suggest  -->
         <service id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController"
-                 decorates="Shopware\Storefront\Controller\SearchController" public="true">
-            <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller\SearchController.inner"/>
+                 decorates="Shopware\Storefront\Controller\SearchController"
+                 public="true">
+            <argument type="service" id=".inner"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRoute"/>
             <!-- service declared in search.xml -->
             <argument type="service" id="boxalino.integration.loader.search" />
             <!-- service declared in autocomplete.xml -->
@@ -16,6 +18,9 @@
             <argument type="service" id="Boxalino\RealTimeUserExperienceIntegration\Service\Logger"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
             </call>
         </service>
 

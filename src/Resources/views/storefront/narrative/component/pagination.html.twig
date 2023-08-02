@@ -9,6 +9,12 @@ displays the pagination by using the bx-pagination accessor as configured in acc
     {% set currentPage = block.bxPagination.currentPage %}
     {% set totalPages = block.bxPagination.lastPage %}
 
+        {% set paginationSuffix = '' %}
+        {% if paginationLocation %}
+                {% set paginationSuffix = '-' ~ paginationLocation %}
+        {% endif %}
+
+    {% if totalPages > 1 %}
     <nav aria-label="pagination" class="pagination-nav">
         {% block component_pagination %}
             <ul class="pagination">
@@ -18,14 +24,14 @@ displays the pagination by using the bx-pagination accessor as configured in acc
                             <input type="radio"
                                    {% if currentPage == 1 %}disabled="disabled"{% endif %}
                                    name="p"
-                                   id="p-first"
+                                   id="p-first{{ paginationSuffix }}"
                                    value="1"
                                    class="d-none"
                                    title="pagination">
                         {% endblock %}
 
                         {% block component_pagination_first_label %}
-                            <label class="page-link" for="p-first">
+                            <label class="page-link" for="p-first{{ paginationSuffix }}">
                                 {% block component_pagination_first_link %}
                                     {% sw_icon 'arrow-medium-double-left' style { 'size': 'fluid', 'pack': 'solid'} %}
                                 {% endblock %}
@@ -40,14 +46,14 @@ displays the pagination by using the bx-pagination accessor as configured in acc
                             <input type="radio"
                                    {% if currentPage == 1 %}disabled="disabled"{% endif %}
                                    name="p"
-                                   id="p-prev"
+                                   id="p-prev{{ paginationSuffix }}"
                                    value="{{ currentPage - 1 }}"
                                    class="d-none"
                                    title="pagination">
                         {% endblock %}
 
                         {% block component_pagination_prev_label %}
-                            <label class="page-link" for="p-prev">
+                            <label class="page-link" for="p-prev{{ paginationSuffix }}">
                                 {% block component_pagination_prev_link %}
                                     {% block component_pagination_prev_icon %}
                                         {% sw_icon 'arrow-medium-left' style {'size': 'fluid', 'pack': 'solid'} %}
@@ -82,7 +88,7 @@ displays the pagination by using the bx-pagination accessor as configured in acc
                                 {% block component_pagination_item_input %}
                                     <input type="radio"
                                            name="p"
-                                           id="p{{ page }}"
+                                           id="p{{ page }}{{ paginationSuffix }}"
                                            value="{{ page }}"
                                            class="d-none"
                                            title="pagination"
@@ -91,7 +97,7 @@ displays the pagination by using the bx-pagination accessor as configured in acc
 
                                 {% block component_pagination_item_label %}
                                     <label class="page-link"
-                                           for="p{{ page }}">
+                                           for="p{{ page }}{{ paginationSuffix }}">
                                         {% block component_pagination_item_link %}
                                             {% block component_pagination_item_text %}
                                                 {{ page }}
@@ -111,14 +117,14 @@ displays the pagination by using the bx-pagination accessor as configured in acc
                             <input type="radio"
                                    {% if currentPage == totalPages %}disabled="disabled"{% endif %}
                                    name="p"
-                                   id="p-next"
+                                   id="p-next{{ paginationSuffix }}"
                                    value="{{ currentPage + 1 }}"
                                    class="d-none"
                                    title="pagination">
                         {% endblock %}
 
                         {% block component_pagination_next_label %}
-                            <label class="page-link" for="p-next">
+                            <label class="page-link" for="p-next{{ paginationSuffix }}">
                                 {% block component_pagination_next_link %}
                                     {% block component_pagination_next_icon %}
                                         {% sw_icon 'arrow-medium-right' style { 'size': 'fluid', 'pack': 'solid'} %}
@@ -135,14 +141,14 @@ displays the pagination by using the bx-pagination accessor as configured in acc
                             <input type="radio"
                                    {% if currentPage == totalPages %}disabled="disabled"{% endif %}
                                    name="p"
-                                   id="p-last"
+                                   id="p-last{{ paginationSuffix }}"
                                    value="{{ totalPages }}"
                                    class="d-none"
                                    title="pagination">
                         {% endblock %}
 
                         {% block component_pagination_last_label %}
-                            <label class="page-link" for="p-last">
+                            <label class="page-link" for="p-last{{ paginationSuffix }}">
                                 {% block component_pagination_last_link %}
                                     {% block component_pagination_last_icon %}
                                         {% sw_icon 'arrow-medium-double-right' style {
@@ -158,4 +164,5 @@ displays the pagination by using the bx-pagination accessor as configured in acc
             </ul>
         {% endblock %}
     </nav>
+    {% endif %}
 {% endblock %}

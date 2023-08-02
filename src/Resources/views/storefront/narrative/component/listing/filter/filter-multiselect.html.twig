@@ -14,7 +14,7 @@
 {% endif %}
 
 {% block component_filter_multi_select %}
-    <div class="filter-multi-select filter-multi-select-{{ name }} filter-panel-item{% if not sidebar %} dropdown{% endif %}"
+    <div class="filter-multi-select filter-multi-select-{{ name }} filter-panel-item{% if sidebar %} d-grid{% else %} dropdown{% endif %}"
          data-{{ pluginSelector }}="true"
          data-{{ pluginSelector }}-options='{{ dataPluginSelectorOptions|json_encode }}'>
 
@@ -22,15 +22,14 @@
             <button class="filter-panel-item-toggle btn{% if sidebar %} btn-block{% endif %}"
                     aria-expanded="false"
                     {% if sidebar %}
-                        data-toggle="collapse"
-                        data-target="#{{ filterItemId }}"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#{{ filterItemId }}"
                     {% else %}
-                        data-toggle="dropdown"
+                        data-bs-toggle="dropdown"
                         data-boundary="viewport"
-                        data-offset="0,8"
+                        data-bs-offset="0,8"
                         aria-haspopup="true"
-                    {% endif %}
-            >
+                    {% endif %}>
 
                 {% block component_filter_multi_select_display_name %}
                     {{ displayName }}

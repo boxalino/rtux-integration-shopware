@@ -4,7 +4,7 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\Context\SalesChannelContextServiceInterface;
-use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepositoryInterface;
+use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepository;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,9 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Newsletter controller will be used as endpoint for the newsletter recommendation
- *
- * @Route(defaults={"_routeScope"={"storefront"}})
  */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class NewsletterController extends StorefrontController
 {
     /**
@@ -23,7 +22,7 @@ class NewsletterController extends StorefrontController
     private $logger;
 
     /**
-     * @var SalesChannelRepositoryInterface
+     * @var SalesChannelRepository
      */
     private $productRepository;
 
@@ -33,7 +32,7 @@ class NewsletterController extends StorefrontController
     protected $salesChannelContextService;
 
     public function __construct(
-        SalesChannelRepositoryInterface $productRepository,
+        SalesChannelRepository $productRepository,
         SalesChannelContextServiceInterface $salesChannelContextService,
         LoggerInterface $logger
     ){

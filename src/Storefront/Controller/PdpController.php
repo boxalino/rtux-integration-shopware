@@ -14,9 +14,8 @@ use Shopware\Storefront\Framework\Cache\Annotation\HttpCache;
 /**
  * RTUX PdpController - ajax request on product detail page (PDP) in order to load & display cross-selling elements
  * https://github.com/boxalino/rtux-integration-shopware/wiki/PDP-Context-(AJAX)
- *
- * @Route(defaults={"_routeScope"={"storefront"}})
  */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class PdpController extends StorefrontController
 {
     /**
@@ -44,9 +43,8 @@ class PdpController extends StorefrontController
         $this->logger = $logger;
     }
 
-    /**
-     * @Route("/boxalino-api/pdp/crosssell", name="frontend.boxalino-api.crosssell", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true, "_routeScope"={"storefront"}})
-     */
+    
+    #[Route(path: '/boxalino-api/pdp/crosssell', name: 'frontend.boxalino-api.crosssell', defaults: ['XmlHttpRequest' => true, '_routeScope' => ['storefront'], '_httpCache' => false], methods: ['GET', 'POST'])]
     public function ajax(Request $request, SalesChannelContext $context): Response
     {
         try {

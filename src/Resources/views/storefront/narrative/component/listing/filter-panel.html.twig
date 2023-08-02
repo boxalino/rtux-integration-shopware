@@ -9,7 +9,7 @@ renders the facets as are set in the facet model
         {# as seen in src/Storefront/Resources/views/storefront/element/cms-element-sidebar-filter.html.twig #}
         <div class="cms-element-sidebar-filter">
             {% block element_product_listing_filter_button %}
-                <button class="btn header-actions-btn filter-panel-wrapper-toggle"
+                <button class="btn btn-outline-primary filter-panel-wrapper-toggle"
                         type="button"
                         data-rtux-offcanvas-filter="true"
                         aria-haspopup="true"
@@ -31,7 +31,8 @@ renders the facets as are set in the facet model
                     {% block component_filter_panel %}
                         {% block component_filter_panel_header %}
                             <div class="filter-panel-offcanvas-header">
-                                <h3 class="filter-panel-offcanvas-only">{{ "listing.filterTitleText"|trans }}</h3>
+                                <div class="filter-panel-offcanvas-only filter-panel-offcanvas-title">{{ "listing.filterTitleText"|trans }}</div>
+
                                 <div class="filter-panel-offcanvas-only filter-panel-offcanvas-close js-offcanvas-close">
                                     {% sw_icon 'x' style { 'size': 'md' } %}
                                 </div>
@@ -63,7 +64,6 @@ renders the facets as are set in the facet model
                                                             facet: facet,
                                                             sidebar: sidebar,
                                                             name: facet.getRequestField(),
-                                                            pluginSelector: 'rtux-filter-rating-select',
                                                             displayName: facet.label
                                                         } %}
                                                     {% endif %}
@@ -139,13 +139,13 @@ renders the facets as are set in the facet model
                                                         {% elseif selectedFacet.visualisation is same as ('range') %}
                                                             {% if (selectedValue.minSelectedValue is not null) and (selectedValue.minSelectedValue != "0") %}
                                                                 <span class="filter-active">
-                                                                {{ 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize }} {{ (0.0 + selectedValue.minSelectedValue)|currency }}
+                                                                {{ 'listing.filterRangeActiveMinLabel'|trans({'%displayName%': displayName})|sw_sanitize  }} {{ (0.0 + selectedValue.minSelectedValue)|currency }}
                                                                 <button class="filter-active-remove" data-id="{{ selectedFacet.rangeFromField }}">&times;</button>
                                                             </span>
                                                             {% endif %}
                                                             {% if selectedValue.maxSelectedValue is not null %}
                                                                 <span class="filter-active">
-                                                                {{ 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize }} {{ (0.0 + selectedValue.maxSelectedValue)|currency }}
+                                                                {{ 'listing.filterRangeActiveMaxLabel'|trans({'%displayName%': displayName})|sw_sanitize }} {{ (0.0 + selectedValue.maxSelectedValue)|currency }}
                                                                 <button class="filter-active-remove" data-id="{{ selectedFacet.rangeToField }}">&times;</button>
                                                             </span>
                                                             {% endif %}

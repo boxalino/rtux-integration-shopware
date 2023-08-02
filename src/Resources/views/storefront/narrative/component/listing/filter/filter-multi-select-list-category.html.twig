@@ -1,19 +1,19 @@
 {% block component_filter_multi_select_list_item %}
-    <div class="custom-control custom-checkbox">
-        {% set id = element.value %}
+    <div class="form-check">
+        {% set id = facet.field ~ "_" ~ element.value %}
         {% set name = element.label %}
         {% block component_filter_multi_select_list_item_checkbox_input %}
             <input type="checkbox"
-                   class="custom-control-input filter-multi-select-checkbox"
+                   class="form-check-input filter-multi-select-checkbox"
                    data-label="{{ name }}"
-                   value="{{ id }}"
-                   id="{{ facet.field }}_{{ id }}"
+                   value="{{ element.value }}"
+                   id="{{ id }}"
                     {% if element.selected %} checked {% endif %}
             >
         {% endblock %}
 
         {% block component_filter_multi_select_list_item_label_element %}
-            <label class="filter-multi-select-item-label custom-control-label" for="{{ facet.field }}_{{ id }}">
+            <label class="filter-multi-select-item-label form-check-label" for="{{ id }}">
                 {% block component_multi_select_list_item_label %}
                     {{ name }} {% if facet.showCounter %}({{ element.hitCount }}) {% endif %}
                 {% endblock %}

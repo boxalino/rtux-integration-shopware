@@ -10,7 +10,7 @@ renders the sorting as available per accessor model
 {% set config = { sorting: current } %}
 {% block element_product_listing_sorting %}
     <div class="sorting" data-listing-sorting="true" data-listing-sorting-options='{{ config|json_encode }}'>
-        <select class="sorting custom-select" aria-label="{{ 'general.sortingLabel'|trans|striptags }}">
+        <select class="sorting form-select" aria-label="{{ 'general.sortingLabel'|trans|striptags }}">
             {% for key, sorting in block.getModel().getSortings() %}
                 <option value="{{ key }}"{% if key == current %} selected{% endif %}>{{ sorting.label|sw_sanitize }}</option>
             {% endfor %}

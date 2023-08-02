@@ -1,12 +1,19 @@
 <?php declare(strict_types=1);
 namespace Boxalino\RealTimeUserExperienceIntegration\Storefront\Controller;
 
-use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as AutocompletePageLoader;
-use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as SearchPageLoader;
+use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as ApiAutocompletePageLoader;
+use Boxalino\RealTimeUserExperience\Framework\Content\Page\ApiPageLoader as ApiSearchPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface as ShopwareRequestWrapper;
 use Psr\Log\LoggerInterface;
+use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Routing\Exception\MissingRequestParameterException;
+use Shopware\Core\Framework\Routing\RoutingException;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\Search\SearchPageLoadedHook;
+use Shopware\Storefront\Page\Search\SearchWidgetLoadedHook;
+use Shopware\Storefront\Page\Suggest\SuggestPageLoadedHook;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Shopware\Storefront\Controller\SearchController as ShopwareSearchController;
@@ -15,52 +22,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * RTUX SearchController - decorates Shopware SearchController; makes RTUX API requests and displays the response
- * @Route(defaults={"_routeScope"={"storefront"}})
  */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class SearchController extends ShopwareSearchController
 {
-    /**
-     * @var SearchPageLoader
-     */
-    private $searchApiPageLoader;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @var AutocompletePageLoader
-     */
-    private $autocompleteApiPageLoader;
-
-    /**
-     * @var ShopwareSearchController
-     */
-    private $decorated;
-
-    /**
-     * @var ShopwareRequestWrapper
-     */
-    private $requestWrapper;
 
     public function __construct(
-        ShopwareSearchController $decorated,
-        SearchPageLoader $searchApiPageLoader,
-        AutocompletePageLoader $autocompleteApiPageLoader,
-        ShopwareRequestWrapper $requestWrapper,
-        LoggerInterface $logger
+        private readonly ShopwareSearchController $decorated,
+        private readonly AbstractProductSearchRoute $productSearchRoute,
+        private readonly  ApiSearchPageLoader $searchApiPageLoader,
+        private readonly ApiAutocompletePageLoader $autocompleteApiPageLoader,
+        private readonly ShopwareRequestWrapper $requestWrapper,
+        private readonly LoggerInterface $logger
     ){
-        $this->decorated = $decorated;
-        $this->requestWrapper = $requestWrapper;
-        $this->searchApiPageLoader = $searchApiPageLoader;
-        $this->autocompleteApiPageLoader = $autocompleteApiPageLoader;
-        $this->logger = $logger;
     }
 
-    /**
-     * @Route("/search", name="frontend.search.page", methods={"GET"})
-     */
+    #[Route(path: '/search', name: 'frontend.search.page', defaults: ['_httpCache' => false], methods: ['GET'])]
     public function search(SalesChannelContext $context, Request $request): Response
     {
         try {
@@ -73,6 +50,7 @@ class SearchController extends ShopwareSearchController
                 ->setRequest($this->requestWrapper)
                 ->load();
             $page = $this->searchApiPageLoader->getApiResponsePage();
+
             if($page->getRedirectUrl())
             {
                 return $this->redirect($page->getRedirectUrl());
@@ -98,9 +76,7 @@ class SearchController extends ShopwareSearchController
 
     }
 
-    /**
-     * @Route("/suggest", name="frontend.search.suggest", methods={"GET"}, defaults={"XmlHttpRequest"=true})
-     */
+    #[Route(path: '/suggest', name: 'frontend.search.suggest', defaults: ['XmlHttpRequest' => true, '_httpCache' => false], methods: ['GET'])]
     public function suggest(SalesChannelContext $context, Request $request): Response
     {
         try{
@@ -109,9 +85,7 @@ class SearchController extends ShopwareSearchController
                 ->setRequest($this->requestWrapper)
                 ->load();
             $page = $this->autocompleteApiPageLoader->getApiResponsePage();
-            /**
-             * the render template is a narrative element
-             */
+
             $response = $this->renderStorefront('@BoxalinoRealTimeUserExperience/storefront/element/cms-element-narrative-content.html.twig', ['page' => $page]);
             $response->headers->set('x-robots-tag', 'noindex');
 
@@ -126,11 +100,8 @@ class SearchController extends ShopwareSearchController
         }
     }
 
-    /**
-     * @Route("/widgets/search", name="widgets.search.pagelet.v2", methods={"GET", "POST"}, defaults={"XmlHttpRequest"=true, "_routeScope"={"storefront"}})
-     *
-     * @throws MissingRequestParameterException
-     */
+
+    #[Route(path: '/widgets/search', name: 'widgets.search.pagelet.v2', defaults: ['XmlHttpRequest' => true, '_routeScope' => ['storefront'], '_httpCache' => false], methods: ['GET', 'POST'])]
     public function ajax(Request $request, SalesChannelContext $context): Response
     {
         try{
@@ -164,6 +135,42 @@ class SearchController extends ShopwareSearchController
             return $this->decorated->ajax($request, $context);
         }
 
+    }
+
+    /**
+     * Route to load the available listing filters
+     * (only included in the decorator because  the variables in  parent class are not  available)
+     *
+     * ---- MUST BE REPLACED TO DISPLAY BOXALINO FILTERS ------
+     */
+    #[Route(path: '/widgets/search/filter', name: 'widgets.search.filter', defaults: ['XmlHttpRequest' => true, '_routeScope' => ['storefront'], '_httpCache' => false], methods: ['GET', 'POST'])]
+    public function filter(Request $request, SalesChannelContext $context): Response
+    {
+        $term = $request->get('search');
+        if (!$term) {
+            throw RoutingException::missingRequestParameter('search');
+        }
+
+        // Allows to fetch only aggregations over the gateway.
+        $request->request->set('only-aggregations', true);
+        // Allows to convert all post-filters to filters. This leads to the fact that only aggregation values are returned, which are combinable with the previous applied filters.
+        $request->request->set('reduce-aggregations', true);
+        $criteria = new Criteria();
+        $criteria->setTitle('search-page');
+
+        $result = $this->productSearchRoute
+            ->load($request, $context, $criteria)
+            ->getListingResult();
+        $mapped = [];
+
+        foreach ($result->getAggregations() as $aggregation) {
+            $mapped[$aggregation->getName()] = $aggregation;
+        }
+
+        $response = new JsonResponse($mapped);
+        $response->headers->set('x-robots-tag', 'noindex');
+
+        return $response;
     }
 
 }

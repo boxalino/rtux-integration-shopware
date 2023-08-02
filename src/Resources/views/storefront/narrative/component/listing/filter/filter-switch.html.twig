@@ -4,6 +4,13 @@ the facet values are generally 0/1 which are mirroring the behavior for true/fal
 in this sample, if there are only options with the facet value set to "false" or "0" - the checkbox will be disabled
 #}
 {% block component_filter_boolean %}
+    {% set filterBooleanOptions = {
+        name: name,
+        displayName: displayName,
+        snippets: {
+            disabledFilterText: 'listing.disabledFilterTooltip'|trans|sw_sanitize
+        }
+    } %}
     {% set hitCount = 0 %}
     {% for element in facet.values %}
         {% if element.value == "1" %}
@@ -12,14 +19,14 @@ in this sample, if there are only options with the facet value set to "false" or
     {% endfor %}
     <div class="filter-boolean filter-panel-item"
          data-rtux-filter-boolean="true"
-         data-rtux-filter-boolean-options='{ "name": "{{ name }}", "displayName": "{{ displayName }}" }'>
+         data-rtux-filter-boolean-options='{{ filterBooleanOptions|json_encode }}'>
 
         {% block component_filter_boolean_container %}
-            <div class="custom-control custom-checkbox">
+            <div class="form-check">
 
                 {% block component_filter_boolean_checkbox %}
                     <input type="checkbox"
-                           class="filter-boolean-input custom-control-input"
+                           class="filter-boolean-input form-check-input"
                            id="{{ name }}"
                            name="{{ name }}"
                            {% if hitCount == 0 %} disabled {% endif %}

@@ -5,12 +5,13 @@
     {% set currencySymbol = page.header.activeCurrency.symbol %}
 {% endif %}
 
-{% if filterRangeActiveMinLabel is not defined %}
-    {% set filterRangeActiveMinLabel = 'listing.filterRangeActiveMinLabel'|trans|sw_sanitize %}
-{% endif %}
+{% set filterRangeActiveMinLabel = 'listing.filterRangeActiveMinLabel'|trans({'%displayName%': displayName})|sw_sanitize %}
+{% set filterRangeActiveMaxLabel = 'listing.filterRangeActiveMaxLabel'|trans({'%displayName%': displayName})|sw_sanitize %}
+{% set filterRangeErrorMessage = 'listing.filterRangeErrorMessage'|trans|sw_sanitize %}
+{% set filterRangeLowerBoundErrorMessage = 'listing.filterRangeLowerBoundErrorMessage'|trans({'%lowerBound%': 0})|sw_sanitize %}
 
-{% if filterRangeActiveMaxLabel is not defined %}
-    {% set filterRangeActiveMaxLabel = 'listing.filterRangeActiveMaxLabel'|trans|sw_sanitize %}
+{% if unit is not defined %}
+    {% set unit = page.header.activeCurrency.symbol %}
 {% endif %}
 
 {% set minValue = value.minValue %}
@@ -23,31 +24,34 @@
     minKey: facet.rangeFromField,
     maxKey: facet.rangeToField,
     currencySymbol: currencySymbol,
+    unit: unit,
     disableEmptyFilter: disableEmptyFilter,
     snippets: {
         filterRangeActiveMinLabel: filterRangeActiveMinLabel,
         filterRangeActiveMaxLabel: filterRangeActiveMaxLabel,
-        filterRangeErrorMessage: filterRangeErrorMessage
+        filterRangeErrorMessage: filterRangeErrorMessage,
+        filterRangeLowerBoundErrorMessage : filterRangeLowerBoundErrorMessage
     }
 } %}
 
 {% if value.hitCount > 1 %}
     {% block component_filter_range %}
-        <div class="filter-range filter-panel-item{% if not sidebar %} dropdown{% endif %}"
+        <div class="filter-range filter-panel-item{% if sidebar %} d-grid{% else %} dropdown{% endif %}"
              data-rtux-filter-range="true"
              data-rtux-filter-range-options='{{ rangeFilterOptions|json_encode }}'
         >
             {% block component_filter_range_toggle %}
-                <button class="filter-panel-item-toggle btn{% if sidebar %} btn-block{% endif %}"
+                <button class="filter-panel-item-toggle btn"
                         aria-expanded="{{ expanded|json_encode }}"
-                    {% if sidebar %}
-                    data-toggle="collapse"
-                    data-target="#{{ filterItemId }}"
+                        {% if sidebar %}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#{{ filterItemId }}"
                 {% else %}
-                    data-toggle="dropdown"
-                    data-offset="0,8"
+                    data-bs-toggle="dropdown"
+                    data-boundary="viewport"
+                    data-bs-offset="0,8"
                     aria-haspopup="true"
-                    {% endif %}>
+                        {% endif %}>
 
                     {% block component_filter_range_display_name %}
                         {{ displayName }}
@@ -60,15 +64,7 @@
             {% endblock %}
 
             {% block component_filter_range_dropdown %}
-                {% if sidebar %}
-                    {% set classes = 'collapse' %}
-                    {% if expanded %}
-                        {% set classes = classes ~ ' show' %}
-                    {% endif %}
-                {% else %}
-                    {% set classes = 'dropdown-menu' %}
-                {% endif %}
-                <div class="filter-range-dropdown filter-panel-item-dropdown {{ classes }}"
+                <div class="filter-range-dropdown filter-panel-item-dropdown{% if sidebar %} collapse{% else %} dropdown-menu{% endif %}"
                      id="{{ filterItemId }}">
 
                     {% block component_filter_range_container %}
@@ -84,15 +80,15 @@
                                     {% block component_filter_range_min_input %}
                                         <input class="form-control min-input"
                                                type="number"
-                                               name="min-price"
+                                               name="{{ facet.rangeFromField }}"
                                                min="{{ value.minValue }}"
                                                max="{{ value.maxValue}}"
-                                            {% if value.minSelectedValue is not null %} value="{{ value.minSelectedValue }}" {% endif %}
+                                                {% if value.minSelectedValue is not null %} value="{{ value.minSelectedValue }}" {% endif %}
                                                placeholder="{{ minValue|number_format(page.header.activeCurrency.decimalPrecision) }}">
                                     {% endblock %}
 
                                     {% block component_filter_range_min_currency_symbol %}
-                                        <span class="filter-range-currency-symbol">
+                                        <span class="filter-range-unit">
                                         {{ currencySymbol }}
                                     </span>
                                     {% endblock %}
@@ -115,15 +111,15 @@
                                     {% block component_filter_range_max_input %}
                                         <input class="form-control max-input"
                                                type="number"
-                                               name="max-price"
+                                               name="{{ facet.rangeToField }}"
                                                min="{{ value.minValue}}"
                                                max="{{ value.maxValue}}"
-                                            {% if value.maxSelectedValue is not null %} value="{{ value.maxSelectedValue }}" {% endif %}
+                                                {% if value.maxSelectedValue is not null %} value="{{ value.maxSelectedValue }}" {% endif %}
                                                placeholder="{{ maxValue|number_format(page.header.activeCurrency.decimalPrecision) }}">
                                     {% endblock %}
 
                                     {% block component_filter_range_max_currency_symbol %}
-                                        <span class="filter-range-currency-symbol">
+                                        <span class="filter-range-unit">
                                         {{ currencySymbol }}
                                     </span>
                                     {% endblock %}

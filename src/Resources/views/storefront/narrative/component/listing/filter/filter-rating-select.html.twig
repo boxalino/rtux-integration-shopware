@@ -1,18 +1,13 @@
 {% sw_extends '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-multiselect.html.twig' %}
 
 {% set maxPoints = facet.values[0].maxValue %}
-
-{% if filterRatingActiveLabelStart is not defined %}
-    {% set filterRatingActiveLabelStart = 'listing.filterRatingActiveLabelStart'|trans|sw_sanitize %}
+{% if maxPoints is not defined %}
+    {% set maxPoints = 5 %}
 {% endif %}
 
-{% if filterRatingActiveLabelEndSingular is not defined %}
-    {% set filterRatingActiveLabelEndSingular = 'listing.filterRatingActiveLabelEndSingular'|trans|sw_sanitize %}
-{% endif %}
-
-{% if filterRatingActiveLabelEnd is not defined %}
-    {% set filterRatingActiveLabelEnd = 'listing.filterRatingActiveLabelEnd'|trans|sw_sanitize %}
-{% endif %}
+{% set filterRatingActiveLabelStart = 'listing.filterRatingActiveLabelStart'|trans|sw_sanitize %}
+{% set filterRatingActiveLabelEndSingular = 'listing.filterRatingActiveLabelEndSingular'|trans|sw_sanitize %}
+{% set filterRatingActiveLabelEnd = 'listing.filterRatingActiveLabelEnd'|trans|sw_sanitize %}
 
 {% if listItemSelector is not defined %}
     {% set listItemSelector = '.filter-rating-select-list-item' %}

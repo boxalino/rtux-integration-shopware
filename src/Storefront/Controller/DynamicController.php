@@ -11,8 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * RTUX DynamicController - makes RTUX API requests and displays the narrative response (ex: campaigns, brand pages, etc)
- * @Route(defaults={"_routeScope"={"storefront"}})
  */
+#[Route(defaults: ['_routeScope' => ['storefront']])]
 class DynamicController extends StorefrontController
 {
     /**
@@ -103,4 +103,6 @@ class DynamicController extends StorefrontController
             return $this->redirectToRoute('frontend.home.page');
         }
     }
+    
+    
 }

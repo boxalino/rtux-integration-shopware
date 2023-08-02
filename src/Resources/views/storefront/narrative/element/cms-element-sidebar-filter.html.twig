@@ -19,6 +19,10 @@ If you wish the default Shopware6 facets feature (facets to be constant) - use d
     {% set dataUrl = url('frontend.cms.navigation.page', { navigationId: navigationId }) %}
 {% endif %}
 
+{% if disableEmptyFilter is not defined %}
+    {% set disableEmptyFilter = config('core.listing.disableEmptyFilterOptions') %}
+{% endif %}
+
 {% if page.searchTerm is not empty %}
     {% set dataUrl = url('widgets.search.pagelet.v2') %}
     {% set filterUrl = null %}
@@ -35,19 +39,22 @@ If you wish the default Shopware6 facets feature (facets to be constant) - use d
     {% set currencySymbol = page.getCurrency() is defined ? page.getCurrency() : page.header.activeCurrency.translated.shortName %}
 {% endif %}
 
+{% set listingPagination = {
+    sidebar: true,
+    params: params,
+    dataUrl: dataUrl,
+    filterUrl: filterUrl,
+    currency: currencySymbol,
+    disableEmptyFilter: disableEmptyFilter,
+    snippets: {
+        resetAllButtonText: 'listing.filterPanelResetAll'|trans|sw_sanitize
+    }
+} %}
+
 {% block element_filter_listing_wrapper %}
     <div class="cms-element-product-listing-wrapper rtux-element-product-listing-wrapper"
          data-listing="true"
-         data-listing-options='{
-             "sidebar": "true",
-             "dataUrl": "{{ dataUrl }}",
-             "params": {{ params|json_encode }},
-             "filterUrl": "{{ filterUrl }}",
-             "currency": "{{ currencySymbol }}",
-             "snippets": {
-                "resetAllButtonText": "{{ 'listing.filterPanelResetAll'|trans|sw_sanitize }}"
-             }
-         }'>
+         data-listing-options='{{ listingPagination|json_encode }}'>
 
         {% block element_product_listing_wrapper_content %}
             <div class="cms-element-product-listing rtux-element-content-listing">
