@@ -124,7 +124,7 @@ renders the facets as are set in the facet model
                                                         {% if selectedFacet.visualisation is same as ('switch') %}
                                                             <span class="filter-active">
                                                             {{ selectedFacet.label }}
-                                                            <button class="filter-active-remove" data-id="{{ selectedFacet.field }}">&times;</button>
+                                                            <button class="filter-active-remove" data-id="{{ selectedFacet.getRequestField }}">&times;</button>
                                                         </span>
                                                         {% elseif selectedFacet.field == 'category_id' %}
                                                             <span class="filter-active">

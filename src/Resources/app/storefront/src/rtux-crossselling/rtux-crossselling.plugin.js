@@ -88,7 +88,7 @@ export default class RtuxCrosssellingPlugin extends CrossSellingPlugin
         const parentNode = this.el.parentNode
         for (const plugin of this.options.adjacentPlugins) {
             const elements = parentNode.querySelectorAll(`[data-${StringHelper.toDashCase(plugin)}]`);
-            const optionsDataField = `${plugin}Options`;
+            let optionsDataField = `${plugin}Options`;
             optionsDataField=optionsDataField.charAt(0).toLowerCase() + optionsDataField.substring(1);
             for (const element of elements) {
                 const jsonOptions = element.dataset[optionsDataField];

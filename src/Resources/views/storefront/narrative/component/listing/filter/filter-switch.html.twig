@@ -23,14 +23,12 @@ in this sample, if there are only options with the facet value set to "false" or
 
         {% block component_filter_boolean_container %}
             <div class="form-check">
-
                 {% block component_filter_boolean_checkbox %}
                     <input type="checkbox"
                            class="filter-boolean-input form-check-input"
                            id="{{ name }}"
                            name="{{ name }}"
-                           {% if hitCount == 0 %} disabled {% endif %}
-                    >
+                           {% if hitCount == 0 %} disabled {% endif %}>
                 {% endblock %}
 
                 {% block component_filter_boolean_label %}

@@ -35,7 +35,7 @@ export default class RtuxFilterMultiSelectPlugin extends FilterMultiSelectPlugin
 
         return values;
     }
-    
+
     /**
      *
      * @param params

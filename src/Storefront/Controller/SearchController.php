@@ -151,23 +151,7 @@ class SearchController extends ShopwareSearchController
             throw RoutingException::missingRequestParameter('search');
         }
 
-        // Allows to fetch only aggregations over the gateway.
-        $request->request->set('only-aggregations', true);
-        // Allows to convert all post-filters to filters. This leads to the fact that only aggregation values are returned, which are combinable with the previous applied filters.
-        $request->request->set('reduce-aggregations', true);
-        $criteria = new Criteria();
-        $criteria->setTitle('search-page');
-
-        $result = $this->productSearchRoute
-            ->load($request, $context, $criteria)
-            ->getListingResult();
-        $mapped = [];
-
-        foreach ($result->getAggregations() as $aggregation) {
-            $mapped[$aggregation->getName()] = $aggregation;
-        }
-
-        $response = new JsonResponse($mapped);
+        $response = new JsonResponse([]);
         $response->headers->set('x-robots-tag', 'noindex');
 
         return $response;

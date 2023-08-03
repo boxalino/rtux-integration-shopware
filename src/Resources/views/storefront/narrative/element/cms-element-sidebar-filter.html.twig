@@ -19,10 +19,6 @@ If you wish the default Shopware6 facets feature (facets to be constant) - use d
     {% set dataUrl = url('frontend.cms.navigation.page', { navigationId: navigationId }) %}
 {% endif %}
 
-{% if disableEmptyFilter is not defined %}
-    {% set disableEmptyFilter = config('core.listing.disableEmptyFilterOptions') %}
-{% endif %}
-
 {% if page.searchTerm is not empty %}
     {% set dataUrl = url('widgets.search.pagelet.v2') %}
     {% set filterUrl = null %}
@@ -45,7 +41,6 @@ If you wish the default Shopware6 facets feature (facets to be constant) - use d
     dataUrl: dataUrl,
     filterUrl: filterUrl,
     currency: currencySymbol,
-    disableEmptyFilter: disableEmptyFilter,
     snippets: {
         resetAllButtonText: 'listing.filterPanelResetAll'|trans|sw_sanitize
     }

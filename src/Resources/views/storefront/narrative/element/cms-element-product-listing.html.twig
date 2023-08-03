@@ -26,10 +26,6 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
         {% set sidebar = true %}
     {% endif %}
 
-    {% if disableEmptyFilter is not defined %}
-        {% set disableEmptyFilter = config('core.listing.disableEmptyFilterOptions') %}
-    {% endif %}
-
     {% set filterUrl = null %}
     {% set dataUrl = null %}
     {% set params = {} %}
@@ -61,7 +57,6 @@ uses a loop through Boxalino response blocks (block.blocks) to render the other 
         dataUrl: dataUrl,
         filterUrl: filterUrl,
         currency: currencySymbol,
-        disableEmptyFilter: disableEmptyFilter,
         snippets: {
             resetAllButtonText: 'listing.filterPanelResetAll'|trans|sw_sanitize
         }

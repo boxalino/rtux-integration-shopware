@@ -58,7 +58,7 @@ export default class RtuxListingFilterPlugin extends Plugin
 
     _initFilterPlugins() {
         for (const plugin of this.options.filterPlugins) {
-            const selector = `[data-${this.options.pluginSelectorPrefix}-${StringHelper.toDashCase(plugin)}]`;
+            let selector = `[data-${this.options.pluginSelectorPrefix}-${StringHelper.toDashCase(plugin)}]`;
             if(StringHelper.toDashCase(plugin).startsWith(this.options.pluginSelectorPrefix))
             {
                 selector = `[data-${StringHelper.toDashCase(plugin)}]`;

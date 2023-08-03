@@ -55,7 +55,7 @@
                     <ul class="filter-multi-select-list">
                         {% for element in facet.values %}
                             {% block component_filter_multi_select_list_item %}
-                                <li class="filter-multi-select-list-item">
+                                <li class="filter-multi-select-list-item filter-property-select-list-item">
                                     {% block component_filter_multi_select_list_item_inner %}
                                         {% if facet.field == 'category_id' %}
                                             {% sw_include '@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/listing/filter/filter-multi-select-list-category.html.twig' %}
