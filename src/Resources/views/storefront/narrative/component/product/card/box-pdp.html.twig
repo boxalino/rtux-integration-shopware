@@ -1,0 +1,20 @@
+{#
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/component/product/card/box-pdp.html.twig
+
+copy of the original Shopware6 theme file (@Storefront/storefront/component/product/card/box.html.twig)
+
+minimum change (the <div>) in order to add the tracking elements
+#}
+
+{% block component_product_box_include %}
+    {# Includes a custom product-box template defined by the layout variable.
+       The standard template is used if no custom layout is set. #}
+
+    {% if layout is empty %}
+        {% set layout = 'standard' %}
+    {% endif %}
+
+    <div class="bx-narrative-item" data-bx-item-id="{{ product.id }}">
+        {% sw_include "@Storefront/storefront/component/product/card/box-" ~ layout ~ ".html.twig" ignore missing %}
+    </div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% sw_extends "storefront/element/cms-element-product-slider.html.twig" %}
+
+{% block element_product_slider %}
+    {% if not element.data.products.elements %}
+        {% set element = { data : { products: {elements : true}}, type: 'product-slider'} %}
+    {% endif %}
+
+    {% set sliderConfig = {
+        title : { value : block.title },
+        border: { value: block.border[0] == "true" ? true : false },
+        navigation : { value : block.navigation[0] == "true" ? true : false },
+        rotate : { value : block.rotate[0] == "true" ? true : false },
+        verticalAlign : { value : block.verticalAlign[0] != "" ? block.verticalAlign[0] : "" },
+        displayMode : { value : block.displayMode[0] != "" ? block.displayMode[0] : "" },
+        boxlayout : { value : block.layout[0] }
+    } %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block element_product_slider_alignment %}
+    {% set productSliderOptions = {
+        productboxMinWidth: '290px',
+        slider: {
+            gutter: 30,
+            autoplayButtonOutput: false,
+            nav: false,
+            mouseDrag: false,
+            controls: sliderConfig.navigation.value ? true : false,
+            autoplay: sliderConfig.rotate.value ? true : false,
+            productboxMinWidth: block.elMinWidth[0] != "" ? block.elMinWidth[0] : ''
+        }
+    } %}
+
+    {% if not sliderConfig.navigation.value %}
+        {% set productSliderOptions = productSliderOptions|replace_recursive({
+            slider: {
+                mouseDrag: true
+            }
+        }) %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block element_product_slider_element %}
+    <div class="product-slider-container {{ block.getBxAttributes().getClass() }}"
+    {% for bxAttribute in block.getBxAttributes() %}{{ bxAttribute.getName() }}="{{ bxAttribute.getValue() }}"{% endfor %}
+    data-product-slider-container="true">
+
+    {% for bxblock in block.blocks %}
+        {% block element_product_slider_inner_item %}
+            {% if bxblock.bxHit.id %}
+                {% set narrativeContent ={
+                    'block' : bxblock,
+                    'layout': sliderConfig.boxlayout.value,
+                    'displayMode': sliderConfig.displayMode.value,
+                    'listingColumns' : listingColumns
+                } %}
+                {% set productByGroupId = block.getModel().getItem(bxblock.bxHit.products_group_id[0]) %}
+                {% if product %}
+                    <div class="product-slider-item">
+                        {% set narrativeContent = narrativeContent|merge({ 'product': productByGroupId }) %}
+                        {% sw_include bxblock.template with narrativeContent %}
+                    </div>
+                {% else %}
+                    {% set productById = block.getModel().getItemById(bxblock.bxHit.id) %}
+                    {% if productById %}
+                        <div class="product-slider-item">
+                            {% set narrativeContent = narrativeContent|merge({ 'product': productById }) %}
+                            {% sw_include bxblock.template with narrativeContent %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {# in case the content in the listing is not only product
+                        but some other type (custom)
+                        {% set narrativeContent = {'block' : bxblock } %}
+                        Swic: we don't have anything else than type product
+                        {% sw_include bxblock.template with narrativeContent %} #}
+            {% endif %}
+
+        {% endblock %}
+    {% endfor %}
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,35 @@
+<li class="search-suggest-product js-result">
+    {% block layout_search_suggest_result_link %}
+        <a href="/{{ block.bxHit.link[0] }}"
+           title="{{ block.bxHit.title }}"
+           class="search-suggest-product-link">
+            <div class="row align-items-center no-gutters bx-narrative-item" data-bx-item-id="{{ block.bxHit.id }}">
+                {% block layout_search_suggest_result_image %}
+                    <div class="col-auto search-suggest-product-image-container">
+                        <img src="{{ block.bxHit.image[0] }}"
+                             srcset="{{ block.bxHit.image[0] }}"
+                             class="search-suggest-product-image"
+                             alt="{{ block.bxHit.title }}"
+                        />
+                    </div>
+                {% endblock %}
+
+                {% block layout_search_suggest_result_name %}
+                    <div class="col search-suggest-product-name">
+                        {{ block.bxHit.title }}
+                    </div>
+                {% endblock %}
+
+                {% block layout_search_suggest_result_price %}
+                    <div class="col-auto search-suggest-product-price">
+                        <br><small class="search-suggest-product-reference-price">{{ block.bxHit.discountedPrice|currency }} {{ "general.star"|trans|sw_sanitize }}</small>
+                    </div>
+                {% endblock %}
+            </div>
+        </a>
+        {% for bxblock in block.blocks %}
+            {% set narrativeContent = {'block' : bxblock } %}
+            {% sw_include bxblock.template with narrativeContent %}
+        {% endfor %}
+    {% endblock %}
+</li>

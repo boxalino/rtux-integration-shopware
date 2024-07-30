@@ -1,0 +1,139 @@
+{#
+    @BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/element/cms-element-product-newsletter.html.twig
+
+    used as a sample for a product newsletter recommendation
+    based of "@Storefront/storefront/component/product/card/box-" ~ layout ~ ".html.twig"
+    and the other templates included in it (buttons, price, picture, etc)
+
+    EDIT THE TEMPLATE TO MATCH YOUR PROJECT REQUIREMENT FOR THE PRODUCT RECOMMENDATION DESIGN FOR NEWSLETTER INTEGRATION
+#}
+<!DOCTYPE html>
+    <head>
+        {% for file in shopware.theme.assets.css %}
+            <link rel="stylesheet" href="{{ asset(file, 'theme') }}">
+        {% endfor %}
+    </head>
+    <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="max-width:400px;">
+        {% if layout is empty %}
+            {% set layout = 'image' %}
+        {% endif %}
+        {% if displayMode is empty %}
+            {% set displayMode = 'standard' %}
+        {% endif %}
+        {# set display mode 'cover' for box-image with standard display mode (logic from default) #}
+        {% if layout == 'image' and displayMode == 'standard' %}
+            {% set displayMode = 'cover' %}
+        {% endif %}
+
+        {% set name = product.translated.name %}
+        {% set id = product.id %}
+        {% set cover = product.cover.media %}
+        {% set variation = product.variation %}
+
+        {% block element_product_listing_wrapper %}
+            <div class="cms-element-product-listing-wrapper">
+                <div class="cms-element-product-listing">
+                    <div class="row cms-listing-row js-listing-wrapper">
+                        {% set content = {
+                            'layout': layout,
+                            'displayMode': displayMode,
+                            'product': product,
+                        } %}
+                        <div class="cms-listing-col">
+                            <div class="card product-box box-{{ layout }}">
+                                <div class="card-body">
+                                    {% block component_product_box_badges %}
+                                        {% sw_include '@Storefront/storefront/component/product/card/badges.html.twig' %}
+                                    {% endblock %}
+
+                                    <div class="product-image-wrapper">
+                                        {% if cover.url %}
+                                            {% set attributes = {
+                                                'class': 'product-image is-'~displayMode,
+                                                'alt': (cover.translated.alt ?: name),
+                                                'title': (cover.translated.title ?: name)
+                                            } %}
+
+                                            {% if displayMode == 'cover' or displayMode == 'contain' %}
+                                                {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                                            {% endif %}
+
+                                            {% sw_thumbnails 'product-image-thumbnails' with {
+                                                media: cover,
+                                                sizes: {
+                                                    'xs': '501px',
+                                                    'sm': '315px',
+                                                    'md': '427px',
+                                                    'lg': '333px',
+                                                    'xl': '284px'
+                                                }
+                                            } %}
+                                        {% else %}
+                                            <div class="product-image-placeholder">
+                                                {% sw_icon 'placeholder' style {
+                                                    'size': 'fluid'
+                                                } %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="product-info">
+                                        {% block component_product_box_rating %}
+                                            <div class="product-rating">
+                                                {% if product.ratingAverage %}
+                                                    {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                                                        points: product.ratingAverage,
+                                                        style: 'text-primary'
+                                                    } %}
+                                                {% endif %}
+                                            </div>
+                                        {% endblock %}
+
+                                        {% block component_product_box_name %}
+                                            <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                                               class="product-name"
+                                               title="{{ name }}">
+                                                {{ name }}
+                                            </a>
+                                        {% endblock %}
+
+                                        {% block component_product_box_variant_characteristics %}
+                                            <div class="product-variant-characteristics">
+                                                <div class="product-variant-characteristics-text">
+                                                    {% if not product.isGrouped %}
+                                                        {% for variation in product.variation %}
+                                                            {{ variation.group }}:
+                                                            <span class="product-variant-characteristics-option">
+                                                    {{ variation.option }}
+                                                </span>
+
+                                                            {% if product.variation|last != variation %}
+                                                                {{ " | " }}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endblock %}
+
+                                        {% block component_product_box_price %}
+                                            {% sw_include '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+                                        {% endblock %}
+
+                                        {% block component_product_box_action %}
+                                            <div class="product-action">
+                                                <div class="btn btn-block btn-light" title="{{ "listing.boxProductDetails"|trans|striptags }}">
+                                                    {{ "listing.boxProductDetails"|trans|sw_sanitize }}
+                                                </div>
+                                            </div>
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </body>
+</html>

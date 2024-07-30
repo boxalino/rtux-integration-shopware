@@ -1,0 +1,21 @@
+{#
+@BoxalinoRealTimeUserExperienceIntegration/storefront/narrative/page/category/title.html.twig
+duplicate from the original SW6 theme @Storefront/storefront/element/cms-element-text.html.twig
+#}
+
+{% block element_text %}
+    <div class="cms-element-text has-vertical-alignment">
+        {% block element_text_alignment %}
+            {% if block.verticalAlign[0] != "" %}
+                <div class="cms-element-alignment{% if block.verticalAlign[0] == "center" %} align-self-center{% elseif block.verticalAlign[0] == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+            {% endif %}
+                {% block element_text_inner %}
+                    <h1>{{ category.name|striptags|title }}</h1>
+                    <h3>{{ block.content | raw }}</h3>
+                {% endblock %}
+            {% if block.verticalAlign[0] != "" %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
