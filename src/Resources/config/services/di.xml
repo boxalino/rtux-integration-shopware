@@ -11,6 +11,7 @@
 <!--        <import resource="di/product-with-other-attribute-handler.xml"/>-->
         <import resource="di/order.xml"/>
         <import resource="di/user.xml"/>
+        <import resource="di/user-selection.xml"/>
 
         <import resource="di/configuration.xml"/>
         <import resource="di/product-console.xml"/>
@@ -21,6 +22,7 @@
 <!--        <import resource="di/order-subscriber.xml"/>-->
         <import resource="di/user-console.xml"/>
 <!--        <import resource="di/user-subscriber.xml"/>-->
+        <import resource="di/user-selection-console.xml"/>
     </imports>
 
     <services>

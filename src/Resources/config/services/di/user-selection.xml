@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- X: doc_user_selection generator for the wishlist data exported on data integration with the use of the handlers -->
+        <!-- the service ID has been defined as a dependency for the user-selection-console.xml B.1 & B.2 services -->
+        <service id="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserSelectionHandlerInterface"
+                 class="Boxalino\DataIntegration\Service\Document\UserSelection\DocHandler">
+            <argument type="service" id="Boxalino\DataIntegration\Service\UserSelection\Logger"/>
+            <call method="addPropertyHandler">
+                <argument type="service" id="boxalino.di.user_selection.wishlist"/>
+            </call>
+        </service>
+
+    </services>
+</container>
